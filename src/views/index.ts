@@ -1,8 +1,8 @@
-import Board from './board';
+import Board from "./board";
 
-function index(params: { request: Request, ctx: any, env: any }) {
+function index(params: { request: Request; ctx: any; env: any }) {
   const { request, ctx, env } = params;
-  
+
   const template = `
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +24,7 @@ function index(params: { request: Request, ctx: any, env: any }) {
         <input id="toList" type="hidden" name="to">
         <input id="movedCard" type="hidden" name="movedCard">
         <div id="board" class="board sortable">
-          ${Board({request, ctx, env})}
+          ${Board({ request, ctx, env })}
         </div>
       </form>
       
@@ -46,7 +46,7 @@ function index(params: { request: Request, ctx: any, env: any }) {
 </html>
   `;
 
-  return new Response(template, { });
+  return new Response(template, {});
 }
 
 export default index;

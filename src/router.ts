@@ -1,11 +1,11 @@
 // An example 'toy' implementation of a router using URLPattern: https://developer.mozilla.org/en-US/docs/Web/API/URL_Pattern_API
 type Method = "GET" | "PUT" | "POST" | "PATCH" | "DELETE" | "OPTIONS" | "HEAD";
-type Handler = (request: Request) => any;
+type Handler = (params: { request: Request; ctx: any; env: any }) => any;
 
 type Route = {
   path: URLPattern;
   method: Method;
-  handler: (request: Request) => any;
+  handler: Handler;
 };
 
 export class Router {
@@ -27,13 +27,15 @@ export class Router {
     });
   }
 
-  handle(request: Request) {
+  handle(params: { request: Request; ctx: any; env: any }) {
+    const { request } = params;
+
     for (const route of this.routes) {
       if (route.method !== request.method) continue;
       const match = route.path.exec({
         pathname: new URL(request.url).pathname,
       });
-      if (match) return route.handler(request);
+      if (match) return route.handler(params);
     }
     return new Response("Not found", { status: 404 });
   }

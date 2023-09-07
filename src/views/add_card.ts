@@ -4,8 +4,7 @@ const card = (request: Request) => {
 </div>
   `;
 
-return template;
-  
+  return template;
 };
 
 export default card;

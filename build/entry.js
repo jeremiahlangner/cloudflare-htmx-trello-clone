@@ -1,8 +1,8 @@
-var d=class{routes;constructor(t=[]){this.routes=[];for(let e of t)this.register(...e)}register(t,e,o="GET"){this.routes.push({path:new URLPattern({pathname:t}),method:o,handler:e})}handle(t){for(let e of this.routes){if(e.method!==t.method)continue;if(e.path.exec({pathname:new URL(t.url).pathname}))return e.handler(t)}return new Response("Not found",{status:404})}};function h(r){let{request:t,ctx:e,env:o}=r,i=[];for(let c of i){let v=`
+var a=class{routes;constructor(t=[]){this.routes=[];for(let e of t)this.register(...e)}register(t,e,r="GET"){this.routes.push({path:new URLPattern({pathname:t}),method:r,handler:e})}handle(t){let{request:e}=t;for(let r of this.routes){if(r.method!==e.method)continue;if(r.path.exec({pathname:new URL(e.url).pathname}))return r.handler(t)}return new Response("Not found",{status:404})}};function l(o){let{request:t,ctx:e,env:r}=o,s=[];for(let d of s){let h=`
 <div class="list" draggable="true">
-  <div class="list-title" id="${c.name}"></div>
+  <div class="list-title" id="${d.name}"></div>
 </div>
-  `}}var s=h;function m(r){let{request:t,ctx:e,env:o}=r,i=`
+  `}}var n=l;function c(o){let{request:t,ctx:e,env:r}=o,s=`
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,7 +23,7 @@ var d=class{routes;constructor(t=[]){this.routes=[];for(let e of t)this.register
         <input id="toList" type="hidden" name="to">
         <input id="movedCard" type="hidden" name="movedCard">
         <div id="board" class="board sortable">
-          ${s({request:t,ctx:e,env:o})}
+          ${n({request:t,ctx:e,env:r})}
         </div>
       </form>
       
@@ -43,12 +43,4 @@ var d=class{routes;constructor(t=[]){this.routes=[];for(let e of t)this.register
       });
   </body>
 </html>
-  `;return new Response(i,{})}var a=m;function p(r){return`
-<div>
-
-</div>
-  `}var n=p;function u(r){return`
-<div>
-
-</div>
-  `}var l=u;var f=new d([["/",a],["/",s,"POST"],["/add",n],["cancel",l],["/add/:id",AddCard],["/edit/:list_id/:id",EditCard],["/:list_id/:id",Card,"PUT"],["/cancel/:id",ToggleAddCard],["/cancel-edit/:list_id/:id",Card],["/:list_id/:id",List,"DELETE"],["/move",s,"POST"],["/new/:list_id",NewCard,"POST"]]),L=f.handle;export{L as default};
+  `;return new Response(s,{})}var i=c;var m=new a([["/",i],["/",n,"POST"]]),g=m.handle;export{g as default};
