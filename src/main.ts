@@ -1,4 +1,6 @@
 import { Router } from "./router";
+import Index from './views/index';
+import Board from './views/board';
 import AddList from "./views/add_list";
 import NewList from "./views/new_list";
 
@@ -38,9 +40,18 @@ const lists = [
 ];
 
 const router = new Router([
+  ["/", Index],
+  ["/", Board, "POST"],
   ["/add", AddList],
-  ["/", NewList, "POST"],
   ["cancel", NewList],
+  ["/add/:id", AddCard],
+  ["/edit/:list_id/:id", EditCard],
+  ["/:list_id/:id", Card, "PUT"],
+  ["/cancel/:id", ToggleAddCard],
+  ["/cancel-edit/:list_id/:id", Card ],
+  ["/:list_id/:id", List, "DELETE"],
+  ["/move", Board, "POST"],
+  ["/new/:list_id", NewCard, "POST"],
 ]);
 
 export default router.handle;
