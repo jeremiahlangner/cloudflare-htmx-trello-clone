@@ -5,7 +5,7 @@
   "main": "build/main.js",
   "scripts": {
     "test": "npx jest ./test/main.spec.ts",
-    "build": "rm -rf ./build && npx esbuild ./src/main.ts --bundle --outdir=build --format=esm --minify",
+    "build": "rm -rf ./build && npx esbuild ./src/entry.ts --bundle --outdir=build --format=esm --minify",
     "format": "npx prettier . --write"
   },
   "keywords": [],
