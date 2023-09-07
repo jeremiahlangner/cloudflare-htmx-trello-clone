@@ -1,7 +1,9 @@
 function Board(params: { request: Request; ctx: any; env: any }) {
   const { request, ctx, env } = params;
 
-  const lists: any[] = []; // replace with parameter from lists.
+  const lists: any[] = [{
+    name: 'testing'
+  }]; // replace with parameter from lists.
 
   for (const list of lists) {
     const listTemplate = `

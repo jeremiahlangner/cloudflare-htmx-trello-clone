@@ -1,8 +1,8 @@
-var a=class{routes;constructor(t=[]){this.routes=[];for(let e of t)this.register(...e)}register(t,e,r="GET"){this.routes.push({path:new URLPattern({pathname:t}),method:r,handler:e})}handle(t){let{request:e}=t;for(let r of this.routes){if(r.method!==e.method)continue;if(r.path.exec({pathname:new URL(e.url).pathname}))return r.handler(t)}return new Response("Not found",{status:404})}};function l(o){let{request:t,ctx:e,env:r}=o,s=[];for(let d of s){let h=`
+var n=class{routes;constructor(t=[]){this.routes=[];for(let e of t)this.register(...e)}register(t,e,r="GET"){this.routes.push({path:new URLPattern({pathname:t}),method:r,handler:e})}handle(t){let{request:e}=t;for(let r of this.routes){if(r.method!==e.method)continue;if(r.path.exec({pathname:new URL(e.url).pathname}))return r.handler(t)}return new Response("Not found",{status:404})}};function l(o){let{request:t,ctx:e,env:r}=o,s=[{name:"testing"}];for(let d of s){let m=`
 <div class="list" draggable="true">
   <div class="list-title" id="${d.name}"></div>
 </div>
-  `}}var n=l;function c(o){let{request:t,ctx:e,env:r}=o,s=`
+  `}}var a=l;function c(o){let{request:t,ctx:e,env:r}=o,s=`
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,7 +23,7 @@ var a=class{routes;constructor(t=[]){this.routes=[];for(let e of t)this.register
         <input id="toList" type="hidden" name="to">
         <input id="movedCard" type="hidden" name="movedCard">
         <div id="board" class="board sortable">
-          ${n({request:t,ctx:e,env:r})}
+          ${a({request:t,ctx:e,env:r})}
         </div>
       </form>
       
@@ -43,4 +43,4 @@ var a=class{routes;constructor(t=[]){this.routes=[];for(let e of t)this.register
       });
   </body>
 </html>
-  `;return new Response(s,{})}var i=c;var m=new a([["/",i],["/",n,"POST"]]),g=m.handle;export{g as default};
+  `;return new Response(s,{headers:{"content-type":"text/html;charset=UTF-8"}})}var i=c;var h=new n([["/",i],["/",a,"POST"]]),g=h.handle;export{g as default};
