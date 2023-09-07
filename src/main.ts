@@ -1,4 +1,4 @@
-import { Router } from "./router/router";
+import { Router } from "./router";
 import { AddList } from './views/add_list';
 
 const lists = [

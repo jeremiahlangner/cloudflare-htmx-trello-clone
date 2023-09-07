@@ -1,8 +1,4 @@
-interface CardParams {
-
-}
-
-const card = (params: CardParams) => {
+const card = (request: Request) => {
   return `
 <div>
 </div>

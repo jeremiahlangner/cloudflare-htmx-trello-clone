@@ -1,16 +1,16 @@
 {
   "name": "trello-clone",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A Trello Clone using HTMX and Cloudflare Workers",
   "main": "build/main.js",
   "scripts": {
     "test": "npx jest ./test/main.spec.ts",
-    "build": "rm -rf ./build && npx esbuild ./src/main.ts --bundle --outdir=build --format=esm",
+    "build": "rm -rf ./build && npx esbuild ./src/main.ts --bundle --outdir=build --format=esm --minify",
     "format": "npx prettier . --write"
   },
   "keywords": [],
   "author": "Jeremiah Langner",
-  "license": "Unlicense",
+  "license": "MIT",
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230904.0",
     "@types/web": "^0.0.114"
