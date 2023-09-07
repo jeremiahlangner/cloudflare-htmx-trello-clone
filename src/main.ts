@@ -1,5 +1,6 @@
 import { Router } from "./router";
-import { AddList } from './views/add_list';
+import AddList from './views/add_list';
+import NewList from './views/new_list';
 
 const lists = [
   {
@@ -36,9 +37,10 @@ const lists = [
   },
 ];
 
-function main(request: Request): void {
-  const router = new Router();
-  return router.handle(request);
-}
+const router = new Router([
+  [ '/add', AddList ],
+  [ '/', NewList, 'POST' ],
+  [ 'cancel', NewList ]
+]);
 
-export default main;
+export default router.handle;

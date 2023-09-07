@@ -9,10 +9,14 @@ type Route = {
 };
 
 export class Router {
-  routes: Route[];
+  routes: Route[]; 
 
-  constructor(routes: Route[] = []) {
-    this.routes = routes;
+  constructor(routes: [string, Handler, Method?][] = []) {
+    this.routes = [];
+
+    for (const route of routes) {
+      this.register(...route);
+    }
   }
 
   register(path: string, handler: Handler, method: Method = "GET") {
