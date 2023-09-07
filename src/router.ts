@@ -9,7 +9,7 @@ type Route = {
 };
 
 export class Router {
-  routes: Route[]; 
+  routes: Route[];
 
   constructor(routes: [string, Handler, Method?][] = []) {
     this.routes = [];

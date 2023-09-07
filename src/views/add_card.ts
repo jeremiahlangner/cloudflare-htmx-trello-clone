@@ -3,6 +3,6 @@ const card = (request: Request) => {
 <div>
 </div>
   `;
-}
+};
 
 export default card;
