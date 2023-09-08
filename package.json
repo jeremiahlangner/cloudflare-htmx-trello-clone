@@ -2,10 +2,11 @@
   "name": "trello-clone",
   "version": "0.0.1",
   "description": "A Trello Clone using HTMX and Cloudflare Workers",
-  "main": "build/entry.js",
+  "main": "build/worker.js",
+  "types": "build/worker.d.ts",
   "scripts": {
     "test": "npx jest --pass-with-no-tests",
-    "build": "npm run test && rm -rf ./build && npx esbuild ./src/entry.ts --bundle --outdir=build --format=esm --minify",
+    "build": "npm run test && rm -rf ./build && npx tsc && npx esbuild ./src/worker.ts --bundle --outdir=build --format=esm --minify",
     "format": "npx prettier . --write"
   },
   "keywords": [],
