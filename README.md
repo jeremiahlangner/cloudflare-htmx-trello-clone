@@ -4,7 +4,7 @@ A serverless implementation of the HTMX trello clone developed by rajasegar (git
 
 ## Demo
 
-Online now at [https://trello-clone.jeremiahlangner.workers.dev](https://trello-clone.jeremiahlangner.workers.dev).
+[https://trello-clone.jeremiahlangner.workers.dev](https://trello-clone.jeremiahlangner.workers.dev)
 
 ## Why
 
