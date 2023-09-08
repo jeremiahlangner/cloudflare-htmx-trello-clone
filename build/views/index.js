@@ -1,8 +1,8 @@
-import Boilerplate from './page-bp';
+import { PageBoilerplate } from './mixins';
 import Board from "./board";
 function index(params) {
     const { request, ctx, env } = params;
-    const template = Boilerplate({
+    const template = PageBoilerplate({
         template: `
     <div class="app">
       <div class="header">

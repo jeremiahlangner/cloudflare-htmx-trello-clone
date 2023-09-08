@@ -21,8 +21,8 @@ var o = class {
   }
 };
 
-// src/views/page-bp.ts
-function Boilerplate(params) {
+// src/views/mixins.ts
+function PageBoilerplate(params) {
   const template = `
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +40,6 @@ function Boilerplate(params) {
   `;
   return template;
 }
-var page_bp_default = Boilerplate;
 
 // src/views/board.ts
 function Board(params) {
@@ -68,7 +67,7 @@ var board_default = Board;
 // src/views/index.ts
 function index(params) {
   const { request, ctx, env } = params;
-  const template = page_bp_default({
+  const template = PageBoilerplate({
     template: `
     <div class="app">
       <div class="header">

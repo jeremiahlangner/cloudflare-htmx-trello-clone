@@ -1,11 +1,11 @@
 import { Handler } from "simple-worker-router";
-import Boilerplate from './page-bp';
+import { PageBoilerplate } from './mixins';
 import Board from "./board";
 
 function index(params: { request: Request; ctx: any; env: any }): Response {
   const { request, ctx, env } = params;
 
-  const template = Boilerplate({
+  const template = PageBoilerplate({
     template: `
     <div class="app">
       <div class="header">
