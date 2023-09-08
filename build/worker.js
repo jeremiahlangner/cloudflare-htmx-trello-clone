@@ -21,6 +21,27 @@ var o = class {
   }
 };
 
+// src/views/page-bp.ts
+function Boilerplate(params) {
+  const template = `
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTMX Trello Clone</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    ${params.template}
+  </body>
+</html>
+  `;
+  return template;
+}
+var page_bp_default = Boilerplate;
+
 // src/views/board.ts
 function Board(params) {
   const { request, ctx, env } = params;
@@ -47,17 +68,8 @@ var board_default = Board;
 // src/views/index.ts
 function index(params) {
   const { request, ctx, env } = params;
-  const template = `
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Serverless Trello in HTMX</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
+  const template = page_bp_default({
+    template: `
     <div class="app">
       <div class="header">
         htmx Trello Clone
@@ -86,9 +98,9 @@ function index(params) {
           });
         }
       });
-  </body>
-</html>
-  `;
+    <\/script>
+    `
+  });
   return new Response(
     template,
     {

@@ -1,20 +1,12 @@
 import { Handler } from "simple-worker-router";
+import Boilerplate from './page-bp';
 import Board from "./board";
 
 function index(params: { request: Request; ctx: any; env: any }): Response {
   const { request, ctx, env } = params;
 
-  const template = `
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Serverless Trello in HTMX</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
+  const template = Boilerplate({
+    template: `
     <div class="app">
       <div class="header">
         htmx Trello Clone
@@ -43,9 +35,9 @@ function index(params: { request: Request; ctx: any; env: any }): Response {
           });
         }
       });
-  </body>
-</html>
-  `;
+    </script>
+    `
+  });
 
   return new Response(
     template,
