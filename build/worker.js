@@ -1,8 +1,49 @@
-var a=class{routes;constructor(t=[]){this.routes=[];for(let e of t)this.register(...e)}register(t,e,r="GET"){this.routes.push({path:new URLPattern({pathname:t}),method:r,handler:e})}handle(t){let{request:e}=t;for(let r of this.routes)if(r.method===e.method&&r.path.exec({pathname:new URL(e.url).pathname}))return r.handler(t);return new Response("Not found",{status:404})}};function m(t){let{request:e,ctx:r,env:n}=t,o="",l=[{name:"testing"}];for(let d of l){let c=`
+// node_modules/simple-worker-router/build/router.js
+var o = class {
+  routes;
+  constructor(t = []) {
+    this.routes = [];
+    for (let e of t)
+      this.register(...e);
+  }
+  register(t, e, n = "GET") {
+    this.routes.push({ path: new URLPattern({ pathname: t }), method: n, handler: e });
+  }
+  handle(t) {
+    let { request: e } = t;
+    for (let n of this.routes) {
+      if (n.method !== e.method)
+        continue;
+      if (n.path.exec({ pathname: new URL(e.url).pathname }))
+        return n.handler(t);
+    }
+    return new Response("Not found", { status: 404 });
+  }
+};
+
+// src/views/board.ts
+function Board(params) {
+  const { request, ctx, env } = params;
+  let template = ``;
+  const lists = [{
+    name: "testing"
+  }];
+  for (const list of lists) {
+    const listTemplate = `
 <div class="list" draggable="true">
-  <div class="list-title" id="${d.name}"></div>
+  <div class="list-title" id="${list.name}"></div>
 </div>
-  `;o+=c}return o}var s=m;function p(t){let{request:e,ctx:r,env:n}=t,o=`
+  `;
+    template += listTemplate;
+  }
+  return template;
+}
+var board_default = Board;
+
+// src/views/index.ts
+function index(params) {
+  const { request, ctx, env } = params;
+  const template = `
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,7 +64,7 @@ var a=class{routes;constructor(t=[]){this.routes=[];for(let e of t)this.register
         <input id="toList" type="hidden" name="to">
         <input id="movedCard" type="hidden" name="movedCard">
         <div id="board" class="board sortable">
-          ${s({request:e,ctx:r,env:n})}
+          ${board_default({ request, ctx, env })}
         </div>
       </form>
       
@@ -43,4 +84,38 @@ var a=class{routes;constructor(t=[]){this.routes=[];for(let e of t)this.register
       });
   </body>
 </html>
-  `;return new Response(o,{headers:{"content-type":"text/html;charset=UTF-8"}})}var i=p;var q={async fetch(t,e,r){return new a([["/",i],["/",s,"POST"]]).handle({request:t,env:e,ctx:r})}};export{q as default};
+  `;
+  return new Response(
+    template,
+    {
+      headers: {
+        "content-type": "text/html;charset=UTF-8"
+      }
+    }
+  );
+}
+var views_default = index;
+
+// src/worker.ts
+var worker_default = {
+  async fetch(request, env, ctx) {
+    const router = new o([
+      ["/", views_default],
+      ["/", board_default, "POST"]
+      /*  ["/add", AddList],
+      ["cancel", NewList],
+      ["/add/:id", AddCard],
+      ["/edit/:list_id/:id", EditCard],
+      ["/:list_id/:id", Card, "PUT"],
+      ["/cancel/:id", ToggleAddCard],
+      ["/cancel-edit/:list_id/:id", Card ],
+      ["/:list_id/:id", List, "DELETE"],
+      ["/move", Board, "POST"],
+      ["/new/:list_id", NewCard, "POST"], */
+    ]);
+    return router.handle({ request, env, ctx });
+  }
+};
+export {
+  worker_default as default
+};
