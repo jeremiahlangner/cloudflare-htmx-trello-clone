@@ -23,7 +23,7 @@ var o = class {
 
 // src/views/mixins.ts
 function PageBoilerplate(params) {
-  const template = `
+  return `
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,7 +38,6 @@ function PageBoilerplate(params) {
   </body>
 </html>
   `;
-  return template;
 }
 
 // src/views/board.ts
