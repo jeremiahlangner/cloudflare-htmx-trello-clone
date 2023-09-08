@@ -1,3 +1,5 @@
+import Styles from './styles';
+
 function PageBoilerplate(params: any) {
   return `
 <!DOCTYPE html>
@@ -7,7 +9,9 @@ function PageBoilerplate(params: any) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HTMX Trello Clone</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+      ${Styles()}
+    </style>
   </head>
   <body>
     ${params.template}
