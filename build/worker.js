@@ -27,11 +27,15 @@ function Board(params) {
   let template = ``;
   const lists = [{
     name: "testing"
+  }, {
+    name: "testing 2"
+  }, {
+    name: "testing 2"
   }];
   for (const list of lists) {
     const listTemplate = `
 <div class="list" draggable="true">
-  <div class="list-title" id="${list.name}"></div>
+  <div class="list-title" id="${list.name}">${list.name}</div>
 </div>
   `;
     template += listTemplate;
@@ -60,7 +64,7 @@ function index(params) {
       </div>
 
       <form hx-post="/cards/move" hx-trigger="cardmoved" hx-target="#board">
-        <input id="fromList type="hidden" name="from">
+        <input id="fromList" type="hidden" name="from">
         <input id="toList" type="hidden" name="to">
         <input id="movedCard" type="hidden" name="movedCard">
         <div id="board" class="board sortable">

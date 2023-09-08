@@ -21,7 +21,7 @@ function index(params: { request: Request; ctx: any; env: any }): Response {
       </div>
 
       <form hx-post="/cards/move" hx-trigger="cardmoved" hx-target="#board">
-        <input id="fromList type="hidden" name="from">
+        <input id="fromList" type="hidden" name="from">
         <input id="toList" type="hidden" name="to">
         <input id="movedCard" type="hidden" name="movedCard">
         <div id="board" class="board sortable">
