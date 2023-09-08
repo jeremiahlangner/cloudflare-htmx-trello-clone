@@ -14,4 +14,4 @@ This is a proof of concept project. I am actively architecting and developing it
 
 ## Attribution
 
-This project is developed with a large amount of debt to the code written by Rajasegar Chandran. He is included as a copyright holder in the license per ISC specifications in the original project, though this code itself is not a direct fork.
+This project is developed from code written by Rajasegar Chandran. He is included as a copyright holder in the license per ISC specifications in the original project. This code itself is not a direct fork.
