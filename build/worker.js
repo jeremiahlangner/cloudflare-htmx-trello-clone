@@ -1,29 +1,4 @@
-// node_modules/simple-worker-router/build/router.js
-var o = class {
-  routes;
-  constructor(t = []) {
-    this.routes = [];
-    for (let e of t)
-      this.register(...e);
-  }
-  register(t, e, n = "GET") {
-    this.routes.push({ path: new URLPattern({ pathname: t }), method: n, handler: e });
-  }
-  handle(t) {
-    let { request: e } = t;
-    for (let n of this.routes) {
-      if (n.method !== e.method)
-        continue;
-      if (n.path.exec({ pathname: new URL(e.url).pathname }))
-        return n.handler(t);
-    }
-    return new Response("Not found", { status: 404 });
-  }
-};
-
-// src/views/styles.ts
-function Styles() {
-  return `
+var s=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,r="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:r,handler:t})}handle(e){let{request:t}=e;for(let r of this.routes)if(r.method===t.method&&r.path.exec({pathname:new URL(t.url).pathname}))return r.handler(e);return new Response("Not found",{status:404})}};function f(){return`
 body {
     margin: 0;
     padding: 0;
@@ -272,13 +247,7 @@ code {
 .hidden {
   display: none;
 }
-  `;
-}
-var styles_default = Styles;
-
-// src/views/mixins.ts
-function PageBoilerplate(params) {
-  return `
+  `}var d=f;function l(e){return`
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -287,44 +256,18 @@ function PageBoilerplate(params) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HTMX Trello Clone</title>
     <style>
-      ${styles_default()}
+      ${d()}
     </style>
   </head>
   <body>
-    ${params.template}
+    ${e.template}
   </body>
 </html>
-  `;
-}
-
-// src/views/board.ts
-function Board(params) {
-  const { request, ctx, env } = params;
-  let template = ``;
-  const lists = [{
-    name: "testing"
-  }, {
-    name: "testing 2"
-  }, {
-    name: "testing 2"
-  }];
-  for (const list of lists) {
-    const listTemplate = `
+  `}function g(e){let{request:t,ctx:r,env:n}=e,o="",p=[{name:"testing"},{name:"testing 2"},{name:"testing 2"}];for(let a of p){let h=`
 <div class="list" draggable="true">
-  <div class="list-title" id="${list.name}">${list.name}</div>
+  <div class="list-title" id="${a.name}">${a.name}</div>
 </div>
-  `;
-    template += listTemplate;
-  }
-  return template;
-}
-var board_default = Board;
-
-// src/views/index.ts
-function index(params) {
-  const { request, ctx, env } = params;
-  const template = PageBoilerplate({
-    template: `
+  `;o+=h}return o}var i=g;function x(e){let{request:t,ctx:r,env:n}=e,o=l({template:`
     <div class="app">
       <div class="header">
         htmx Trello Clone
@@ -335,7 +278,7 @@ function index(params) {
         <input id="toList" type="hidden" name="to">
         <input id="movedCard" type="hidden" name="movedCard">
         <div id="board" class="board sortable">
-          ${board_default({ request, ctx, env })}
+          ${i({request:t,ctx:r,env:n})}
         </div>
       </form>
       
@@ -354,39 +297,4 @@ function index(params) {
         }
       });
     <\/script>
-    `
-  });
-  return new Response(
-    template,
-    {
-      headers: {
-        "content-type": "text/html;charset=UTF-8"
-      }
-    }
-  );
-}
-var views_default = index;
-
-// src/worker.ts
-var worker_default = {
-  async fetch(request, env, ctx) {
-    const router = new o([
-      ["/", views_default],
-      ["/", board_default, "POST"]
-      /*  ["/add", AddList],
-      ["cancel", NewList],
-      ["/add/:id", AddCard],
-      ["/edit/:list_id/:id", EditCard],
-      ["/:list_id/:id", Card, "PUT"],
-      ["/cancel/:id", ToggleAddCard],
-      ["/cancel-edit/:list_id/:id", Card ],
-      ["/:list_id/:id", List, "DELETE"],
-      ["/move", Board, "POST"],
-      ["/new/:list_id", NewCard, "POST"], */
-    ]);
-    return router.handle({ request, env, ctx });
-  }
-};
-export {
-  worker_default as default
-};
+    `});return new Response(o,{headers:{"content-type":"text/html;charset=UTF-8"}})}var c=x;var q={async fetch(e,t,r){return new s([["/",c],["/",i,"POST"]]).handle({request:e,env:t,ctx:r})}};export{q as default};
