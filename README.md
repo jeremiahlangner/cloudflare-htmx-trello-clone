@@ -4,7 +4,7 @@ A serverless implementation of the HTMX trello clone developed by rajasegar (git
 
 ## Why
 
-rajasegar's Heroku instance of this server example for HTMX with node.js is down.
+rajasegar's Heroku instance of this server example for HTMX with node.js is down. I don't believe HTMX needs a server so much as "state storage". That is, the backend should represent the state. In this case, I'm using Cloudflare's KV storage and may switch to Durable Objects for consistency's sake.
 
 ## Usage
 
