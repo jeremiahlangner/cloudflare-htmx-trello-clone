@@ -1,7 +1,3 @@
-/// <reference types="@cloudflare/workers-types" />
-declare function Board(params: {
-    request: Request;
-    ctx: any;
-    env: any;
-}): void;
-export default Board;
+import { Handler } from "simple-worker-router";
+declare const _default: Handler;
+export default _default;

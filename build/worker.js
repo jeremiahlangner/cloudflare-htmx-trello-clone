@@ -1,8 +1,8 @@
-var n=class{routes;constructor(t=[]){this.routes=[];for(let e of t)this.register(...e)}register(t,e,r="GET"){this.routes.push({path:new URLPattern({pathname:t}),method:r,handler:e})}handle(t){let{request:e}=t;for(let r of this.routes){if(r.method!==e.method)continue;if(r.path.exec({pathname:new URL(e.url).pathname}))return r.handler(t)}return new Response("Not found",{status:404})}};function l(o){let{request:t,ctx:e,env:r}=o,s=[{name:"testing"}];for(let d of s){let m=`
+var a=class{routes;constructor(t=[]){this.routes=[];for(let e of t)this.register(...e)}register(t,e,r="GET"){this.routes.push({path:new URLPattern({pathname:t}),method:r,handler:e})}handle(t){let{request:e}=t;for(let r of this.routes)if(r.method===e.method&&r.path.exec({pathname:new URL(e.url).pathname}))return r.handler(t);return new Response("Not found",{status:404})}};function m(t){let{request:e,ctx:r,env:n}=t,o="",l=[{name:"testing"}];for(let d of l){let c=`
 <div class="list" draggable="true">
   <div class="list-title" id="${d.name}"></div>
 </div>
-  `}}var a=l;function c(o){let{request:t,ctx:e,env:r}=o,s=`
+  `;o+=c}return o}var s=m;function p(t){let{request:e,ctx:r,env:n}=t,o=`
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,7 +23,7 @@ var n=class{routes;constructor(t=[]){this.routes=[];for(let e of t)this.register
         <input id="toList" type="hidden" name="to">
         <input id="movedCard" type="hidden" name="movedCard">
         <div id="board" class="board sortable">
-          ${a({request:t,ctx:e,env:r})}
+          ${s({request:e,ctx:r,env:n})}
         </div>
       </form>
       
@@ -43,4 +43,4 @@ var n=class{routes;constructor(t=[]){this.routes=[];for(let e of t)this.register
       });
   </body>
 </html>
-  `;return new Response(s,{headers:{"content-type":"text/html;charset=UTF-8"}})}var i=c;var h=new n([["/",i],["/",a,"POST"]]),g=h.handle;export{g as default};
+  `;return new Response(o,{headers:{"content-type":"text/html;charset=UTF-8"}})}var i=p;var q={async fetch(t,e,r){return new a([["/",i],["/",s,"POST"]]).handle({request:t,env:e,ctx:r})}};export{q as default};

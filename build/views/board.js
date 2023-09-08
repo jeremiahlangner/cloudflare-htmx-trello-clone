@@ -1,5 +1,6 @@
 function Board(params) {
     const { request, ctx, env } = params;
+    let template = ``;
     const lists = [{
             name: 'testing'
         }]; // replace with parameter from lists.
@@ -9,6 +10,8 @@ function Board(params) {
   <div class="list-title" id="${list.name}"></div>
 </div>
   `;
+        template += listTemplate;
     }
+    return template;
 }
 export default Board;

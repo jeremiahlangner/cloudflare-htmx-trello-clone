@@ -1,7 +1,3 @@
-/// <reference types="@cloudflare/workers-types" />
-declare function index(params: {
-    request: Request;
-    ctx: any;
-    env: any;
-}): Response;
-export default index;
+import { Handler } from "simple-worker-router";
+declare const _default: Handler;
+export default _default;

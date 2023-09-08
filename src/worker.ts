@@ -4,6 +4,9 @@ import Board from "./views/board";
 // import AddList from "./views/add_list";
 // import NewList from "./views/new_list";
 
+interface Environment {
+}
+
 const lists = [
   {
     name: "To Do",

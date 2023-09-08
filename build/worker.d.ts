@@ -1,7 +1,7 @@
 /// <reference types="@cloudflare/workers-types" />
-declare const _default: (params: {
-    request: Request<unknown, CfProperties<unknown>>;
-    ctx: any;
-    env: any;
-}) => any;
+interface Environment {
+}
+declare const _default: {
+    fetch(request: Request, env: Environment, ctx: any): Promise<unknown>;
+};
 export default _default;

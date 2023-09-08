@@ -1,6 +1,7 @@
+import { Handler } from "simple-worker-router";
 import Board from "./board";
 
-function index(params: { request: Request; ctx: any; env: any }) {
+function index(params: { request: Request; ctx: any; env: any }): Response {
   const { request, ctx, env } = params;
 
   const template = `
@@ -46,11 +47,14 @@ function index(params: { request: Request; ctx: any; env: any }) {
 </html>
   `;
 
-  return new Response(template, {
-    headers: {
-      "content-type": "text/html;charset=UTF-8",
-    },
-  });
+  return new Response(
+    template,
+    {
+      headers: {
+        "content-type": "text/html;charset=UTF-8",
+      },
+    }
+  );
 }
 
-export default index;
+export default index as Handler;
