@@ -4,12 +4,12 @@ const lists = [
         id: 1,
         cards: [
             {
-                id: 1,
+                id: "1",
                 label: "First Card",
                 list: 1,
             },
             {
-                id: 2,
+                id: "2",
                 label: "Second Card",
                 list: 1,
             },
@@ -20,12 +20,12 @@ const lists = [
         id: 2,
         cards: [
             {
-                id: 3,
+                id: "3",
                 label: "First Card",
                 list: 2,
             },
             {
-                id: 4,
+                id: "4",
                 label: "Second Card",
                 list: 2,
             },

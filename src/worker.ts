@@ -1,11 +1,11 @@
-import { Router } from "simple-worker-router";
+import { Router, Handler } from "simple-worker-router";
 import Index from "./views/index";
 import AddList from "./views/add_list";
 import Board from "./views/board";
 import NewCard from "./views/new_card";
 import NewList from "./views/new_list";
 import ToggleAddCard from "./views/toggle_add_card";
-import { HTMLResponseOptions } from "./util";
+import { HTMLResponse } from "./util";
 
 interface Environment {}
 
@@ -14,15 +14,11 @@ export default {
     const router = new Router([
       ["/", Index],
       ["/", Board, "POST"],
-      [
-        "/cards/move",
-        (params) => new Response(Board(params) as string, HTMLResponseOptions),
-        "POST",
-      ],
+      ["/cards/move", (params) => HTMLResponse(Board(params)), "POST"], // TODO: finish move response
       ["/cards/new/:list_id", NewCard, "POST"],
       ["/cards/cancel/:id", ToggleAddCard],
       ["/lists/add", AddList],
-      ["/lists/cancel", () => new Response(NewList, HTMLResponseOptions)] /*
+      ["/lists/cancel", HTMLResponse(NewList) as any as Handler] /*
       ["/", Board, "POST"],
       ["/add/:id", AddCard],
       ["/edit/:list_id/:id", EditCard],

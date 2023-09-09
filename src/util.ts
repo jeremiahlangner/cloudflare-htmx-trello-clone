@@ -4,10 +4,12 @@ function hash(_hashes: { [key: string]: string }): string {
   return h;
 }
 
-const HTMLResponseOptions = {
-  headers: {
-    "content-type": "text/html;charset=UTF-8",
-  },
-};
+async function HTMLResponse(response: string) {
+  return new Response(response, {
+    headers: {
+      "content-type": "text/html;charset=UTF-8",
+    },
+  });
+}
 
-export { hash, HTMLResponseOptions };
+export { hash, HTMLResponse };

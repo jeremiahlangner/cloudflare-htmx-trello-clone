@@ -4,9 +4,11 @@ function hash(_hashes) {
         h = Math.random().toString(16).substring(2, 15);
     return h;
 }
-const HTMLResponseOptions = {
-    headers: {
-        "content-type": "text/html;charset=UTF-8",
-    },
-};
-export { hash, HTMLResponseOptions };
+async function HTMLResponse(response) {
+    return new Response(response, {
+        headers: {
+            "content-type": "text/html;charset=UTF-8",
+        },
+    });
+}
+export { hash, HTMLResponse };

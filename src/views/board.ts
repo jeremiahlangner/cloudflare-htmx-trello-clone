@@ -1,44 +1,33 @@
-import { Handler } from "simple-worker-router";
 import { IconEdit } from "./mixins";
 import ToggleAddCard from "./toggle_add_card";
 import AddCard from "./add_card";
 import NewList from "./new_list";
-import lists from "../data/list";
+import Lists from "../data/list";
+import { Card, List } from "../types";
 
-async function Board(params: any): Promise<string> {
-  /*
-    cardsRouter.post('/move', (req, res) => {
-  console.log(req.body);
-  const { from , to , movedCard } = req.body;
-  const [,fromId] = from.split('-');
-  const [,toId] = to.split('-');
-  const cardId = movedCard.replace('card-','');
+function Board(params: any): string {
+  const { request, route } = params; // will need env for KV store as well
+  let lists: List[];
+  try {
+    // if any of the below are not in the request, this should fail; for the move function specifically; should split into separate function.
+    const { from, to, movedCard } = JSON.parse(request.body);
+    const [, fromId] = from.split("-");
+    const [, toId] = to.split("-");
+    const cardId = movedCard.replace("card-", "");
 
+    // TODO: fetch lists from storage and update storage after changes
+    lists = Lists as List[];
 
-  const fromList = lists.find(l => l.id == fromId);
-  const card = fromList.cards.find(c => c.id == cardId);
-  card.list = toId;
-  fromList.cards = fromList.cards.filter(c => c.id != cardId);
+    const fromList = lists.find((l) => l.id == fromId);
+    const card = fromList!.cards.find((c) => c.id == cardId);
+    card!.list = toId;
+    fromList!.cards = fromList!.cards.filter((c) => c.id != cardId);
 
-  const toList = lists.find(l => l.id == toId);
-  toList.cards.push(card);
-
-  const template = pug.compileFile('views/_board.pug');
-  const markup = template({ lists } );
-  res.send(markup);
-});
-
-  */
-
-  const { request, route } = params;
-  const { from, to, movedCard } = await request.json();
-  const [, fromId] = from.split("-");
-  const [, toId] = to.split("-");
-  const cardId = movedCard.replace("card-", "");
-
-  // TODO: fetch lists from storage
-
-  const fromList = {};
+    const toList = lists.find((l) => l.id == toId);
+    toList!.cards.push(card as Card);
+  } catch {
+    lists = Lists;
+  }
 
   let template = ``;
 
@@ -86,9 +75,4 @@ async function Board(params: any): Promise<string> {
   return template;
 }
 
-export default Board as Handler;
-
-/*
-.add-list
-  include _new-list
-*/
+export default Board;

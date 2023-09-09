@@ -2,38 +2,28 @@ import { IconEdit } from "./mixins";
 import ToggleAddCard from "./toggle_add_card";
 import AddCard from "./add_card";
 import NewList from "./new_list";
-import lists from "../data/list";
-async function Board(params) {
-    /*
-      cardsRouter.post('/move', (req, res) => {
-    console.log(req.body);
-    const { from , to , movedCard } = req.body;
-    const [,fromId] = from.split('-');
-    const [,toId] = to.split('-');
-    const cardId = movedCard.replace('card-','');
-  
-  
-    const fromList = lists.find(l => l.id == fromId);
-    const card = fromList.cards.find(c => c.id == cardId);
-    card.list = toId;
-    fromList.cards = fromList.cards.filter(c => c.id != cardId);
-  
-    const toList = lists.find(l => l.id == toId);
-    toList.cards.push(card);
-  
-    const template = pug.compileFile('views/_board.pug');
-    const markup = template({ lists } );
-    res.send(markup);
-  });
-  
-    */
-    const { request, route } = params;
-    const { from, to, movedCard } = await request.json();
-    const [, fromId] = from.split("-");
-    const [, toId] = to.split("-");
-    const cardId = movedCard.replace("card-", "");
-    // TODO: fetch lists from storage
-    const fromList = {};
+import Lists from "../data/list";
+function Board(params) {
+    const { request, route } = params; // will need env for KV store as well
+    let lists;
+    try {
+        // if any of the below are not in the request, this should fail; for the move function specifically; should split into separate function.
+        const { from, to, movedCard } = JSON.parse(request.body);
+        const [, fromId] = from.split("-");
+        const [, toId] = to.split("-");
+        const cardId = movedCard.replace("card-", "");
+        // TODO: fetch lists from storage and update storage after changes
+        lists = Lists;
+        const fromList = lists.find((l) => l.id == fromId);
+        const card = fromList.cards.find((c) => c.id == cardId);
+        card.list = toId;
+        fromList.cards = fromList.cards.filter((c) => c.id != cardId);
+        const toList = lists.find((l) => l.id == toId);
+        toList.cards.push(card);
+    }
+    catch {
+        lists = Lists;
+    }
     let template = ``;
     for (const list of lists) {
         template += `
@@ -77,7 +67,3 @@ async function Board(params) {
     return template;
 }
 export default Board;
-/*
-.add-list
-  include _new-list
-*/

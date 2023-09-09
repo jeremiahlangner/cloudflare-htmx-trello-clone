@@ -1,7 +1,8 @@
 import { IconClose } from "./mixins";
+import { HTMLResponse } from "../util";
 
 function AddList(params: any) {
-  return new Response(
+  return HTMLResponse(
     `
 <div id="add-list" class="add-list-editor">
   <form
@@ -40,12 +41,7 @@ function AddList(params: any) {
     </div>
   </form>
 </div>
-  `,
-    {
-      headers: {
-        "content-type": "text/html;charset=UTF-8",
-      },
-    }
+  `
   );
 }
 

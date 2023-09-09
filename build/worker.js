@@ -1,4 +1,4 @@
-var f=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,i="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:i,handler:t})}handle(e){let{request:t}=e;for(let i of this.routes){if(i.method!==t.method)continue;let o=i.path.exec({pathname:new URL(t.url).pathname});if(o)return i.handler({...e,route:o})}return new Response("Not found",{status:404})}};var T=`
+var w=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,o="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:o,handler:t})}handle(e){let{request:t}=e;for(let o of this.routes){if(o.method!==t.method)continue;let i=o.path.exec({pathname:new URL(t.url).pathname});if(i)return o.handler({...e,route:i})}return new Response("Not found",{status:404})}};var A=`
 body {
     margin: 0;
     padding: 0;
@@ -247,7 +247,7 @@ code {
 .hidden {
   display: none;
 }
-`,x=T;function v(e){return`
+`,y=A;function k(e){return`
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -256,7 +256,7 @@ code {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HTMX Trello Clone</title>
     <style>
-      ${x}
+      ${y}
     </style>
   </head>
   <body>
@@ -275,7 +275,7 @@ code {
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
   <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
 </svg>
-`;function R(e){let{list:t}=e;return`
+`;function I(e){let{list:t}=e;return`
 <button 
   class="toggle-add-card"
   id="btn-add-card-${t.id}"
@@ -285,7 +285,7 @@ code {
   ${c}
   <span> Add another card</span>
 </button>
-`}var u=R;function S(e){let{list:t}=e;return`
+`}var u=I;function M(e){let{list:t}=e;return`
 <div class="edit-card hidden" id="add-card-${t.id}">
   <div class="card">
     <textarea 
@@ -319,7 +319,7 @@ code {
     </div>
   </div>
 </div>
-  `}var w=S;var z=`
+  `}var $=M;var H=`
 <div id="add-list" class="add-list-button"
   hx-get="/lists/add" 
   hx-swap="outerHTML"
@@ -327,38 +327,38 @@ code {
 >
 ${c} Add another list
 <div>
-  `,m=z;var A=[{name:"To Do",id:1,cards:[{id:1,label:"First Card",list:1},{id:2,label:"Second Card",list:1}]},{name:"Doing",id:2,cards:[{id:3,label:"First Card",list:2},{id:4,label:"Second Card",list:2}]}],y=A;async function I(e){let{request:t,route:i}=e,{from:o,to:d,movedCard:g}=await t.json(),[,r]=o.split("-"),[,E]=d.split("-"),q=g.replace("card-",""),U={},s="";for(let a of y){s+=`
+  `,m=H;var P=[{name:"To Do",id:1,cards:[{id:"1",label:"First Card",list:1},{id:"2",label:"Second Card",list:1}]},{name:"Doing",id:2,cards:[{id:"3",label:"First Card",list:2},{id:"4",label:"Second Card",list:2}]}],f=P;function E(e){let{request:t,route:o}=e,i;try{let{from:a,to:r,movedCard:R}=JSON.parse(t.body),[,z]=a.split("-"),[,b]=r.split("-"),x=R.replace("card-","");i=f;let g=i.find(n=>n.id==z),v=g.cards.find(n=>n.id==x);v.list=b,g.cards=g.cards.filter(n=>n.id!=x),i.find(n=>n.id==b).cards.push(v)}catch{i=f}let d="";for(let a of i){d+=`
 <div class="list" draggable="true">
   <div class="list-title">
     ${a.name}
     <div class="list-cards sortable" id="list-${a.id}">
-    `;for(let n of a.cards)s+=`
+    `;for(let r of a.cards)d+=`
 <div 
   class="card" 
-  id="card-${n.id}" 
+  id="card-${r.id}" 
   tabindex="0" 
   aria-roledescription="Draggable item. Press space bar to lif" 
   draggable="true"
-  _="on mouseenter toggle .hidden on #card-edit-${n.id} until mouseleave"
+  _="on mouseenter toggle .hidden on #card-edit-${r.id} until mouseleave"
   >
-  <div class="card-icons hidden" id="card-edit-${n.id}">
-    <button class="card-icon" type="button" hx-get="/cards/edit/${a.id}/${n.id}" hx-target"#card-${n.id}" hx-swap="outerHTML">
+  <div class="card-icons hidden" id="card-edit-${r.id}">
+    <button class="card-icon" type="button" hx-get="/cards/edit/${a.id}/${r.id}" hx-target"#card-${r.id}" hx-swap="outerHTML">
       ${h}
     </button>
   </div>
-  ${n.label}
+  ${r.label}
 </div>
-      `;s+=`
+      `;d+=`
     </div>
   </div>
   ${u({list:a})}
-  ${w({list:a})}
+  ${$({list:a})}
 </div>
-    `}return s+=`
+    `}return d+=`
 <div class="add-list">
   ${m}
 </div>
-  `,s}var l=I;function P(e){let{request:t,ctx:i,env:o}=e,d=v({template:`
+  `,d}var s=E;function q(e){let{request:t,ctx:o,env:i}=e,d=k({template:`
     <div class="app">
       <div class="header">
         htmx Trello Clone
@@ -370,7 +370,7 @@ ${c} Add another list
         <input id="movedCard" type="hidden" name="movedCard">
         <div id="board" class="board sortable" _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value then send cardmoved">
 
-          ${l({request:t,ctx:i,env:o})}
+          ${s({request:t,ctx:o,env:i})}
         </div>
       </form>
     </div>
@@ -388,7 +388,7 @@ ${c} Add another list
         }
       });
     <\/script>
-    `});return new Response(d,{headers:{"content-type":"text/html;charset=UTF-8"}})}var k=P;function M(e){return new Response(`
+    `});return new Response(d,{headers:{"content-type":"text/html;charset=UTF-8"}})}var C=q;function L(e){let t="";for(;e[t];)t=Math.random().toString(16).substring(2,15);return t}async function l(e){return new Response(e,{headers:{"content-type":"text/html;charset=UTF-8"}})}function U(e){return l(`
 <div id="add-list" class="add-list-editor">
   <form
     hx-post="/lists"
@@ -426,7 +426,7 @@ ${c} Add another list
     </div>
   </form>
 </div>
-  `,{headers:{"content-type":"text/html;charset=UTF-8"}})}var $=M;function C(e){let t="";for(;e[t];)t=Math.random().toString(16).substring(2,15);return t}var b={headers:{"content-type":"text/html;charset=UTF-8"}};function H(e){let{request:t,route:i}=e,o=i.pathname.groups.list_id,d=t.body["label-"+o],g={id:o,cards:[]},r={label:d,id:C({}),list:o};return g.cards.push(r),new Response(`
+  `)}var T=U;function B(e){let{request:t,route:o}=e,i=o.pathname.groups.list_id,d=t.body["label-"+i],a={id:i,cards:[]},r={label:d,id:L({}),list:i};return a.cards.push(r),new Response(`
 <div id="edit-card">
 </div>
 <div 
@@ -441,7 +441,7 @@ ${c} Add another list
     <button 
       class="card-icon"
       type="button"
-      hx-get="/cards/edit/${o}/${r.id} 
+      hx-get="/cards/edit/${i}/${r.id} 
       hx-target="#card-${r.id} 
       hx-swap="outerHTML"
     >
@@ -450,4 +450,4 @@ ${c} Add another list
   </div>
   ${r.label}
 </div>
-    `,{headers:{"content-type":"text/html;charset=UTF-8"}})}var L=H;var vt={async fetch(e,t,i){return new f([["/",k],["/",l,"POST"],["/cards/move",d=>new Response(l(d),b),"POST"],["/cards/new/:list_id",L,"POST"],["/cards/cancel/:id",u],["/lists/add",$],["/lists/cancel",()=>new Response(m,b)]]).handle({request:e,env:t,ctx:i})}};export{vt as default};
+    `,{headers:{"content-type":"text/html;charset=UTF-8"}})}var S=B;var $t={async fetch(e,t,o){return new w([["/",C],["/",s,"POST"],["/cards/move",d=>l(s(d)),"POST"],["/cards/new/:list_id",S,"POST"],["/cards/cancel/:id",u],["/lists/add",T],["/lists/cancel",l(m)]]).handle({request:e,env:t,ctx:o})}};export{$t as default};

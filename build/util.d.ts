@@ -1,9 +1,6 @@
+/// <reference types="@cloudflare/workers-types" />
 declare function hash(_hashes: {
     [key: string]: string;
 }): string;
-declare const HTMLResponseOptions: {
-    headers: {
-        "content-type": string;
-    };
-};
-export { hash, HTMLResponseOptions };
+declare function HTMLResponse(response: string): Promise<Response>;
+export { hash, HTMLResponse };

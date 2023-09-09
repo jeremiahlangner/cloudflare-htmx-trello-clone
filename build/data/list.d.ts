@@ -2,7 +2,7 @@ declare const lists: {
     name: string;
     id: number;
     cards: {
-        id: number;
+        id: string;
         label: string;
         list: number;
     }[];
