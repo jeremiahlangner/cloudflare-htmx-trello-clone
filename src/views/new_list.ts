@@ -1,9 +1,13 @@
-function handler(request: Request) {
-  return `
+import { IconPlus } from "./mixins";
+
+const NewList = `
+<div id="add-list" class="add-list-button"
+  hx-get="/lists/add" 
+  hx-swap="outerHTML"
+  hx-target="#add-list"
+>
+${IconPlus} Add another list
 <div>
-
-</div>
   `;
-}
 
-export default handler;
+export default NewList;

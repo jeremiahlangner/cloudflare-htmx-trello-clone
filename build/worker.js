@@ -1,4 +1,4 @@
-var s=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,o="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:o,handler:t})}handle(e){let{request:t}=e;for(let o of this.routes)if(o.method===t.method&&o.path.exec({pathname:new URL(t.url).pathname}))return o.handler(e);return new Response("Not found",{status:404})}};var g=`
+var s=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,o="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:o,handler:t})}handle(e){let{request:t}=e;for(let o of this.routes)if(o.method===t.method&&o.path.exec({pathname:new URL(t.url).pathname}))return o.handler(e);return new Response("Not found",{status:404})}};var m=`
 body {
     margin: 0;
     padding: 0;
@@ -247,7 +247,7 @@ code {
 .hidden {
   display: none;
 }
-`,l=g;function c(e){return`
+`,l=m;function c(e){return`
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -264,35 +264,85 @@ code {
   </body>
 </html>
   `}var p=`
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+</svg>
+`,h=`
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+</svg>
+`,g=`
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
   <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
 </svg>
-`;var b=[{name:"To Do",id:1,cards:[{id:1,label:"First Card",list:1},{id:2,label:"Second Card",list:1}]},{name:"Doing",id:2,cards:[{id:3,label:"First Card",list:2},{id:4,label:"Second Card",list:2}]}],h=b;function x(e){let{request:t,ctx:o,env:d}=e,i="";for(let n of h){i+=`
-<div class="list" draggable="true">
-  <div class="list-title">
-    ${n.name}
-    <div class="list-cards sortable" id="list-${n.id}">
-    `;for(let r of n.cards)i+=`
-<div 
-  class="card" 
-  id="card-${r.id}" 
-  tabindex="0" 
-  aria-roledescription="Draggable item. Press space bar to lif" 
-  draggable="true"
-  _="on mouseenter toggle .hidden on #card-edit-${r.id} until mouseleave"
+`;function v(e){let{list:t}=e;return`
+<button 
+  class="toggle-add-card"
+  id="btn-add-card-"${t.id}
+  type="button" 
+  _="on click toggle .hidden on me toggle .hidden on #add-card-${t.id}"
   >
-  <div class="card-icons hidden" id="card-edit-${r.id}">
-    <button class="card-icon" type="button" hx-get="/cards/edit/${n.id}/${r.id}" hx-target"#card-${r.id}" hx-swap="outerHTML">
-      ${p}
-    </button>
+  ${p}
+  <span> Add another card</span>
+`}var u=v;function w(e){let{list:t}=e;return`
+<div class="edit-card hidden" id="add-card-${t.id}">
+  <div class="card">
+    <textarea 
+      class="edit-card-textarea"
+      name="label-${t.id}"
+      placeholder="Enter a title for this card..." 
+      style="height: 34px;" 
+      maxlength="300" 
+      autofocus="true"
+    >
+    <input type="hidden" name="listId" value="id">
   </div>
-  ${r.label}
-</div>
-      `;i+=`
+  <div class="edit-buttons">
+    <button class="edit-button" type="button" 
+      tabindex="0"
+      style="background-color: rgb(90, 172, 68);"
+      hx-post="/cards/new/${t.id}"
+      hx-target="#list-${t.id}"
+      hx-swap="beforeend"
+      hx-params="label-${t.id}"
+      _="on htmx:afterOnLoad toggle .hidden on #add-card-${t.id} toggle .hidden on #btn-add-card-${t.id}"
+    >
+      Add card
+    </button>
+    <div class="edit-button-cancel" tabindex="0" 
+      _="on click toggle .hidden on #add-card-${t.id} toggle .hidden on #btn-add-card-${t.id}">
+      ${h}
     </div>
   </div>
 </div>
-    `}return i}var a=x;function u(e){let{request:t,ctx:o,env:d}=e,i=c({template:`
+  `}var f=w;var y=[{name:"To Do",id:1,cards:[{id:1,label:"First Card",list:1},{id:2,label:"Second Card",list:1}]},{name:"Doing",id:2,cards:[{id:3,label:"First Card",list:2},{id:4,label:"Second Card",list:2}]}],b=y;function k(e){let{request:t,ctx:o,env:n}=e,i="";for(let r of b){i+=`
+<div class="list" draggable="true">
+  <div class="list-title">
+    ${r.name}
+    <div class="list-cards sortable" id="list-${r.id}">
+    `;for(let a of r.cards)i+=`
+<div 
+  class="card" 
+  id="card-${a.id}" 
+  tabindex="0" 
+  aria-roledescription="Draggable item. Press space bar to lif" 
+  draggable="true"
+  _="on mouseenter toggle .hidden on #card-edit-${a.id} until mouseleave"
+  >
+  <div class="card-icons hidden" id="card-edit-${a.id}">
+    <button class="card-icon" type="button" hx-get="/cards/edit/${r.id}/${a.id}" hx-target"#card-${a.id}" hx-swap="outerHTML">
+      ${g}
+    </button>
+  </div>
+  ${a.label}
+</div>
+      `;i+=`
+    </div>
+    ${u({list:r})}
+    ${f({list:r})}
+  </div>
+</div>
+    `}return i}var d=k;function $(e){let{request:t,ctx:o,env:n}=e,i=c({template:`
     <div class="app">
       <div class="header">
         htmx Trello Clone
@@ -304,7 +354,7 @@ code {
         <input id="movedCard" type="hidden" name="movedCard">
         <div id="board" class="board sortable" _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value then send cardmoved">
 
-          ${a({request:t,ctx:o,env:d})}
+          ${d({request:t,ctx:o,env:n})}
         </div>
       </form>
     </div>
@@ -322,4 +372,4 @@ code {
         }
       });
     <\/script>
-    `});return new Response(i,{headers:{"content-type":"text/html;charset=UTF-8"}})}var f=u;var M={async fetch(e,t,o){return new s([["/",f],["/",a,"POST"]]).handle({request:e,env:t,ctx:o})}};export{M as default};
+    `});return new Response(i,{headers:{"content-type":"text/html;charset=UTF-8"}})}var x=$;var N={async fetch(e,t,o){return new s([["/",x],["/",d,"POST"],["/move",d,"POST"]]).handle({request:e,env:t,ctx:o})}};export{N as default};

@@ -13,6 +13,7 @@ export default {
     const router = new Router([
       ["/", Index],
       ["/", Board, "POST"],
+      ["/move", Board, "POST"],
       /*  ["/add", AddList],
       ["cancel", NewList],
       ["/add/:id", AddCard],
@@ -21,7 +22,6 @@ export default {
       ["/cancel/:id", ToggleAddCard],
       ["/cancel-edit/:list_id/:id", Card ],
       ["/:list_id/:id", List, "DELETE"],
-      ["/move", Board, "POST"],
       ["/new/:list_id", NewCard, "POST"], */
     ]);
     return router.handle({ request, env, ctx });
