@@ -1,3 +1,3 @@
 /// <reference types="@cloudflare/workers-types" />
-declare function handler(request: Request): string;
-export default handler;
+declare function AddList(params: any): Response;
+export default AddList;

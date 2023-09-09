@@ -1,4 +1,4 @@
-var l=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,i="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:i,handler:t})}handle(e){let{request:t}=e;for(let i of this.routes)if(i.method===t.method&&i.path.exec({pathname:new URL(t.url).pathname}))return i.handler(e);return new Response("Not found",{status:404})}};var v=`
+var c=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,i="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:i,handler:t})}handle(e){let{request:t}=e;for(let i of this.routes)if(i.method===t.method&&i.path.exec({pathname:new URL(t.url).pathname}))return i.handler(e);return new Response("Not found",{status:404})}};var y=`
 body {
     margin: 0;
     padding: 0;
@@ -247,7 +247,7 @@ code {
 .hidden {
   display: none;
 }
-`,c=v;function p(e){return`
+`,p=y;function h(e){return`
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -256,36 +256,36 @@ code {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HTMX Trello Clone</title>
     <style>
-      ${c}
+      ${p}
     </style>
   </head>
   <body>
     ${e.template}
   </body>
 </html>
-  `}var n=`
+  `}var a=`
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 </svg>
-`,h=`
+`,n=`
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 </svg>
-`,g=`
+`,s=`
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
   <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
 </svg>
-`;function w(e){let{list:t}=e;return`
+`;function k(e){let{list:t}=e;return`
 <button 
   class="toggle-add-card"
-  id="btn-add-card-"${t.id}
+  id="btn-add-card-${t.id}"
   type="button" 
   _="on click toggle .hidden on me toggle .hidden on #add-card-${t.id}"
   >
-  ${n}
+  ${a}
   <span> Add another card</span>
 </button>
-`}var u=w;function y(e){let{list:t}=e;return`
+`}var u=k;function $(e){let{list:t}=e;return`
 <div class="edit-card hidden" id="add-card-${t.id}">
   <div class="card">
     <textarea 
@@ -315,19 +315,19 @@ code {
     <div class="edit-button-cancel" tabindex="0" 
       _="on click toggle .hidden on #add-card-${t.id} toggle .hidden on #btn-add-card-${t.id}"
     >
-      ${h}
+      ${n}
     </div>
   </div>
 </div>
-  `}var f=y;var k=`
+  `}var b=$;var C=`
 <div id="add-list" class="add-list-button"
   hx-get="/lists/add" 
   hx-swap="outerHTML"
   hx-target="#add-list"
 >
-${n} Add another list
+${a} Add another list
 <div>
-  `,b=k;var $=[{name:"To Do",id:1,cards:[{id:1,label:"First Card",list:1},{id:2,label:"Second Card",list:1}]},{name:"Doing",id:2,cards:[{id:3,label:"First Card",list:2},{id:4,label:"Second Card",list:2}]}],x=$;function C(e){let{request:t,ctx:i,env:s}=e,o="";for(let r of x){o+=`
+  `,g=C;var L=[{name:"To Do",id:1,cards:[{id:1,label:"First Card",list:1},{id:2,label:"Second Card",list:1}]},{name:"Doing",id:2,cards:[{id:3,label:"First Card",list:2},{id:4,label:"Second Card",list:2}]}],x=L;function T(e){let{request:t,ctx:i,env:l}=e,o="";for(let r of x){o+=`
 <div class="list" draggable="true">
   <div class="list-title">
     ${r.name}
@@ -343,7 +343,7 @@ ${n} Add another list
   >
   <div class="card-icons hidden" id="card-edit-${d.id}">
     <button class="card-icon" type="button" hx-get="/cards/edit/${r.id}/${d.id}" hx-target"#card-${d.id}" hx-swap="outerHTML">
-      ${g}
+      ${s}
     </button>
   </div>
   ${d.label}
@@ -352,13 +352,13 @@ ${n} Add another list
     </div>
   </div>
   ${u({list:r})}
-  ${f({list:r})}
+  ${b({list:r})}
 </div>
     `}return o+=`
 <div class="add-list">
-  ${b}
+  ${g}
 </div>
-  `,o}var a=C;function L(e){let{request:t,ctx:i,env:s}=e,o=p({template:`
+  `,o}var m=T;function z(e){let{request:t,ctx:i,env:l}=e,o=h({template:`
     <div class="app">
       <div class="header">
         htmx Trello Clone
@@ -370,7 +370,7 @@ ${n} Add another list
         <input id="movedCard" type="hidden" name="movedCard">
         <div id="board" class="board sortable" _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value then send cardmoved">
 
-          ${a({request:t,ctx:i,env:s})}
+          ${m({request:t,ctx:i,env:l})}
         </div>
       </form>
     </div>
@@ -388,4 +388,66 @@ ${n} Add another list
         }
       });
     <\/script>
-    `});return new Response(o,{headers:{"content-type":"text/html;charset=UTF-8"}})}var m=L;var K={async fetch(e,t,i){return new l([["/",m],["/",a,"POST"],["/move",a,"POST"]]).handle({request:e,env:t,ctx:i})}};export{K as default};
+    `});return new Response(o,{headers:{"content-type":"text/html;charset=UTF-8"}})}var f=z;function S(e){return new Response(`
+<div id="add-list" class="add-list-editor">
+  <form
+    hx-post="/lists"
+    hx-target="#board"
+  >
+    <div class="list-title-edit">
+      <input class="list-title-textarea" 
+        type="text" 
+        maxlength="30"
+        name="name"
+        placeholder="Enter list title..." 
+        style="width: 245px; height: 17px;" 
+        autofocus="true"
+      >
+    </div>
+    <div class="edit-buttons">
+      <button 
+        class="edit-button"
+        type="submit" 
+        tabindex="0"
+        style="background-color: rgb(90, 172, 68);"
+      > 
+        Add list
+      </button>
+      <button 
+        class="edit-button-cancel"
+        type="button",
+        tabindex="0"
+        hx-get="/lists/cancel"
+        hx-target="#add-list"
+        hx-swap="outerHTML"
+      >
+        ${n}
+      </button>
+    </div>
+  </form>
+</div>
+  `,{headers:{"content-type":"text/html;charset=UTF-8"}})}var v=S;function A(e){let{list:t,card:i}=e;return new Response(`
+<div id="edit-card">
+</div>
+<div 
+  class="card"
+  id="card-${i.id}
+  tabindex="0"
+  aria-roledescription="Draggable item. Press space bar to lift" 
+  draggable="true"
+  _="on mouseenter toggle .hidden on #card-edit-${i.id} until mouseleave"
+> 
+  <div class="card-icons hidden" id="card-edit-${i.id}">
+    <button 
+      class="card-icon"
+      type="button"
+      hx-get="/cards/edit/${t.id}/${i.id} 
+      hx-target="#card-${i.id} 
+      hx-swap="outerHTML"
+    >
+      ${s}
+    </button>
+  </div>
+  ${i.label}
+</div>
+    `,{headers:{"content-type":"text/html;charset=UTF-8"}})}var w=A;var dt={async fetch(e,t,i){return new c([["/",f],["/cards/new/:list_id",w,"POST"],["/lists/add",v]]).handle({request:e,env:t,ctx:i})}};export{dt as default};

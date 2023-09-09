@@ -6,7 +6,7 @@ function ToggleAddCard(params: any) {
   return `
 <button 
   class="toggle-add-card"
-  id="btn-add-card-"${list.id}
+  id="btn-add-card-${list.id}"
   type="button" 
   _="on click toggle .hidden on me toggle .hidden on #add-card-${list.id}"
   >
