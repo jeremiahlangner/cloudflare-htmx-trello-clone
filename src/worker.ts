@@ -1,45 +1,12 @@
 import { Router } from "simple-worker-router";
 import Index from "./views/index";
 import Board from "./views/board";
+import lists from "./data/list";
+
 // import AddList from "./views/add_list";
 // import NewList from "./views/new_list";
 
 interface Environment {}
-
-const lists = [
-  {
-    name: "To Do",
-    id: 1,
-    cards: [
-      {
-        id: 1,
-        label: "First Card",
-        list: 1,
-      },
-      {
-        id: 2,
-        label: "Second Card",
-        list: 1,
-      },
-    ],
-  },
-  {
-    name: "Doing",
-    id: 2,
-    cards: [
-      {
-        id: 3,
-        label: "First Card",
-        list: 2,
-      },
-      {
-        id: 4,
-        label: "Second Card",
-        list: 2,
-      },
-    ],
-  },
-];
 
 export default {
   async fetch(request: Request, env: Environment, ctx: any) {
