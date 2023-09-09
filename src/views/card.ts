@@ -1,14 +1,14 @@
-import { IconEdit } from './mixins';
+import { IconEdit } from "./mixins";
 
 const card = {
-  id: 'an id',
-  label: 'this is a label',
+  id: "an id",
+  label: "this is a label",
 };
 
 function Card(params: any): string {
   const { list, card } = params;
 
-  // TODO: Underscores in pug? 
+  // TODO: Underscores in pug?
   /*
     _="on mouseenter toggle .hidden on #card-edit-" + card.id + " until mouseleave"
   */

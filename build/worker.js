@@ -1,4 +1,4 @@
-var s=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,o="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:o,handler:t})}handle(e){let{request:t}=e;for(let o of this.routes)if(o.method===t.method&&o.path.exec({pathname:new URL(t.url).pathname}))return o.handler(e);return new Response("Not found",{status:404})}};var f=`
+var d=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,o="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:o,handler:t})}handle(e){let{request:t}=e;for(let o of this.routes)if(o.method===t.method&&o.path.exec({pathname:new URL(t.url).pathname}))return o.handler(e);return new Response("Not found",{status:404})}};var f=`
 body {
     margin: 0;
     padding: 0;
@@ -247,7 +247,7 @@ code {
 .hidden {
   display: none;
 }
-`,d=f;function l(e){return`
+`,s=f;function l(e){return`
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -256,18 +256,18 @@ code {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HTMX Trello Clone</title>
     <style>
-      ${d}
+      ${s}
     </style>
   </head>
   <body>
     ${e.template}
   </body>
 </html>
-  `}function g(e){let{request:t,ctx:o,env:n}=e,i="",p=[{name:"testing"},{name:"testing 2"},{name:"testing 2"}];for(let a of p){let h=`
+  `}var x=[{name:"To Do",id:1,cards:[{id:1,label:"First Card",list:1},{id:2,label:"Second Card",list:1}]},{name:"Doing",id:2,cards:[{id:3,label:"First Card",list:2},{id:4,label:"Second Card",list:2}]}],c=x;function g(e){let{request:t,ctx:o,env:n}=e,r="";for(let a of c){let h=`
 <div class="list" draggable="true">
   <div class="list-title" id="${a.name}">${a.name}</div>
 </div>
-  `;i+=h}return i}var r=g;function x(e){let{request:t,ctx:o,env:n}=e,i=l({template:`
+  `;r+=h}return r}var i=g;function b(e){let{request:t,ctx:o,env:n}=e,r=l({template:`
     <div class="app">
       <div class="header">
         htmx Trello Clone
@@ -278,7 +278,7 @@ code {
         <input id="toList" type="hidden" name="to">
         <input id="movedCard" type="hidden" name="movedCard">
         <div id="board" class="board sortable">
-          ${r({request:t,ctx:o,env:n})}
+          ${i({request:t,ctx:o,env:n})}
         </div>
       </form>
       
@@ -297,4 +297,4 @@ code {
         }
       });
     <\/script>
-    `});return new Response(i,{headers:{"content-type":"text/html;charset=UTF-8"}})}var c=x;var q={async fetch(e,t,o){return new s([["/",c],["/",r,"POST"]]).handle({request:e,env:t,ctx:o})}};export{q as default};
+    `});return new Response(r,{headers:{"content-type":"text/html;charset=UTF-8"}})}var p=b;var H={async fetch(e,t,o){return new d([["/",p],["/",i,"POST"]]).handle({request:e,env:t,ctx:o})}};export{H as default};

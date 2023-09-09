@@ -1,20 +1,9 @@
 import { Handler } from "simple-worker-router";
+import lists from "../data/list";
 
 function Board(params: { request: Request; ctx: any; env: any }): string {
   const { request, ctx, env } = params;
   let template = ``;
-
-  const lists: any[] = [
-    {
-      name: "testing",
-    },
-    {
-      name: "testing 2",
-    },
-    {
-      name: "testing 2",
-    },
-  ]; // replace with parameter from lists.
 
   for (const list of lists) {
     const listTemplate = `
