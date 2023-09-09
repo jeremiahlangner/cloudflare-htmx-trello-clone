@@ -6,6 +6,13 @@ const card = {
 };
 
 function Card(params: any): string {
+  const { list, card } = params;
+
+  // TODO: Underscores in pug? 
+  /*
+    _="on mouseenter toggle .hidden on #card-edit-" + card.id + " until mouseleave"
+  */
+
   const template = `
 <div 
   class="card" 
@@ -28,15 +35,5 @@ function Card(params: any): string {
 
 export default Card;
 /*
-   .card(
-  id='card-' + card.id
-  tabindex='0' 
-  aria-roledescription='Draggable item. Press space bar to lift' 
-  draggable='true'
   _="on mouseenter toggle .hidden on #card-edit-" + card.id + " until mouseleave"
-  ) 
-  .card-icons.hidden(id='card-edit-' + card.id)
-    button.card-icon(type="button", hx-get="/cards/edit/" + list.id + "/" + card.id, hx-target="#card-" + card.id, hx-swap="outerHTML")
-      +icon-edit()
-  | #{card.label}
-  */
+*/
