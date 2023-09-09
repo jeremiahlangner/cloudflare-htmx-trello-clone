@@ -10,7 +10,7 @@ function PageBoilerplate(params: any) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HTMX Trello Clone</title>
     <style>
-      ${Styles()}
+      ${Styles}
     </style>
   </head>
   <body>
