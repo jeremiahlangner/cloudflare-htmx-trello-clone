@@ -9,7 +9,8 @@ function Board(params: { request: Request; ctx: any; env: any }): string {
   for (const list of lists) {
     template += `
 <div class="list" draggable="true">
-  <div class="list-title" id="${list.name}">
+  <div class="list-title">
+    ${list.name}
     <div class="list-cards sortable" id="list-${list.id}">
     `;
     for (const card of list.cards) {

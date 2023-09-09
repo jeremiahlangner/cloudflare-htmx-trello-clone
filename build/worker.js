@@ -269,7 +269,8 @@ code {
 </svg>
 `;var g=[{name:"To Do",id:1,cards:[{id:1,label:"First Card",list:1},{id:2,label:"Second Card",list:1}]},{name:"Doing",id:2,cards:[{id:3,label:"First Card",list:2},{id:4,label:"Second Card",list:2}]}],h=g;function x(e){let{request:t,ctx:i,env:d}=e,o="";for(let a of h){o+=`
 <div class="list" draggable="true">
-  <div class="list-title" id="${a.name}">
+  <div class="list-title">
+    ${a.name}
     <div class="list-cards sortable" id="list-${a.id}">
     `;for(let r of a.cards)o+=`
 <div class="card" id="card-${r.id}" tabindex="0" aria-roledescription="Draggable item. Press space bar to lif" draggable="true">
