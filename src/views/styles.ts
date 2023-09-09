@@ -1,5 +1,4 @@
-function Styles(): string {
-  return `
+const Styles = `
 body {
     margin: 0;
     padding: 0;
@@ -248,7 +247,6 @@ code {
 .hidden {
   display: none;
 }
-  `;
-}
+`;
 
 export default Styles;
