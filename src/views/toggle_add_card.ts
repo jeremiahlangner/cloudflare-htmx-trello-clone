@@ -1,6 +1,6 @@
 import { IconPlus } from "./mixins";
 
-function ToggleAddCard(params: any) {
+function ToggleAddCard(params: any): string {
   const { list } = params;
 
   return `

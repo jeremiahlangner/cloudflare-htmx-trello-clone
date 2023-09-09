@@ -16,7 +16,7 @@ export default {
       ["/", Board, "POST"],
       ["/cards/move", (params) => HTMLResponse(Board(params)), "POST"], // TODO: finish move response
       ["/cards/new/:list_id", NewCard, "POST"],
-      ["/cards/cancel/:id", ToggleAddCard],
+      ["/cards/cancel/:id", (params) => HTMLResponse(ToggleAddCard(params))],
       ["/lists/add", AddList],
       ["/lists/cancel", () => HTMLResponse(NewList)] /*
       ["/", Board, "POST"],
