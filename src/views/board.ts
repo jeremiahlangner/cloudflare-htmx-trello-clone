@@ -23,6 +23,7 @@ function Board(params: { request: Request; ctx: any; env: any }): string {
       ${IconEdit}
     </button>
   </div>
+  ${card.label}
 </div>
       `;
     }

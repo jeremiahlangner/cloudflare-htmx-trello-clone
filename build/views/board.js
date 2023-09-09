@@ -20,6 +20,7 @@ function Board(params) {
       ${IconEdit}
     </button>
   </div>
+  ${card.label}
 </div>
       `;
         }
