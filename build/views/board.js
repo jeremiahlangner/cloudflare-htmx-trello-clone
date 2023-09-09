@@ -64,7 +64,11 @@ function Board(params) {
 </div>
     `;
     }
-    template += `${NewList}`;
+    template += `
+<div class="add-list">
+  ${NewList}
+</div>
+  `;
     return template;
 }
 export default Board;

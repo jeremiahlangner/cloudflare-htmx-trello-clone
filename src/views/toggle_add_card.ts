@@ -12,6 +12,7 @@ function ToggleAddCard(params: any) {
   >
   ${IconPlus}
   <span> Add another card</span>
+</button>
 `;
 }
 

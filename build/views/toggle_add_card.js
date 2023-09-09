@@ -10,6 +10,7 @@ function ToggleAddCard(params) {
   >
   ${IconPlus}
   <span> Add another card</span>
+</button>
 `;
 }
 export default ToggleAddCard;

@@ -1,4 +1,4 @@
-var l=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,o="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:o,handler:t})}handle(e){let{request:t}=e;for(let o of this.routes)if(o.method===t.method&&o.path.exec({pathname:new URL(t.url).pathname}))return o.handler(e);return new Response("Not found",{status:404})}};var v=`
+var l=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,i="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:i,handler:t})}handle(e){let{request:t}=e;for(let i of this.routes)if(i.method===t.method&&i.path.exec({pathname:new URL(t.url).pathname}))return i.handler(e);return new Response("Not found",{status:404})}};var v=`
 body {
     margin: 0;
     padding: 0;
@@ -284,6 +284,7 @@ code {
   >
   ${n}
   <span> Add another card</span>
+</button>
 `}var u=w;function y(e){let{list:t}=e;return`
 <div class="edit-card hidden" id="add-card-${t.id}">
   <div class="card">
@@ -297,7 +298,27 @@ code {
     ></textarea>
     <input type="hidden" name="listId" value="id">
   </div>
+  <div class="edit-buttons">
+    <button 
+      class="edit-button" 
+      type="button" 
+      tabindex="0"
+      style="background-color: rgb(90, 172, 68);"
+      hx-post="/cards/new/${t.id}"
+      hx-target="#list-${t.id}"
+      hx-swap="beforeend"
+      hx-params="label-${t.id}"
+      _="on htmx:afterOnLoad toggle .hidden on #add-card-${t.id} toggle .hidden on #btn-add-card-${t.id}"
+    >
+      Add card
+    </button>
+    <div class="edit-button-cancel" tabindex="0" 
+      _="on click toggle .hidden on #add-card-${t.id} toggle .hidden on #btn-add-card-${t.id}"
+    >
+      ${h}
+    </div>
   </div>
+</div>
   `}var f=y;var k=`
 <div id="add-list" class="add-list-button"
   hx-get="/lists/add" 
@@ -306,12 +327,12 @@ code {
 >
 ${n} Add another list
 <div>
-  `,b=k;var $=[{name:"To Do",id:1,cards:[{id:1,label:"First Card",list:1},{id:2,label:"Second Card",list:1}]},{name:"Doing",id:2,cards:[{id:3,label:"First Card",list:2},{id:4,label:"Second Card",list:2}]}],x=$;function C(e){let{request:t,ctx:o,env:s}=e,i="";for(let r of x){i+=`
+  `,b=k;var $=[{name:"To Do",id:1,cards:[{id:1,label:"First Card",list:1},{id:2,label:"Second Card",list:1}]},{name:"Doing",id:2,cards:[{id:3,label:"First Card",list:2},{id:4,label:"Second Card",list:2}]}],x=$;function C(e){let{request:t,ctx:i,env:s}=e,o="";for(let r of x){o+=`
 <div class="list" draggable="true">
   <div class="list-title">
     ${r.name}
     <div class="list-cards sortable" id="list-${r.id}">
-    `;for(let d of r.cards)i+=`
+    `;for(let d of r.cards)o+=`
 <div 
   class="card" 
   id="card-${d.id}" 
@@ -327,13 +348,17 @@ ${n} Add another list
   </div>
   ${d.label}
 </div>
-      `;i+=`
+      `;o+=`
     </div>
   </div>
   ${u({list:r})}
   ${f({list:r})}
 </div>
-    `}return i+=`${b}`,i}var a=C;function L(e){let{request:t,ctx:o,env:s}=e,i=p({template:`
+    `}return o+=`
+<div class="add-list">
+  ${b}
+</div>
+  `,o}var a=C;function L(e){let{request:t,ctx:i,env:s}=e,o=p({template:`
     <div class="app">
       <div class="header">
         htmx Trello Clone
@@ -345,7 +370,7 @@ ${n} Add another list
         <input id="movedCard" type="hidden" name="movedCard">
         <div id="board" class="board sortable" _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value then send cardmoved">
 
-          ${a({request:t,ctx:o,env:s})}
+          ${a({request:t,ctx:i,env:s})}
         </div>
       </form>
     </div>
@@ -363,4 +388,4 @@ ${n} Add another list
         }
       });
     <\/script>
-    `});return new Response(i,{headers:{"content-type":"text/html;charset=UTF-8"}})}var m=L;var K={async fetch(e,t,o){return new l([["/",m],["/",a,"POST"],["/move",a,"POST"]]).handle({request:e,env:t,ctx:o})}};export{K as default};
+    `});return new Response(o,{headers:{"content-type":"text/html;charset=UTF-8"}})}var m=L;var K={async fetch(e,t,i){return new l([["/",m],["/",a,"POST"],["/move",a,"POST"]]).handle({request:e,env:t,ctx:i})}};export{K as default};

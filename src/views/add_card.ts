@@ -16,9 +16,6 @@ function AddCard(params: any) {
     ></textarea>
     <input type="hidden" name="listId" value="id">
   </div>
-  </div>
-  `;
-  `
   <div class="edit-buttons">
     <button 
       class="edit-button" 
