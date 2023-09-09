@@ -1,5 +1,5 @@
 function handler(request) {
-  return `
+    return `
 <div>
 
 </div>

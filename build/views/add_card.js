@@ -1,8 +1,8 @@
 const card = (request) => {
-  const template = `
+    const template = `
 <div>
 </div>
   `;
-  return template;
+    return template;
 };
 export default card;

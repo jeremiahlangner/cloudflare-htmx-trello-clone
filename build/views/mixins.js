@@ -1,6 +1,6 @@
 import Styles from "./styles";
 function PageBoilerplate(params) {
-  return `
+    return `
 <!DOCTYPE html>
 <html lang="en">
   <head>
