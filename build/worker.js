@@ -1,4 +1,28 @@
-var s=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,o="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:o,handler:t})}handle(e){let{request:t}=e;for(let o of this.routes)if(o.method===t.method&&o.path.exec({pathname:new URL(t.url).pathname}))return o.handler(e);return new Response("Not found",{status:404})}};var f=`
+var s = class {
+  routes;
+  constructor(e = []) {
+    this.routes = [];
+    for (let t of e) this.register(...t);
+  }
+  register(e, t, o = "GET") {
+    this.routes.push({
+      path: new URLPattern({ pathname: e }),
+      method: o,
+      handler: t,
+    });
+  }
+  handle(e) {
+    let { request: t } = e;
+    for (let o of this.routes)
+      if (
+        o.method === t.method &&
+        o.path.exec({ pathname: new URL(t.url).pathname })
+      )
+        return o.handler(e);
+    return new Response("Not found", { status: 404 });
+  }
+};
+var f = `
 body {
     margin: 0;
     padding: 0;
@@ -247,7 +271,10 @@ code {
 .hidden {
   display: none;
 }
-`,d=f;function l(e){return`
+`,
+  d = f;
+function l(e) {
+  return `
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -263,11 +290,27 @@ code {
     ${e.template}
   </body>
 </html>
-  `}function g(e){let{request:t,ctx:o,env:n}=e,i="",p=[{name:"testing"},{name:"testing 2"},{name:"testing 2"}];for(let a of p){let h=`
+  `;
+}
+function g(e) {
+  let { request: t, ctx: o, env: n } = e,
+    i = "",
+    p = [{ name: "testing" }, { name: "testing 2" }, { name: "testing 2" }];
+  for (let a of p) {
+    let h = `
 <div class="list" draggable="true">
   <div class="list-title" id="${a.name}">${a.name}</div>
 </div>
-  `;i+=h}return i}var r=g;function x(e){let{request:t,ctx:o,env:n}=e,i=l({template:`
+  `;
+    i += h;
+  }
+  return i;
+}
+var r = g;
+function x(e) {
+  let { request: t, ctx: o, env: n } = e,
+    i = l({
+      template: `
     <div class="app">
       <div class="header">
         htmx Trello Clone
@@ -278,7 +321,7 @@ code {
         <input id="toList" type="hidden" name="to">
         <input id="movedCard" type="hidden" name="movedCard">
         <div id="board" class="board sortable">
-          ${r({request:t,ctx:o,env:n})}
+          ${r({ request: t, ctx: o, env: n })}
         </div>
       </form>
       
@@ -297,4 +340,19 @@ code {
         }
       });
     <\/script>
-    `});return new Response(i,{headers:{"content-type":"text/html;charset=UTF-8"}})}var c=x;var q={async fetch(e,t,o){return new s([["/",c],["/",r,"POST"]]).handle({request:e,env:t,ctx:o})}};export{q as default};
+    `,
+    });
+  return new Response(i, {
+    headers: { "content-type": "text/html;charset=UTF-8" },
+  });
+}
+var c = x;
+var q = {
+  async fetch(e, t, o) {
+    return new s([
+      ["/", c],
+      ["/", r, "POST"],
+    ]).handle({ request: e, env: t, ctx: o });
+  },
+};
+export { q as default };

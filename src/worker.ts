@@ -1,11 +1,10 @@
-import { Router } from 'simple-worker-router';
+import { Router } from "simple-worker-router";
 import Index from "./views/index";
 import Board from "./views/board";
 // import AddList from "./views/add_list";
 // import NewList from "./views/new_list";
 
-interface Environment {
-}
+interface Environment {}
 
 const lists = [
   {
@@ -61,4 +60,3 @@ export default {
     return router.handle({ request, env, ctx });
   },
 };
-

@@ -1,5 +1,5 @@
 import { Handler } from "simple-worker-router";
-import { PageBoilerplate } from './mixins';
+import { PageBoilerplate } from "./mixins";
 import Board from "./board";
 
 function index(params: { request: Request; ctx: any; env: any }): Response {
@@ -36,17 +36,14 @@ function index(params: { request: Request; ctx: any; env: any }): Response {
         }
       });
     </script>
-    `
+    `,
   });
 
-  return new Response(
-    template,
-    {
-      headers: {
-        "content-type": "text/html;charset=UTF-8",
-      },
-    }
-  );
+  return new Response(template, {
+    headers: {
+      "content-type": "text/html;charset=UTF-8",
+    },
+  });
 }
 
 export default index as Handler;

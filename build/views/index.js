@@ -1,9 +1,9 @@
-import { PageBoilerplate } from './mixins';
+import { PageBoilerplate } from "./mixins";
 import Board from "./board";
 function index(params) {
-    const { request, ctx, env } = params;
-    const template = PageBoilerplate({
-        template: `
+  const { request, ctx, env } = params;
+  const template = PageBoilerplate({
+    template: `
     <div class="app">
       <div class="header">
         htmx Trello Clone
@@ -33,12 +33,12 @@ function index(params) {
         }
       });
     </script>
-    `
-    });
-    return new Response(template, {
-        headers: {
-            "content-type": "text/html;charset=UTF-8",
-        },
-    });
+    `,
+  });
+  return new Response(template, {
+    headers: {
+      "content-type": "text/html;charset=UTF-8",
+    },
+  });
 }
 export default index;
