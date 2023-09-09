@@ -1,5 +1,5 @@
 name = "trello-clone"
-main = "src/worker.ts"
+main = "build/worker.js"
 compatibility_date = "2023-09-04"
 
 # Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)

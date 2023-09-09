@@ -18,7 +18,7 @@ export default {
       ["/cards/new/:list_id", NewCard, "POST"],
       ["/cards/cancel/:id", ToggleAddCard],
       ["/lists/add", AddList],
-      ["/lists/cancel", HTMLResponse(NewList) as any as Handler] /*
+      ["/lists/cancel", () => HTMLResponse(NewList)] /*
       ["/", Board, "POST"],
       ["/add/:id", AddCard],
       ["/edit/:list_id/:id", EditCard],

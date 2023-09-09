@@ -5,9 +5,11 @@
   "main": "build/worker.js",
   "types": "build/worker.d.ts",
   "scripts": {
+    "format": "npx prettier . --write",
     "test": "npx jest --pass-with-no-tests",
-    "build": "npm run format && npm run test && rm -rf ./build && npx tsc && npx esbuild ./src/worker.ts --bundle --outdir=build --format=esm --minify",
-    "format": "npx prettier . --write"
+    "start": "npm run build && wrangler dev",
+    "build": "npm run format && npm run test && rm -rf ./build && npx tsc && npx esbuild --bundle assets/styles.css --outfile=assets/styles.min.css --minify && npx tsx tools/compile.ts && npx esbuild ./src/worker.ts --bundle --outdir=build --format=esm --minify",
+    "deploy": "npm run build && wrangler deploy"
   },
   "keywords": [],
   "author": "Jeremiah Langner",
