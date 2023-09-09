@@ -5,6 +5,7 @@ import Board from "./board";
 function index(params: { request: Request; ctx: any; env: any }): Response {
   const { request, ctx, env } = params;
 
+  //  #board.board.sortable(_="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value then send cardmoved")
   const template = PageBoilerplate({
     template: `
     <div class="app">
@@ -16,11 +17,11 @@ function index(params: { request: Request; ctx: any; env: any }): Response {
         <input id="fromList" type="hidden" name="from">
         <input id="toList" type="hidden" name="to">
         <input id="movedCard" type="hidden" name="movedCard">
-        <div id="board" class="board sortable">
+        <div id="board" class="board sortable" _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value then send cardmoved">
+
           ${Board({ request, ctx, env })}
         </div>
       </form>
-      
     </div>
     <script src="https://unpkg.com/htmx.org"></script>
     <script src="https://unpkg.com/hyperscript.org"></script>

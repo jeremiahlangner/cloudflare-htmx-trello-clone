@@ -1,4 +1,4 @@
-var s=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,i="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:i,handler:t})}handle(e){let{request:t}=e;for(let i of this.routes)if(i.method===t.method&&i.path.exec({pathname:new URL(t.url).pathname}))return i.handler(e);return new Response("Not found",{status:404})}};var b=`
+var s=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,o="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:o,handler:t})}handle(e){let{request:t}=e;for(let o of this.routes)if(o.method===t.method&&o.path.exec({pathname:new URL(t.url).pathname}))return o.handler(e);return new Response("Not found",{status:404})}};var g=`
 body {
     margin: 0;
     padding: 0;
@@ -247,7 +247,7 @@ code {
 .hidden {
   display: none;
 }
-`,l=b;function c(e){return`
+`,l=g;function c(e){return`
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -267,25 +267,32 @@ code {
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
   <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
 </svg>
-`;var g=[{name:"To Do",id:1,cards:[{id:1,label:"First Card",list:1},{id:2,label:"Second Card",list:1}]},{name:"Doing",id:2,cards:[{id:3,label:"First Card",list:2},{id:4,label:"Second Card",list:2}]}],h=g;function x(e){let{request:t,ctx:i,env:d}=e,o="";for(let a of h){o+=`
+`;var b=[{name:"To Do",id:1,cards:[{id:1,label:"First Card",list:1},{id:2,label:"Second Card",list:1}]},{name:"Doing",id:2,cards:[{id:3,label:"First Card",list:2},{id:4,label:"Second Card",list:2}]}],h=b;function x(e){let{request:t,ctx:o,env:d}=e,i="";for(let n of h){i+=`
 <div class="list" draggable="true">
   <div class="list-title">
-    ${a.name}
-    <div class="list-cards sortable" id="list-${a.id}">
-    `;for(let r of a.cards)o+=`
-<div class="card" id="card-${r.id}" tabindex="0" aria-roledescription="Draggable item. Press space bar to lif" draggable="true">
+    ${n.name}
+    <div class="list-cards sortable" id="list-${n.id}">
+    `;for(let r of n.cards)i+=`
+<div 
+  class="card" 
+  id="card-${r.id}" 
+  tabindex="0" 
+  aria-roledescription="Draggable item. Press space bar to lif" 
+  draggable="true"
+  _="on mouseenter toggle .hidden on #card-edit-${r.id} until mouseleave"
+  >
   <div class="card-icons hidden" id="card-edit-${r.id}">
-    <button class="card-icon" type="button" hx-get="/cards/edit/${a.id}/${r.id}" hx-target"#card-${r.id}" hx-swap="outerHTML">
+    <button class="card-icon" type="button" hx-get="/cards/edit/${n.id}/${r.id}" hx-target"#card-${r.id}" hx-swap="outerHTML">
       ${p}
     </button>
   </div>
   ${r.label}
 </div>
-      `;o+=`
+      `;i+=`
     </div>
   </div>
 </div>
-    `}return o}var n=x;function m(e){let{request:t,ctx:i,env:d}=e,o=c({template:`
+    `}return i}var a=x;function u(e){let{request:t,ctx:o,env:d}=e,i=c({template:`
     <div class="app">
       <div class="header">
         htmx Trello Clone
@@ -295,11 +302,11 @@ code {
         <input id="fromList" type="hidden" name="from">
         <input id="toList" type="hidden" name="to">
         <input id="movedCard" type="hidden" name="movedCard">
-        <div id="board" class="board sortable">
-          ${n({request:t,ctx:i,env:d})}
+        <div id="board" class="board sortable" _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value then send cardmoved">
+
+          ${a({request:t,ctx:o,env:d})}
         </div>
       </form>
-      
     </div>
     <script src="https://unpkg.com/htmx.org"><\/script>
     <script src="https://unpkg.com/hyperscript.org"><\/script>
@@ -315,4 +322,4 @@ code {
         }
       });
     <\/script>
-    `});return new Response(o,{headers:{"content-type":"text/html;charset=UTF-8"}})}var f=m;var M={async fetch(e,t,i){return new s([["/",f],["/",n,"POST"]]).handle({request:e,env:t,ctx:i})}};export{M as default};
+    `});return new Response(i,{headers:{"content-type":"text/html;charset=UTF-8"}})}var f=u;var M={async fetch(e,t,o){return new s([["/",f],["/",a,"POST"]]).handle({request:e,env:t,ctx:o})}};export{M as default};
