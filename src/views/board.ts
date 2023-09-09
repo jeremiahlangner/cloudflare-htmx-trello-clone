@@ -70,7 +70,7 @@ function Board(params: { request: Request; ctx: any; env: any }): string {
 </div>
     `;
   }
-  
+
   template += `${NewList}`;
 
   return template;

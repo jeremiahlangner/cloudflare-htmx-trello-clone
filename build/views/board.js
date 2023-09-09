@@ -1,6 +1,7 @@
 import { IconEdit } from "./mixins";
 import ToggleAddCard from "./toggle_add_card";
 import AddCard from "./add_card";
+import NewList from "./new_list";
 import lists from "../data/list";
 function Board(params) {
     const { request, ctx, env } = params;
@@ -57,19 +58,17 @@ function Board(params) {
         }
         template += `
     </div>
-    ${ToggleAddCard({ list })}
-    ${AddCard({ list })}
   </div>
+  ${ToggleAddCard({ list })}
+  ${AddCard({ list })}
 </div>
     `;
     }
+    template += `${NewList}`;
     return template;
 }
 export default Board;
 /*
-    include _toggle-add-card
-    include _add-card
-
 .add-list
   include _new-list
 */

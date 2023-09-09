@@ -11,11 +11,16 @@ function AddCard(params) {
       style="height: 34px;" 
       maxlength="300" 
       autofocus="true"
-    >
+    ></textarea>
     <input type="hidden" name="listId" value="id">
   </div>
+  </div>
+  `;
+    `
   <div class="edit-buttons">
-    <button class="edit-button" type="button" 
+    <button 
+      class="edit-button" 
+      type="button" 
       tabindex="0"
       style="background-color: rgb(90, 172, 68);"
       hx-post="/cards/new/${list.id}"
@@ -27,7 +32,8 @@ function AddCard(params) {
       Add card
     </button>
     <div class="edit-button-cancel" tabindex="0" 
-      _="on click toggle .hidden on #add-card-${list.id} toggle .hidden on #btn-add-card-${list.id}">
+      _="on click toggle .hidden on #add-card-${list.id} toggle .hidden on #btn-add-card-${list.id}"
+    >
       ${IconClose}
     </div>
   </div>
