@@ -1,10 +1,11 @@
 import { Router } from "simple-worker-router";
 import Index from "./views/index";
 import AddList from "./views/add_list";
-import NewCard from "./views/new_card";
 import Board from "./views/board";
-
-// import NewList from "./views/new_list";
+import NewCard from "./views/new_card";
+import NewList from "./views/new_list";
+import ToggleAddCard from "./views/toggle_add_card";
+import { HTMLResponseOptions } from "./util";
 
 interface Environment {}
 
@@ -12,11 +13,17 @@ export default {
   async fetch(request: Request, env: Environment, ctx: any) {
     const router = new Router([
       ["/", Index],
-      ["/cards/new/:list_id", NewCard, "POST"],
-      ["/lists/add", AddList] /*
-      ["cancel", NewList],
       ["/", Board, "POST"],
-      ["/move", Board, "POST"],
+      [
+        "/cards/move",
+        (params) => new Response(Board(params) as string, HTMLResponseOptions),
+        "POST",
+      ],
+      ["/cards/new/:list_id", NewCard, "POST"],
+      ["/cards/cancel/:id", ToggleAddCard],
+      ["/lists/add", AddList],
+      ["/lists/cancel", () => new Response(NewList, HTMLResponseOptions)] /*
+      ["/", Board, "POST"],
       ["/add/:id", AddCard],
       ["/edit/:list_id/:id", EditCard],
       ["/:list_id/:id", Card, "PUT"],

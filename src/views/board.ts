@@ -5,9 +5,7 @@ import AddCard from "./add_card";
 import NewList from "./new_list";
 import lists from "../data/list";
 
-function Board(params: { request: Request; ctx: any; env: any }): string {
-  const { request, ctx, env } = params;
-
+async function Board(params: any): Promise<string> {
   /*
     cardsRouter.post('/move', (req, res) => {
   console.log(req.body);
@@ -32,7 +30,15 @@ function Board(params: { request: Request; ctx: any; env: any }): string {
 
   */
 
-  // TODO: implement move action.
+  const { request, route } = params;
+  const { from, to, movedCard } = await request.json();
+  const [, fromId] = from.split("-");
+  const [, toId] = to.split("-");
+  const cardId = movedCard.replace("card-", "");
+
+  // TODO: fetch lists from storage
+
+  const fromList = {};
 
   let template = ``;
 

@@ -3,8 +3,7 @@ import ToggleAddCard from "./toggle_add_card";
 import AddCard from "./add_card";
 import NewList from "./new_list";
 import lists from "../data/list";
-function Board(params) {
-    const { request, ctx, env } = params;
+async function Board(params) {
     /*
       cardsRouter.post('/move', (req, res) => {
     console.log(req.body);
@@ -28,7 +27,13 @@ function Board(params) {
   });
   
     */
-    // TODO: implement move action.
+    const { request, route } = params;
+    const { from, to, movedCard } = await request.json();
+    const [, fromId] = from.split("-");
+    const [, toId] = to.split("-");
+    const cardId = movedCard.replace("card-", "");
+    // TODO: fetch lists from storage
+    const fromList = {};
     let template = ``;
     for (const list of lists) {
         template += `
