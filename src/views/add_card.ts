@@ -1,6 +1,6 @@
 import { IconClose } from "./mixins";
 
-function AddCard(params: any) {
+function AddCard(params: any): string {
   const { list } = params;
 
   return `

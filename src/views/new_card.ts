@@ -1,23 +1,6 @@
 import { IconEdit } from "./mixins";
-import { hash } from "../util";
-
-import lists from "../data/list";
-
-// TODO: add interfaces to shared types;
-interface Environment {}
-
-interface Params {
-  request: Request;
-  env: Environment;
-  ctx: ExecutionContext;
-  route: URLPattern; // return type from URLPattern.exec()
-}
-
-interface Card {
-  id: string;
-  label: string;
-  list: string | number;
-}
+import { HTMLResponse, hash } from "../util";
+import { Environment, Card } from "../types";
 
 function NewCard(params: any) {
   const { request, route } = params;
@@ -38,8 +21,7 @@ function NewCard(params: any) {
   };
   (list.cards as Card[]).push(card);
 
-  return new Response(
-    `
+  return HTMLResponse(`
 <div id="edit-card">
 </div>
 <div 
@@ -63,13 +45,7 @@ function NewCard(params: any) {
   </div>
   ${card.label}
 </div>
-    `,
-    {
-      headers: {
-        "content-type": "text/html;charset=UTF-8",
-      },
-    }
-  );
+  `);
 }
 
 export default NewCard;

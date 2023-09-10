@@ -1,5 +1,5 @@
 name = "trello-clone"
-main = "build/worker.js"
+main = "src/worker.ts"
 compatibility_date = "2023-09-04"
 
 # Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)
@@ -10,9 +10,10 @@ compatibility_date = "2023-09-04"
 
 # Bind a KV Namespace. Use KV as persistent storage for small key-value pairs.
 # Docs: https://developers.cloudflare.com/workers/runtime-apis/kv
-# [[kv_namespaces]]
-# binding = "MY_KV_NAMESPACE"
-# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+[[kv_namespaces]]
+binding = "TrelloLists"
+id = "19d8424b9c964113be50d97371343cf8"
+preview_id = "39e255d8232545cda176eadf21965d85"
 
 # Bind an R2 Bucket. Use R2 to store arbitrarily large blobs of data, such as files.
 # Docs: https://developers.cloudflare.com/r2/api/workers/workers-api-usage/

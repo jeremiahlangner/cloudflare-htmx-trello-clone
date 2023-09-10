@@ -1,7 +1,7 @@
 import { IconClose } from "./mixins";
 
 function EditCard(params: any): string {
-  const { list, card } = params;
+  const { list, card } = params; // TODO: determine parameter values
 
   return `
 <div id="edit-card" class="edit-card">

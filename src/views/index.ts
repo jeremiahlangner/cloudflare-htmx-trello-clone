@@ -1,13 +1,11 @@
-import { Handler } from "simple-worker-router";
 import { PageBoilerplate } from "./mixins";
+import { HTMLResponse } from "../util";
 import Board from "./board";
 
-function index(params: { request: Request; ctx: any; env: any }): Response {
-  const { request, ctx, env } = params;
-
-  //  #board.board.sortable(_="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value then send cardmoved")
-  const template = PageBoilerplate({
-    template: `
+function index(params: any) {
+  return HTMLResponse(
+    PageBoilerplate({
+      template: `
     <div class="app">
       <div class="header">
         htmx Trello Clone
@@ -17,9 +15,12 @@ function index(params: { request: Request; ctx: any; env: any }): Response {
         <input id="fromList" type="hidden" name="from">
         <input id="toList" type="hidden" name="to">
         <input id="movedCard" type="hidden" name="movedCard">
-        <div id="board" class="board sortable" _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value then send cardmoved">
+        <div 
+          id="board" 
+          class="board sortable" 
+          _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value then send cardmoved">
 
-          ${Board({ request, ctx, env })}
+          ${Board(params)}
         </div>
       </form>
     </div>
@@ -38,13 +39,8 @@ function index(params: { request: Request; ctx: any; env: any }): Response {
       });
     </script>
     `,
-  });
-
-  return new Response(template, {
-    headers: {
-      "content-type": "text/html;charset=UTF-8",
-    },
-  });
+    })
+  );
 }
 
-export default index as Handler;
+export default index;

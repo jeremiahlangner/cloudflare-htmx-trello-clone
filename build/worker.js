@@ -1,5 +1,5 @@
-var w=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,d="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:d,handler:t})}handle(e){let{request:t}=e;for(let d of this.routes){if(d.method!==t.method)continue;let i=d.path.exec({pathname:new URL(t.url).pathname});if(i)return d.handler({...e,route:i})}return new Response("Not found",{status:404})}};var y={styles:`body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}code{font-family:source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace}.app{background:#3465a4;height:100vh}.header{background:rgba(0,0,0,.15);color:#fff;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.12);text-align:center;font-size:40px;font-weight:200}.board{height:92%;display:-webkit-flex;display:flex;overflow-x:auto}.add-list{width:272px;margin:10px;-webkit-flex-shrink:0;flex-shrink:0}.add-list-button{background-color:#0000001f;border-radius:4px;cursor:pointer;color:#fff;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;min-height:32px;padding:5px 8px;transition:background-color 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content}.add-list-button:hover{background-color:#0000003d}.list{background:#dfe3e6;-webkit-flex-shrink:0;flex-shrink:0;width:272px;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content;margin:10px 0 10px 10px;border-radius:4px;border:1px solid rgba(0,0,0,.12)}.list-title{cursor:pointer;padding:10px;overflow-wrap:break-word}.toggle-add-card{cursor:pointer;padding:10px;color:#333;border-radius:0 0 4px 4px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;border:none;width:100%}.toggle-add-card:hover{background-color:#092d4221;color:#17394d;text-decoration:underline}.card{position:relative;cursor:grab;background:#fff;margin:5px;padding:10px;border-radius:5px;border:1px solid rgba(0,0,0,.12);box-shadow:0 1px #092d4240;font-size:15px;overflow-wrap:break-word;min-height:18px}.card:hover{background:#f5f6f7}.card-icons{position:absolute;top:5px;right:5px;-webkit-flex-direction:row;flex-direction:row;-webkit-justify-content:flex-end;justify-content:flex-end}.card-icon,.card-icons{display:-webkit-flex;display:flex}.card-icon{cursor:pointer;width:24px;height:24px;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;border-radius:5px;margin:1px;color:#00000080;background:#f5f6f7;opacity:.9;border:none}.card-icon:hover{opacity:1;background:#dcdcdc}.edit-card .card{min-height:50px;padding-left:8px;padding-right:15px}.edit-card .card:hover{background:#fff}.edit-card-textarea{width:100%;border:none;resize:none;outline:none;font-size:15px}.edit-buttons{display:-webkit-flex;display:flex}.edit-button{cursor:pointer;box-shadow:0 1px #3f6f21;width:-webkit-fit-content;width:-moz-fit-content;width:fit-content;margin:0 5px 10px;padding:6px 12px;border-radius:5px;border:none;color:#fff;outline:none}.edit-button:hover{opacity:.7}.edit-button-cancel{cursor:pointer;margin-bottom:10px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;font-size:20px;opacity:.5;outline:none;padding:0;border:none}.edit-button-cancel:hover{opacity:1}.list-title-edit{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center}.list-title-textarea{margin:6px 0 5px 6px;border-radius:3px;border:none;resize:none;outline:none;font-size:15px;padding:5px}.list-title-textarea:focus{box-shadow:inset 0 0 0 2px #0079bf}.add-list-editor{background:#dfe3e6;border-radius:5px;padding:2px}.hidden{display:none}
-`};var M=y.styles,k=M;function $(e){return`
+var k=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,i="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:i,handler:t})}handle(e){let{request:t}=e;for(let i of this.routes){if(i.method!==t.method)continue;let r=i.path.exec({pathname:new URL(t.url).pathname});if(r)return i.handler({...e,route:r})}return new Response("Not found",{status:404})}};var L={styles:`body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}code{font-family:source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace}.app{background:#3465a4;height:100vh}.header{background:rgba(0,0,0,.15);color:#fff;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.12);text-align:center;font-size:40px;font-weight:200}.board{height:92%;display:-webkit-flex;display:flex;overflow-x:auto}.add-list{width:272px;margin:10px;-webkit-flex-shrink:0;flex-shrink:0}.add-list-button{background-color:#0000001f;border-radius:4px;cursor:pointer;color:#fff;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;min-height:32px;padding:5px 8px;transition:background-color 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content}.add-list-button:hover{background-color:#0000003d}.list{background:#dfe3e6;-webkit-flex-shrink:0;flex-shrink:0;width:272px;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content;margin:10px 0 10px 10px;border-radius:4px;border:1px solid rgba(0,0,0,.12)}.list-title{cursor:pointer;padding:10px;overflow-wrap:break-word}.toggle-add-card{cursor:pointer;padding:10px;color:#333;border-radius:0 0 4px 4px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;border:none;width:100%}.toggle-add-card:hover{background-color:#092d4221;color:#17394d;text-decoration:underline}.card{position:relative;cursor:grab;background:#fff;margin:5px;padding:10px;border-radius:5px;border:1px solid rgba(0,0,0,.12);box-shadow:0 1px #092d4240;font-size:15px;overflow-wrap:break-word;min-height:18px}.card:hover{background:#f5f6f7}.card-icons{position:absolute;top:5px;right:5px;-webkit-flex-direction:row;flex-direction:row;-webkit-justify-content:flex-end;justify-content:flex-end}.card-icon,.card-icons{display:-webkit-flex;display:flex}.card-icon{cursor:pointer;width:24px;height:24px;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;border-radius:5px;margin:1px;color:#00000080;background:#f5f6f7;opacity:.9;border:none}.card-icon:hover{opacity:1;background:#dcdcdc}.edit-card .card{min-height:50px;padding-left:8px;padding-right:15px}.edit-card .card:hover{background:#fff}.edit-card-textarea{width:100%;border:none;resize:none;outline:none;font-size:15px}.edit-buttons{display:-webkit-flex;display:flex}.edit-button{cursor:pointer;box-shadow:0 1px #3f6f21;width:-webkit-fit-content;width:-moz-fit-content;width:fit-content;margin:0 5px 10px;padding:6px 12px;border-radius:5px;border:none;color:#fff;outline:none}.edit-button:hover{opacity:.7}.edit-button-cancel{cursor:pointer;margin-bottom:10px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;font-size:20px;opacity:.5;outline:none;padding:0;border:none}.edit-button-cancel:hover{opacity:1}.list-title-edit{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center}.list-title-textarea{margin:6px 0 5px 6px;border-radius:3px;border:none;resize:none;outline:none;font-size:15px;padding:5px}.list-title-textarea:focus{box-shadow:inset 0 0 0 2px #0079bf}.add-list-editor{background:#dfe3e6;border-radius:5px;padding:2px}.hidden{display:none}
+`};function C(e){return`
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,36 +8,36 @@ var w=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HTMX Trello Clone</title>
     <style>
-      ${k}
+      ${L.styles}
     </style>
   </head>
   <body>
     ${e.template}
   </body>
 </html>
-  `}var c=`
+  `}var h=`
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 </svg>
-`,p=`
+`,l=`
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 </svg>
-`,h=`
+`,c=`
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
   <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
 </svg>
-`;function P(e){let{list:t}=e;return`
+`;function T(e){let t="";for(;e[t];)t=Math.random().toString(16).substring(2,15);return t}async function a(e){return new Response(e,{headers:{"content-type":"text/html;charset=UTF-8"}})}function E(e){let{list:t}=e;return`
 <button 
   class="toggle-add-card"
   id="btn-add-card-${t.id}"
   type="button" 
   _="on click toggle .hidden on me toggle .hidden on #add-card-${t.id}"
   >
-  ${c}
+  ${h}
   <span> Add another card</span>
 </button>
-`}var u=P;function H(e){let{list:t}=e;return`
+`}var p=E;function H(e){let{list:t}=e;return`
 <div class="edit-card hidden" id="add-card-${t.id}">
   <div class="card">
     <textarea 
@@ -67,50 +67,50 @@ var w=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register
     <div class="edit-button-cancel" tabindex="0" 
       _="on click toggle .hidden on #add-card-${t.id} toggle .hidden on #btn-add-card-${t.id}"
     >
-      ${p}
+      ${l}
     </div>
   </div>
 </div>
-  `}var C=H;var E=`
+  `}var m=H;var P=`
 <div id="add-list" class="add-list-button"
   hx-get="/lists/add" 
   hx-swap="outerHTML"
   hx-target="#add-list"
 >
-${c} Add another list
+${h} Add another list
 <div>
-  `,m=E;var q=[{name:"To Do",id:1,cards:[{id:"1",label:"First Card",list:1},{id:"2",label:"Second Card",list:1}]},{name:"Doing",id:2,cards:[{id:"3",label:"First Card",list:2},{id:"4",label:"Second Card",list:2}]}],g=q;function U(e){let{request:t,route:d}=e,i;try{let{from:a,to:o,movedCard:z}=JSON.parse(t.body),[,A]=a.split("-"),[,b]=o.split("-"),x=z.replace("card-","");i=g;let f=i.find(n=>n.id==A),v=f.cards.find(n=>n.id==x);v.list=b,f.cards=f.cards.filter(n=>n.id!=x),i.find(n=>n.id==b).cards.push(v)}catch{i=g}let r="";for(let a of i){r+=`
+  `,b=P;var R=[{name:"To Do",id:1,cards:[{id:"1",label:"First Card",list:1},{id:"2",label:"Second Card",list:1}]},{name:"Doing",id:2,cards:[{id:"3",label:"First Card",list:2},{id:"4",label:"Second Card",list:2}]}],f=R;function O(e){let{request:t,route:i}=e,r;try{let{from:n,to:d,movedCard:_}=JSON.parse(t.body),[,z]=n.split("-"),[,w]=d.split("-"),y=_.replace("card-","");r=f;let g=r.find(s=>s.id==z),$=g.cards.find(s=>s.id==y);$.list=w,g.cards=g.cards.filter(s=>s.id!=y),r.find(s=>s.id==w).cards.push($)}catch{r=f}let o="";for(let n of r){o+=`
 <div class="list" draggable="true">
   <div class="list-title">
-    ${a.name}
-    <div class="list-cards sortable" id="list-${a.id}">
-    `;for(let o of a.cards)r+=`
+    ${n.name}
+    <div class="list-cards sortable" id="list-${n.id}">
+    `;for(let d of n.cards)o+=`
 <div 
   class="card" 
-  id="card-${o.id}" 
+  id="card-${d.id}" 
   tabindex="0" 
   aria-roledescription="Draggable item. Press space bar to lif" 
   draggable="true"
-  _="on mouseenter toggle .hidden on #card-edit-${o.id} until mouseleave"
+  _="on mouseenter toggle .hidden on #card-edit-${d.id} until mouseleave"
   >
-  <div class="card-icons hidden" id="card-edit-${o.id}">
-    <button class="card-icon" type="button" hx-get="/cards/edit/${a.id}/${o.id}" hx-target"#card-${o.id}" hx-swap="outerHTML">
-      ${h}
+  <div class="card-icons hidden" id="card-edit-${d.id}">
+    <button class="card-icon" type="button" hx-get="/cards/edit/${n.id}/${d.id}" hx-target"#card-${d.id}" hx-swap="outerHTML">
+      ${c}
     </button>
   </div>
-  ${o.label}
+  ${d.label}
 </div>
-      `;r+=`
+      `;o+=`
     </div>
   </div>
-  ${u({list:a})}
-  ${C({list:a})}
+  ${p({list:n})}
+  ${m({list:n})}
 </div>
-    `}return r+=`
+    `}return o+=`
 <div class="add-list">
-  ${m}
+  ${b}
 </div>
-  `,r}var l=U;function B(e){let{request:t,ctx:d,env:i}=e,r=$({template:`
+  `,o}var u=O;function B(e){return a(C({template:`
     <div class="app">
       <div class="header">
         htmx Trello Clone
@@ -120,9 +120,12 @@ ${c} Add another list
         <input id="fromList" type="hidden" name="from">
         <input id="toList" type="hidden" name="to">
         <input id="movedCard" type="hidden" name="movedCard">
-        <div id="board" class="board sortable" _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value then send cardmoved">
+        <div 
+          id="board" 
+          class="board sortable" 
+          _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value then send cardmoved">
 
-          ${l({request:t,ctx:d,env:i})}
+          ${u(e)}
         </div>
       </form>
     </div>
@@ -140,7 +143,7 @@ ${c} Add another list
         }
       });
     <\/script>
-    `});return new Response(r,{headers:{"content-type":"text/html;charset=UTF-8"}})}var L=B;function T(e){let t="";for(;e[t];)t=Math.random().toString(16).substring(2,15);return t}async function s(e){return new Response(e,{headers:{"content-type":"text/html;charset=UTF-8"}})}function N(e){return s(`
+    `}))}var M=B;function D(e){return a(`
 <div id="add-list" class="add-list-editor">
   <form
     hx-post="/lists"
@@ -173,33 +176,91 @@ ${c} Add another list
         hx-target="#add-list"
         hx-swap="outerHTML"
       >
-        ${p}
+        ${l}
       </button>
     </div>
   </form>
 </div>
-  `)}var S=N;function _(e){let{request:t,route:d}=e,i=d.pathname.groups.list_id,r=t.body["label-"+i],a={id:i,cards:[]},o={label:r,id:T({}),list:i};return a.cards.push(o),new Response(`
+  `)}var S=D;function N(e){let{request:t,route:i}=e,r=i.pathname.groups.list_id,o=t.body["label-"+r],n={id:r,cards:[]},d={label:o,id:T({}),list:r};return n.cards.push(d),a(`
 <div id="edit-card">
 </div>
 <div 
   class="card"
-  id="card-${o.id}
+  id="card-${d.id}
   tabindex="0"
   aria-roledescription="Draggable item. Press space bar to lift" 
   draggable="true"
-  _="on mouseenter toggle .hidden on #card-edit-${o.id} until mouseleave"
+  _="on mouseenter toggle .hidden on #card-edit-${d.id} until mouseleave"
 > 
-  <div class="card-icons hidden" id="card-edit-${o.id}">
+  <div class="card-icons hidden" id="card-edit-${d.id}">
     <button 
       class="card-icon"
       type="button"
-      hx-get="/cards/edit/${i}/${o.id} 
-      hx-target="#card-${o.id} 
+      hx-get="/cards/edit/${r}/${d.id} 
+      hx-target="#card-${d.id} 
       hx-swap="outerHTML"
     >
-      ${h}
+      ${c}
     </button>
   </div>
-  ${o.label}
+  ${d.label}
 </div>
-    `,{headers:{"content-type":"text/html;charset=UTF-8"}})}var R=_;var St={async fetch(e,t,d){return new w([["/",L],["/",l,"POST"],["/cards/move",r=>s(l(r)),"POST"],["/cards/new/:list_id",R,"POST"],["/cards/cancel/:id",r=>s(u(r))],["/lists/add",S],["/lists/cancel",()=>s(m)]]).handle({request:e,env:t,ctx:d})}};export{St as default};
+  `)}var x=N;function U(e){let{list:t,card:i}=e;return`
+<div id="edit-card" class="edit-card">
+  <form 
+    hx-put="/cards/${t.id}/${i.id} 
+    hx-target="#edit-card"
+    hx-swap="outerHTML"
+  >
+    <div class="card">
+      <textarea 
+        class="edit-card-textarea"
+        name="label" 
+        style="height: 34px;"
+        maxlength="300" 
+        autofocus="true"
+      > ${i.label} </textarea>
+      <input type="hidden" name="listId" value=id>
+    </div>
+    <div class="edit-buttons">
+      <button 
+        class="edit-button"
+        type="submit", 
+        tabindex="0" 
+        style="background-color: rgb(90, 172, 68);"
+        _="on htmx:afterOnLoad remove #edit-card"
+      > Save </button>
+      <button class="edit-button"
+        type="button" 
+        tabindex="0" 
+        style="background-color: rgb(234, 37, 37);"
+        hx-delete="/cards/${t.id}/${i.id}"
+        _="on htmx:afterOnLoad remove #edit-card"
+      > Delete </button>
+      <div class="edit-button-cancel" 
+        tabindex="0" 
+        hx-get="/cards/cancel-edit/${t.id}/${i.id}" 
+        hx-target='#edit-card' 
+        hx-swap="outerHTML">
+        ${l}
+      </div>
+    </div>
+  </form>
+</div>
+  `}var I=U;function j(e){let{list:t,card:i}=e;return`
+<div 
+  class="card" 
+  id="card-${i.id}" 
+  tabindex="0" 
+  aria-roledescription="Draggable item. Press space bar to lift" 
+  draggable="true"
+  _="on mouseenter toggle .hidden on #card-edit-${i.id} until mouseleave"
+>   
+ <div class="card-icons hidden" id="card-edit-${i.id}">
+  <button class="card-icon" type="button" hx-get="/cards/edit/${t.id}/${i.id}" hx-target="#card-${i.id} hx-swap="outerHTML">
+    ${c}  
+  </button>
+  <div id="${i.label}"></div>
+  </div>
+</div>
+  `}var v=j;var Pt={async fetch(e,t,i){return new k([["/",M],["/lists",o=>a(u(o)),"POST"],["/cards/move",o=>a(u(o)),"POST"],["/cards/new/:list_id",x,"POST"],["/cards/cancel/:id",o=>a(p(o))],["/lists/add",S],["/lists/cancel",()=>a(b)],["/cards/add/:id",m],["/cards/edit/:list_id/:id",I],["/cards/:list_id/:id",v,"PUT"],["/cancel/:id",p],["/cancel-edit/:list_id/:id",v],["/cards/:list_id/:id",()=>a(""),"DELETE"],["/cards/new/:list_id",x,"POST"]]).handle({request:e,env:t,ctx:i})}};export{Pt as default};

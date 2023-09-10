@@ -1,4 +1,4 @@
-import Styles from "./styles";
+import json from "./styles.json" assert { type: "json" };
 
 function PageBoilerplate(params: any) {
   return `
@@ -10,7 +10,7 @@ function PageBoilerplate(params: any) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HTMX Trello Clone</title>
     <style>
-      ${Styles}
+      ${json.styles}
     </style>
   </head>
   <body>

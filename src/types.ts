@@ -1,5 +1,5 @@
 interface Environment {
-  Data: KVNamespace;
+  TrelloLists: KVNamespace; // Single group of lists per key? up to 25MB storage.
 }
 
 interface Params {
