@@ -2,31 +2,35 @@ import { IconEdit } from "./mixins";
 import ToggleAddCard from "./toggle_add_card";
 import AddCard from "./add_card";
 import NewList from "./new_list";
-import Lists from "../data/list";
 import { Card, List } from "../types";
 
-function Board(params: any): string {
-  const { request, route } = params; // will need env for KV store as well
-  let lists: List[];
+async function Board(params: any): Promise<string> {
+  console.log(params);
+  const { request, route, env } = params; // will need env for KV store as well
+  const listData = await env.TrelloLists.get("lists");
+  console.log("listdata", listData);
+  const lists = JSON.parse(listData);
+
   try {
+    console.log("request", request.body);
     // if any of the below are not in the request, this should fail; for the move function specifically; should split into separate function.
     const { from, to, movedCard } = JSON.parse(request.body);
+    console.log(from, to, movedCard);
     const [, fromId] = from.split("-");
     const [, toId] = to.split("-");
     const cardId = movedCard.replace("card-", "");
 
-    // TODO: fetch lists from storage and update storage after changes
-    lists = Lists as List[];
-
-    const fromList = lists.find((l) => l.id == fromId);
-    const card = fromList!.cards.find((c) => c.id == cardId);
+    const fromList = lists.find((l: List) => l.id == fromId);
+    const card = fromList!.cards.find((c: Card) => c.id == cardId);
     card!.list = toId;
-    fromList!.cards = fromList!.cards.filter((c) => c.id != cardId);
+    fromList!.cards = fromList!.cards.filter((c: Card) => c.id != cardId);
 
-    const toList = lists.find((l) => l.id == toId);
+    const toList = lists.find((l: List) => l.id == toId);
     toList!.cards.push(card as Card);
-  } catch {
-    lists = Lists;
+
+    // TODO: update lists in KV.
+  } catch (e) {
+    console.error(e);
   }
 
   let template = ``;

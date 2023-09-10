@@ -17,8 +17,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230904.0",
     "@types/web": "^0.0.114",
-    "ts-jest": "^29.1.1",
-    "wrangler": "^3.7.0"
+    "ts-jest": "^29.1.1"
   },
   "dependencies": {
     "simple-worker-router": "github:jeremiahlangner/simple-worker-router"

@@ -9,15 +9,18 @@ import Card from "./views/card";
 import NewList from "./views/new_list";
 import ToggleAddCard from "./views/toggle_add_card";
 import { HTMLResponse } from "./util";
-
-interface Environment {}
+import { Environment } from "./types";
 
 export default {
   async fetch(request: Request, env: Environment, ctx: any) {
     const router = new Router([
       ["/", Index],
-      ["/lists", (params) => HTMLResponse(Board(params)), "POST"],
-      ["/cards/move", (params) => HTMLResponse(Board(params)), "POST"], // TODO: finish move response
+      ["/lists", async (params) => HTMLResponse(await Board(params)), "POST"],
+      [
+        "/cards/move",
+        async (params) => HTMLResponse(await Board(params)),
+        "POST",
+      ],
       ["/cards/new/:list_id", NewCard, "POST"],
       ["/cards/cancel/:id", (params) => HTMLResponse(ToggleAddCard(params))],
       ["/lists/add", AddList],
