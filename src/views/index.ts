@@ -3,11 +3,6 @@ import { HTMLResponse } from "../util";
 import Board from "./board";
 
 async function index(params: any): Promise<Response> {
-  const { request, env } = params;
-  const lists = await env.TrelloLists.get("lists");
-  const test = await env.TrelloLists.list();
-  console.log(test);
-  console.log("lists", lists);
   const board = await Board(params);
   return HTMLResponse(
     PageBoilerplate({
