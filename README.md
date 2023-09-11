@@ -8,7 +8,13 @@ A serverless implementation of the HTMX trello clone developed by rajasegar (git
 
 ## Why
 
-rajasegar's Heroku instance of this server example for HTMX with node.js is down. I don't believe HTMX needs a server so much as "state storage". That is, the backend should represent the state. In this case, I'm using Cloudflare's KV storage and may switch to Durable Objects for consistency's sake.
+This is a simple application to implement with enough complexity to learn how HTMX interacts while flexing some stiff serverless muscles in a slightly different serverless paradigm than my daily driver (AWS). This particular architecture/stack is not necessarily recommended. 
+
+rajasegar's Heroku instance of this server example for HTMX with node.js is down. I don't believe HTMX _needs_ a server so much as "state storage" and "content delivery" mechanisms (and in almost all cases, for HTMX applications, a server is more beneficial for both the developer and the user than a serverless implementation). That is, the backend should represent the state. In this case, I'm using Cloudflare's KV storage and may switch to Durable Objects for consistency's sake.
+
+## Why Not
+
+This particular architecture, HTMX over serverless requires several implementations that are neither performant nor advantageous (for the individual/company developing and administering the application) Because HTMX utilizes route/method based server access to update the client state it incurs a large request penalty on the serverless functions as well as the serverless database. The number of requests, reads, and writes scales if not merely linearly, potentially exponentially compared to running an application like this as a single page application maintaining and managing its own application state and representation on the client side and relying on asynchronous state storage from a remote database.
 
 ## Usage
 
