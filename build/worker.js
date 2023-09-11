@@ -1,5 +1,5 @@
-var C=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,i="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:i,handler:t})}handle(e){let{request:t}=e;for(let i of this.routes){if(i.method!==t.method)continue;let o=i.path.exec({pathname:new URL(t.url).pathname});if(o)return i.handler({...e,route:o})}return new Response("Not found",{status:404})}};var T={styles:`body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}code{font-family:source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace}.app{background:#3465a4;height:100vh}.header{background:rgba(0,0,0,.15);color:#fff;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.12);text-align:center;font-size:40px;font-weight:200}.board{height:92%;display:-webkit-flex;display:flex;overflow-x:auto}.add-list{width:272px;margin:10px;-webkit-flex-shrink:0;flex-shrink:0}.add-list-button{background-color:#0000001f;border-radius:4px;cursor:pointer;color:#fff;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;min-height:32px;padding:5px 8px;transition:background-color 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content}.add-list-button:hover{background-color:#0000003d}.list{background:#dfe3e6;-webkit-flex-shrink:0;flex-shrink:0;width:272px;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content;margin:10px 0 10px 10px;border-radius:4px;border:1px solid rgba(0,0,0,.12)}.list-title{cursor:pointer;padding:10px;overflow-wrap:break-word}.toggle-add-card{cursor:pointer;padding:10px;color:#333;border-radius:0 0 4px 4px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;border:none;width:100%}.toggle-add-card:hover{background-color:#092d4221;color:#17394d;text-decoration:underline}.card{position:relative;cursor:grab;background:#fff;margin:5px;padding:10px;border-radius:5px;border:1px solid rgba(0,0,0,.12);box-shadow:0 1px #092d4240;font-size:15px;overflow-wrap:break-word;min-height:18px}.card:hover{background:#f5f6f7}.card-icons{position:absolute;top:5px;right:5px;-webkit-flex-direction:row;flex-direction:row;-webkit-justify-content:flex-end;justify-content:flex-end}.card-icon,.card-icons{display:-webkit-flex;display:flex}.card-icon{cursor:pointer;width:24px;height:24px;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;border-radius:5px;margin:1px;color:#00000080;background:#f5f6f7;opacity:.9;border:none}.card-icon:hover{opacity:1;background:#dcdcdc}.edit-card .card{min-height:50px;padding-left:8px;padding-right:15px}.edit-card .card:hover{background:#fff}.edit-card-textarea{width:100%;border:none;resize:none;outline:none;font-size:15px}.edit-buttons{display:-webkit-flex;display:flex}.edit-button{cursor:pointer;box-shadow:0 1px #3f6f21;width:-webkit-fit-content;width:-moz-fit-content;width:fit-content;margin:0 5px 10px;padding:6px 12px;border-radius:5px;border:none;color:#fff;outline:none}.edit-button:hover{opacity:.7}.edit-button-cancel{cursor:pointer;margin-bottom:10px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;font-size:20px;opacity:.5;outline:none;padding:0;border:none}.edit-button-cancel:hover{opacity:1}.list-title-edit{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center}.list-title-textarea{margin:6px 0 5px 6px;border-radius:3px;border:none;resize:none;outline:none;font-size:15px;padding:5px}.list-title-textarea:focus{box-shadow:inset 0 0 0 2px #0079bf}.add-list-editor{background:#dfe3e6;border-radius:5px;padding:2px}.hidden{display:none}
-`};function M(e){return`
+var k=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,i="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:i,handler:t})}handle(e){let{request:t}=e;for(let i of this.routes){if(i.method!==t.method)continue;let o=i.path.exec({pathname:new URL(t.url).pathname});if(o)return i.handler({...e,route:o})}return new Response("Not found",{status:404})}};var L={styles:`body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}code{font-family:source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace}.app{background:#3465a4;height:100vh}.header{background:rgba(0,0,0,.15);color:#fff;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.12);text-align:center;font-size:40px;font-weight:200}.board{height:92%;display:-webkit-flex;display:flex;overflow-x:auto}.add-list{width:272px;margin:10px;-webkit-flex-shrink:0;flex-shrink:0}.add-list-button{background-color:#0000001f;border-radius:4px;cursor:pointer;color:#fff;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;min-height:32px;padding:5px 8px;transition:background-color 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content}.add-list-button:hover{background-color:#0000003d}.list{background:#dfe3e6;-webkit-flex-shrink:0;flex-shrink:0;width:272px;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content;margin:10px 0 10px 10px;border-radius:4px;border:1px solid rgba(0,0,0,.12)}.list-title{cursor:pointer;padding:10px;overflow-wrap:break-word}.toggle-add-card{cursor:pointer;padding:10px;color:#333;border-radius:0 0 4px 4px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;border:none;width:100%}.toggle-add-card:hover{background-color:#092d4221;color:#17394d;text-decoration:underline}.card{position:relative;cursor:grab;background:#fff;margin:5px;padding:10px;border-radius:5px;border:1px solid rgba(0,0,0,.12);box-shadow:0 1px #092d4240;font-size:15px;overflow-wrap:break-word;min-height:18px}.card:hover{background:#f5f6f7}.card-icons{position:absolute;top:5px;right:5px;-webkit-flex-direction:row;flex-direction:row;-webkit-justify-content:flex-end;justify-content:flex-end}.card-icon,.card-icons{display:-webkit-flex;display:flex}.card-icon{cursor:pointer;width:24px;height:24px;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;border-radius:5px;margin:1px;color:#00000080;background:#f5f6f7;opacity:.9;border:none}.card-icon:hover{opacity:1;background:#dcdcdc}.edit-card .card{min-height:50px;padding-left:8px;padding-right:15px}.edit-card .card:hover{background:#fff}.edit-card-textarea{width:100%;border:none;resize:none;outline:none;font-size:15px}.edit-buttons{display:-webkit-flex;display:flex}.edit-button{cursor:pointer;box-shadow:0 1px #3f6f21;width:-webkit-fit-content;width:-moz-fit-content;width:fit-content;margin:0 5px 10px;padding:6px 12px;border-radius:5px;border:none;color:#fff;outline:none}.edit-button:hover{opacity:.7}.edit-button-cancel{cursor:pointer;margin-bottom:10px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;font-size:20px;opacity:.5;outline:none;padding:0;border:none}.edit-button-cancel:hover{opacity:1}.list-title-edit{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center}.list-title-textarea{margin:6px 0 5px 6px;border-radius:3px;border:none;resize:none;outline:none;font-size:15px;padding:5px}.list-title-textarea:focus{box-shadow:inset 0 0 0 2px #0079bf}.add-list-editor{background:#dfe3e6;border-radius:5px;padding:2px}.hidden{display:none}
+`};function C(e){return`
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +8,7 @@ var C=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HTMX Trello Clone</title>
     <style>
-      ${T.styles}
+      ${L.styles}
     </style>
   </head>
   <body>
@@ -19,15 +19,15 @@ var C=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 </svg>
-`,p=`
+`,c=`
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 </svg>
-`,u=`
+`,p=`
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
   <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
 </svg>
-`;function I(e){let t="";for(;e[t];)t=Math.random().toString(16).substring(2,15);return t}async function a(e){return new Response(e,{headers:{"content-type":"text/html;charset=UTF-8"}})}function E(e){let{list:t}=e;return`
+`;function T(e){let t="";for(;e[t];)t=Math.random().toString(16).substring(2,15);return t}async function r(e){return new Response(e,{headers:{"content-type":"text/html;charset=UTF-8"}})}function H(e){let{list:t}=e;return`
 <button 
   class="toggle-add-card"
   id="btn-add-card-${t.id}"
@@ -37,7 +37,7 @@ var C=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register
   ${m}
   <span> Add another card</span>
 </button>
-`}var h=E;function H(e){let{list:t}=e;return`
+`}var u=H;function R(e){let{list:t}=e;return`
 <div class="edit-card hidden" id="add-card-${t.id}">
   <div class="card">
     <textarea 
@@ -67,11 +67,11 @@ var C=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register
     <div class="edit-button-cancel" tabindex="0" 
       _="on click toggle .hidden on #add-card-${t.id} toggle .hidden on #btn-add-card-${t.id}"
     >
-      ${p}
+      ${c}
     </div>
   </div>
 </div>
-  `}var b=H;var R=`
+  `}var b=R;var N=`
 <div id="add-list" class="add-list-button"
   hx-get="/lists/add" 
   hx-swap="outerHTML"
@@ -79,38 +79,38 @@ var C=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register
 >
 ${m} Add another list
 <div>
-  `,f=R;async function O(e){console.log(e);let{request:t,route:i,env:o}=e,r=await o.TrelloLists.get("lists");console.log("listdata",r);let l=JSON.parse(r);try{console.log("request",t.body);let{from:n,to:s,movedCard:y}=JSON.parse(t.body);console.log(n,s,y);let[,z]=n.split("-"),[,$]=s.split("-"),k=y.replace("card-",""),x=l.find(c=>c.id==z),L=x.cards.find(c=>c.id==k);L.list=$,x.cards=x.cards.filter(c=>c.id!=k),l.find(c=>c.id==$).cards.push(L)}catch(n){console.error(n)}let d="";for(let n of l){d+=`
+  `,g=N;async function O(e){let{request:t,route:i,env:o}=e,a=JSON.parse(await o.TrelloLists.get("lists"));try{let d=new URLSearchParams(await t.text()),n=Object.fromEntries(d),{from:S,to:E,movedCard:_}=n,[,z]=S.split("-"),[,w]=E.split("-"),y=_.replace("card-",""),f=a.find(l=>l.id==Number(z)),$=f.cards.find(l=>l.id==y);$.list=w,f.cards=f.cards.filter(l=>l.id!=y),a.find(l=>l.id==Number(w)).cards.push($)}catch(d){console.error(d)}let s="";for(let d of a){s+=`
 <div class="list" draggable="true">
   <div class="list-title">
-    ${n.name}
-    <div class="list-cards sortable" id="list-${n.id}">
-    `;for(let s of n.cards)d+=`
+    ${d.name}
+    <div class="list-cards sortable" id="list-${d.id}">
+    `;for(let n of d.cards)s+=`
 <div 
   class="card" 
-  id="card-${s.id}" 
+  id="card-${n.id}" 
   tabindex="0" 
   aria-roledescription="Draggable item. Press space bar to lif" 
   draggable="true"
-  _="on mouseenter toggle .hidden on #card-edit-${s.id} until mouseleave"
+  _="on mouseenter toggle .hidden on #card-edit-${n.id} until mouseleave"
   >
-  <div class="card-icons hidden" id="card-edit-${s.id}">
-    <button class="card-icon" type="button" hx-get="/cards/edit/${n.id}/${s.id}" hx-target"#card-${s.id}" hx-swap="outerHTML">
-      ${u}
+  <div class="card-icons hidden" id="card-edit-${n.id}">
+    <button class="card-icon" type="button" hx-get="/cards/edit/${d.id}/${n.id}" hx-target"#card-${n.id}" hx-swap="outerHTML">
+      ${p}
     </button>
   </div>
-  ${s.label}
+  ${n.label}
 </div>
-      `;d+=`
+      `;s+=`
     </div>
   </div>
-  ${h({list:n})}
-  ${b({list:n})}
+  ${u({list:d})}
+  ${b({list:d})}
 </div>
-    `}return d+=`
+    `}return s+=`
 <div class="add-list">
-  ${f}
+  ${g}
 </div>
-  `,d}var g=O;async function N(e){let{request:t,env:i}=e,o=await i.TrelloLists.get("lists"),r=await i.TrelloLists.list();console.log(r),console.log("lists",o);let l=await g(e);return a(M({template:`
+  `,s}var h=O;async function B(e){let t=await h(e);return r(C({template:`
     <div class="app">
       <div class="header">
         htmx Trello Clone
@@ -124,7 +124,7 @@ ${m} Add another list
           id="board" 
           class="board sortable" 
           _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value then send cardmoved">
-          ${l}
+          ${t}
         </div>
       </form>
     </div>
@@ -142,7 +142,7 @@ ${m} Add another list
         }
       });
     <\/script>
-    `}))}var S=N;function B(e){return a(`
+    `}))}var M=B;function U(e){return r(`
 <div id="add-list" class="add-list-editor">
   <form
     hx-post="/lists"
@@ -175,12 +175,12 @@ ${m} Add another list
         hx-target="#add-list"
         hx-swap="outerHTML"
       >
-        ${p}
+        ${c}
       </button>
     </div>
   </form>
 </div>
-  `)}var P=B;function q(e){let{request:t,route:i}=e,o=i.pathname.groups.list_id,r=t.body["label-"+o],l={id:o,cards:[]},d={label:r,id:I({}),list:o};return l.cards.push(d),a(`
+  `)}var I=U;function j(e){let{request:t,route:i}=e,o=i.pathname.groups.list_id,a=t.body["label-"+o],s={id:o,cards:[]},d={label:a,id:T({}),list:o};return s.cards.push(d),r(`
 <div id="edit-card">
 </div>
 <div 
@@ -199,12 +199,12 @@ ${m} Add another list
       hx-target="#card-${d.id} 
       hx-swap="outerHTML"
     >
-      ${u}
+      ${p}
     </button>
   </div>
   ${d.label}
 </div>
-  `)}var v=q;function D(e){let{list:t,card:i}=e;return`
+  `)}var x=j;function D(e){let{list:t,card:i}=e;return`
 <div id="edit-card" class="edit-card">
   <form 
     hx-put="/cards/${t.id}/${i.id} 
@@ -241,12 +241,12 @@ ${m} Add another list
         hx-get="/cards/cancel-edit/${t.id}/${i.id}" 
         hx-target='#edit-card' 
         hx-swap="outerHTML">
-        ${p}
+        ${c}
       </div>
     </div>
   </form>
 </div>
-  `}var _=D;function U(e){let{list:t,card:i}=e;return`
+  `}var P=D;function q(e){let{list:t,card:i}=e;return`
 <div 
   class="card" 
   id="card-${i.id}" 
@@ -257,9 +257,9 @@ ${m} Add another list
 >   
  <div class="card-icons hidden" id="card-edit-${i.id}">
   <button class="card-icon" type="button" hx-get="/cards/edit/${t.id}/${i.id}" hx-target="#card-${i.id} hx-swap="outerHTML">
-    ${u}  
+    ${p}  
   </button>
   <div id="${i.label}"></div>
   </div>
 </div>
-  `}var w=U;var At={async fetch(e,t,i){return new C([["/",S],["/lists",async r=>a(await g(r)),"POST"],["/cards/move",async r=>a(await g(r)),"POST"],["/cards/new/:list_id",v,"POST"],["/cards/cancel/:id",r=>a(h(r))],["/lists/add",P],["/lists/cancel",()=>a(f)],["/cards/add/:id",b],["/cards/edit/:list_id/:id",_],["/cards/:list_id/:id",w,"PUT"],["/cancel/:id",h],["/cancel-edit/:list_id/:id",w],["/cards/:list_id/:id",()=>a(""),"DELETE"],["/cards/new/:list_id",v,"POST"]]).handle({request:e,env:t,ctx:i})}};export{At as default};
+  `}var v=q;var At={async fetch(e,t,i){return new k([["/",M],["/lists",async a=>r(await h(a)),"POST"],["/cards/move",async a=>r(await h(a)),"POST"],["/cards/new/:list_id",x,"POST"],["/cards/cancel/:id",a=>r(u(a))],["/lists/add",I],["/lists/cancel",()=>r(g)],["/cards/add/:id",b],["/cards/edit/:list_id/:id",P],["/cards/:list_id/:id",v,"PUT"],["/cancel/:id",u],["/cancel-edit/:list_id/:id",v],["/cards/:list_id/:id",()=>r(""),"DELETE"],["/cards/new/:list_id",x,"POST"]]).handle({request:e,env:t,ctx:i})}};export{At as default};

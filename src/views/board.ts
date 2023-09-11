@@ -12,7 +12,7 @@ async function Board(params: any): Promise<string> {
     const params = new URLSearchParams(await request.text());
     const body = Object.fromEntries(params);
     // if any of the below are not in the request, this should fail; for the move function specifically; should split into separate function.
-    const { from, to, movedCard } = body; 
+    const { from, to, movedCard } = body;
     const [, fromId] = from.split("-");
     const [, toId] = to.split("-");
     const cardId = movedCard.replace("card-", "");

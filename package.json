@@ -5,7 +5,7 @@
   "main": "build/worker.js",
   "types": "build/worker.d.ts",
   "scripts": {
-    "format": "npx prettier . --write",
+    "format": "npx prettier . --prose-wrap=always --write",
     "test": "npx jest --pass-with-no-tests",
     "start": "npm run build && wrangler dev",
     "build": "npm run format && npm run test && rm -rf ./build && npx tsc && npx esbuild --bundle assets/styles.css --outfile=assets/styles.min.css --minify && npx tsx tools/compile.ts && npx esbuild ./src/worker.ts --bundle --outdir=build --format=esm --minify",
