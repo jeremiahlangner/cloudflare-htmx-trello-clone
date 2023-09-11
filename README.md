@@ -1,7 +1,7 @@
 # HTMX Trello Clone
 
-A serverless implementation of the HTMX trello clone developed by rajasegar
-(github.com/rajasegar/htmx-trello).
+Not technically a fork, but a serverless implementation of the HTMX trello clone (without pug) developed by rajasegar
+[https://github.com/rajasegar/htmx-trello](https://github.com/rajasegar/htmx-trello)
 
 ## Demo
 
