@@ -29,18 +29,9 @@ HTMX over serverless requires several implementations that are neither
 performant nor advantageous (for the individual/company developing and
 administering the application; the user will notice little difference). Because
 HTMX utilizes route/method based server access to update the client state it
-incurs a large request penalty on the serverless backend. The number of
-requests, reads, and writes scales, if not merely linearly, potentially
-exponentially, compared to running an application like this as a single-page
-application that maintains and manages its own state on the client side. The
-best serverless implementations use the backend as a hub for (relative to the
-application) centralized services such as authentication and remote state
-storage, as long as real-time collaboration is not required. Collaborative
-applications can still function well as SPAs using peer-to-peer connections as
-long as their state is reconciled properly. Utilizing a server to maintain and
-manage state seems more advantageous otherwise.
+incurs a large request penalty on the serverless backend. 
 
-I would be intrigued
+For highly interactive HTMX applications, use a server.
 
 ## Usage
 
