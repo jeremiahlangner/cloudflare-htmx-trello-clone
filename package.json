@@ -13,7 +13,7 @@
   },
   "keywords": [],
   "author": "Jeremiah Langner",
-  "license": "MIT",
+  "license": "ISC",
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230904.0",
     "@types/web": "^0.0.114",

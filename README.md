@@ -31,19 +31,9 @@ administering the application; the user will notice little difference). Because
 HTMX utilizes route/method based server access to update the client state it
 incurs a large request penalty on the serverless backend. 
 
-For highly interactive HTMX applications, use a server.
-
 ## Usage
 
-## Why No Tests (right now)?
-
-This is a proof of concept project. I am actively architecting and developing it
-in real time. Tests are very beneficial once an API has been cemented (i.e.
-there has been a lot of adoption, or the parameters for use are well
-established) while a project is still being designed, they will inhibit
-productivity. I prefer a "design by doing" approach. I often will not know what
-problems will need to be solved until I encounter them for a specific project.
-TDD can't apply well in this situation.
+## Why No Tests?
 
 https://grugbrain.dev/#grug-on-testing
 
