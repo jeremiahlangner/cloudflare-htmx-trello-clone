@@ -57,7 +57,7 @@ async function putCard(args: HandlerArgs) {
   const card = list.find((c: Card) => c.id === id);
   card.label = label;
 
-  await env.TrelloLists.put('lists', lists);
+  await env.TrelloLists.put("lists", lists);
 
   return { list, card };
 }
@@ -86,7 +86,7 @@ async function deleteCard(args: HandlerArgs) {
   const lists = JSON.parse((await env.TrelloLists.get("lists")) as string);
   const list = lists.find((l: List) => l.id === list_id);
   list.cards = lists.cards.filter((c: Card) => c.id !== id);
-  await env.TrelloLists.put('lists', lists);
+  await env.TrelloLists.put("lists", lists);
 }
 
 async function addList(args: HandlerArgs): Promise<{ lists: List[] }> {
@@ -98,9 +98,9 @@ async function addList(args: HandlerArgs): Promise<{ lists: List[] }> {
   lists.push({
     name,
     id: hash({}),
-    cards: []
+    cards: [],
   });
-  await env.TrelloLists.put('lists', JSON.stringify(lists));
+  await env.TrelloLists.put("lists", JSON.stringify(lists));
   return { lists };
 }
 
@@ -146,8 +146,7 @@ export default {
       ["/", async (args) => Index(await getLists(args as HandlerArgs))],
       [
         "/lists",
-        async (args) =>
-          HTMLResponse(Board(await addList(args as HandlerArgs))),
+        async (args) => HTMLResponse(Board(await addList(args as HandlerArgs))),
         "POST",
       ],
       [
@@ -170,24 +169,32 @@ export default {
       ["/lists/add", AddList],
       ["/lists/cancel", () => HTMLResponse(NewList)],
       [
-        "/cards/add/:id", 
-        async (args) => HTMLResponse(AddCard(await addCard(args as HandlerArgs)))
+        "/cards/add/:id",
+        async (args) =>
+          HTMLResponse(AddCard(await addCard(args as HandlerArgs))),
       ],
-      ["/cards/edit/:list_id/:id",
-        async (args) => HTMLResponse(EditCard(await editCard(args as HandlerArgs)))
+      [
+        "/cards/edit/:list_id/:id",
+        async (args) =>
+          HTMLResponse(EditCard(await editCard(args as HandlerArgs))),
       ],
-      ["/cards/:list_id/:id",
+      [
+        "/cards/:list_id/:id",
         async (args) => HTMLResponse(_Card(await putCard(args as HandlerArgs))),
-        "PUT"
+        "PUT",
       ],
       [
         "/cards/cancel-edit/:list_id/:id",
-        async (args) => HTMLResponse(_Card(await cancelEdit(args as HandlerArgs)))
+        async (args) =>
+          HTMLResponse(_Card(await cancelEdit(args as HandlerArgs))),
       ],
-      ["/cards/:list_id/:id", async (args) => {
-        await deleteCard(args as HandlerArgs);
-        return HTMLResponse("");
-      }, "DELETE"
+      [
+        "/cards/:list_id/:id",
+        async (args) => {
+          await deleteCard(args as HandlerArgs);
+          return HTMLResponse("");
+        },
+        "DELETE",
       ],
     ]);
     return router.handle({ request, env, ctx });

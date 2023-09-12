@@ -1,7 +1,7 @@
 import { Card, List } from "../types";
 import { IconClose } from "./mixins";
 
-function EditCard(args: { list: List, card: Card }): string {
+function EditCard(args: { list: List; card: Card }): string {
   const { list, card } = args;
 
   return `
