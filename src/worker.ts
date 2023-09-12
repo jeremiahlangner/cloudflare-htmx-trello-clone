@@ -46,6 +46,22 @@ async function getLists(args: HandlerArgs): Promise<{ lists: List[] }> {
   return { lists };
 }
 
+async function putCard(args: HandlerArgs) {
+  const { request, env, route } = args;
+  const { list_id, id } = (route.pathname as any).groups;
+  const params = new URLSearchParams(await request.text());
+  const body = Object.fromEntries(params);
+  const { label } = body;
+  const lists = JSON.parse((await env.TrelloLists.get("lists")) as string);
+  const list = lists.find((l: List) => l.id === list_id);
+  const card = list.find((c: Card) => c.id === id);
+  card.label = label;
+  
+  await env.TrelloLists.put('lists', lists);
+
+  return { list, card };
+}
+
 async function addList(args: HandlerArgs): Promise<{ lists: List[] }> {
   const { request, env } = args;
   const params = new URLSearchParams(await request.text());
@@ -131,7 +147,10 @@ export default {
       ["/cards/edit/:list_id/:id", 
         async (args) => HTMLResponse(EditCard(await editCard(args as HandlerArgs)))
       ],
-      ["/cards/:list_id/:id", _Card, "PUT"],
+      ["/cards/:list_id/:id", 
+        async (args) => HTMLResponse(_Card(await putCard(args as HandlerArgs))), 
+        "PUT"
+      ],
       ["/cancel-edit/:list_id/:id", _Card],
       ["/cards/:list_id/:id", () => HTMLResponse(""), "DELETE"],
     ]);
