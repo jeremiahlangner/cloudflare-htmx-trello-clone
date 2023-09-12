@@ -1,9 +1,10 @@
 import { PageBoilerplate } from "./mixins";
 import { HTMLResponse } from "../util";
+import { List } from '../types';
 import Board from "./board";
 
-async function index(params: any): Promise<Response> {
-  const board = await Board(params);
+function index(args: { lists: List[] } ): Promise<Response> {
+  console.log(JSON.stringify(args));
   return HTMLResponse(
     PageBoilerplate({
       template: `
@@ -20,7 +21,7 @@ async function index(params: any): Promise<Response> {
           id="board" 
           class="board sortable" 
           _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value then send cardmoved">
-          ${board}
+          ${Board(args)}
         </div>
       </form>
     </div>
