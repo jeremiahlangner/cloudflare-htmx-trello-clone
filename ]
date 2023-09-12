@@ -126,7 +126,7 @@ export default {
           HTMLResponse(ToggleAddCard(await cancelCard(args as HandlerArgs))),
       ],
       ["/lists/add", AddList],
-      ["/lists/cancel", () => HTMLResponse(NewList)],
+      ["/lists/cancel", NewList],
       ["/cards/add/:id", () => HTMLResponse(AddCard({} as any))],
       ["/cards/edit/:list_id/:id", 
         async (args) => HTMLResponse(EditCard(await editCard(args as HandlerArgs)))

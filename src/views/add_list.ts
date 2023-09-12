@@ -1,7 +1,7 @@
 import { IconClose } from "./mixins";
 import { HTMLResponse } from "../util";
 
-function AddList(params: any) {
+function AddList() {
   return HTMLResponse(
     `
 <div id="add-list" class="add-list-editor">
@@ -30,7 +30,7 @@ function AddList(params: any) {
       </button>
       <button 
         class="edit-button-cancel"
-        type="button",
+        type="button"
         tabindex="0"
         hx-get="/lists/cancel"
         hx-target="#add-list"

@@ -1,3 +1,4 @@
+import { HTMLResponse } from "../util";
 import { IconPlus } from "./mixins";
 
 const NewList = `
@@ -8,6 +9,6 @@ const NewList = `
 >
 ${IconPlus} Add another list
 <div>
-  `;
+`;
 
 export default NewList;
