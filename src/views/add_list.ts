@@ -41,7 +41,7 @@ function AddList(params: any) {
     </div>
   </form>
 </div>
-  `
+  `,
   );
 }
 

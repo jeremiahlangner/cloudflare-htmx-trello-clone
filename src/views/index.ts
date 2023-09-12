@@ -41,7 +41,7 @@ function index(args: { lists: List[] }): Promise<Response> {
       });
     </script>
     `,
-    })
+    }),
   );
 }
 

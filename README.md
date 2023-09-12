@@ -29,7 +29,7 @@ HTMX over serverless requires several implementations that are neither
 performant nor advantageous (for the individual/company developing and
 administering the application; the user will notice little difference). Because
 HTMX utilizes route/method based server access to update the client state it
-incurs a large request penalty on the serverless backend. 
+incurs a large request penalty on the serverless backend.
 
 ## Usage
 
