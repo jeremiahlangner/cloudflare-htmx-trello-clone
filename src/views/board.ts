@@ -26,7 +26,12 @@ function Board(args: { lists: List[] }): string {
   _="on mouseenter toggle .hidden on #card-edit-${card.id} until mouseleave"
   >
   <div class="card-icons hidden" id="card-edit-${card.id}">
-    <button class="card-icon" type="button" hx-get="/cards/edit/${list.id}/${card.id}" hx-target"#card-${card.id}" hx-swap="outerHTML">
+    <button class="card-icon" 
+      type="button" 
+      hx-get="/cards/edit/${list.id}/${card.id}" 
+      hx-target"#card-${card.id}" 
+      hx-swap="outerHTML"
+    >
       ${IconEdit}
     </button>
   </div>

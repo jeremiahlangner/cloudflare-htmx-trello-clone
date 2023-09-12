@@ -66,6 +66,23 @@ async function newCard(args: HandlerArgs) {
   return { list, card };
 }
 
+async function cancelCard(args: HandlerArgs) {
+  const { env, route } = args;
+  const id = (route.pathname as any).groups.id;
+  const lists = JSON.parse((await env.TrelloLists.get("lists")) as string);
+  const list = lists.find((l: List) => l.id === id);
+  return { list };
+}
+
+async function editCard(args: HandlerArgs) {
+  const { env, route } = args;
+  const { list_id, id } = (route.pathname as any).groups;
+  const lists = JSON.parse((await env.TrelloLists.get("lists")) as string);
+  const list = lists.find((l: List) => l.id === list_id);
+  const card = list.cards.find((c: Card) => c.id === id);
+  return { list, card };
+}
+
 export default {
   async fetch(request: Request, env: Environment, ctx: any) {
     const router = new Router([
@@ -88,13 +105,18 @@ export default {
           HTMLResponse(NewCard(await newCard(args as HandlerArgs))),
         "POST",
       ],
-      ["/cards/cancel/:id", (args) => HTMLResponse(ToggleAddCard(args))],
+      [
+        "/cards/cancel/:id",
+        async (args) =>
+          HTMLResponse(ToggleAddCard(await cancelCard(args as HandlerArgs))),
+      ],
       ["/lists/add", AddList],
       ["/lists/cancel", () => HTMLResponse(NewList)],
       ["/cards/add/:id", () => HTMLResponse(AddCard({} as any))],
-      ["/cards/edit/:list_id/:id", EditCard],
+      ["/cards/edit/:list_id/:id", 
+        async (args) => HTMLResponse(EditCard(await editCard(args as HandlerArgs)))
+      ],
       ["/cards/:list_id/:id", _Card, "PUT"],
-      ["/cancel/:id", ToggleAddCard],
       ["/cancel-edit/:list_id/:id", _Card],
       ["/cards/:list_id/:id", () => HTMLResponse(""), "DELETE"],
     ]);

@@ -19,15 +19,15 @@ var k=class{routes;constructor(i=[]){this.routes=[];for(let t of i)this.register
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 </svg>
-`,l=`
+`,c=`
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
   <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 </svg>
-`,c=`
+`,p=`
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
   <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
 </svg>
-`;function A(i){let t="";do t=Math.random().toString(16).substring(2,15);while(i[t]);return t}async function o(i){return new Response(i,{headers:{"content-type":"text/html;charset=UTF-8"}})}function z(i){let{list:t}=i;return`
+`;function A(i){let t="";do t=Math.random().toString(16).substring(2,15);while(i[t]);return t}async function o(i){return new Response(i,{headers:{"content-type":"text/html;charset=UTF-8"}})}function O(i){let{list:t}=i;return`
 <button 
   class="toggle-add-card"
   id="btn-add-card-${t.id}"
@@ -37,7 +37,7 @@ var k=class{routes;constructor(i=[]){this.routes=[];for(let t of i)this.register
   ${f}
   <span> Add another card</span>
 </button>
-`}var g=z;function O(i){let{list:t}=i;return`
+`}var b=O;function z(i){let{list:t}=i;return`
 <div class="edit-card hidden" id="add-card-${t.id}">
   <div class="card">
     <textarea 
@@ -67,11 +67,11 @@ var k=class{routes;constructor(i=[]){this.routes=[];for(let t of i)this.register
     <div class="edit-button-cancel" tabindex="0" 
       _="on click toggle .hidden on #add-card-${t.id} toggle .hidden on #btn-add-card-${t.id}"
     >
-      ${l}
+      ${c}
     </div>
   </div>
 </div>
-  `}var b=O;var _=`
+  `}var x=z;var _=`
 <div id="add-list" class="add-list-button"
   hx-get="/lists/add" 
   hx-swap="outerHTML"
@@ -79,7 +79,7 @@ var k=class{routes;constructor(i=[]){this.routes=[];for(let t of i)this.register
 >
 ${f} Add another list
 <div>
-  `,x=_;function R(i){let{lists:t}=i,e="";for(let d of t){e+=`
+  `,v=_;function N(i){let{lists:t}=i,e="";for(let d of t){e+=`
 <div class="list" draggable="true">
   <div class="list-title">
     ${d.name}
@@ -95,7 +95,7 @@ ${f} Add another list
   >
   <div class="card-icons hidden" id="card-edit-${r.id}">
     <button class="card-icon" type="button" hx-get="/cards/edit/${d.id}/${r.id}" hx-target"#card-${r.id}" hx-swap="outerHTML">
-      ${c}
+      ${p}
     </button>
   </div>
   ${r.label}
@@ -103,14 +103,14 @@ ${f} Add another list
       `;e+=`
     </div>
   </div>
-  ${g({list:d})}
   ${b({list:d})}
+  ${x({list:d})}
 </div>
     `}return e+=`
 <div class="add-list">
-  ${x}
+  ${v}
 </div>
-  `,e}var h=R;function N(i){return console.log(JSON.stringify(i)),o(T({template:`
+  `,e}var h=N;function R(i){return console.log(JSON.stringify(i)),o(T({template:`
     <div class="app">
       <div class="header">
         htmx Trello Clone
@@ -143,7 +143,7 @@ ${f} Add another list
         }
       });
     <\/script>
-    `}))}var S=N;function j(i){return o(`
+    `}))}var H=R;function j(i){return o(`
 <div id="add-list" class="add-list-editor">
   <form
     hx-post="/lists"
@@ -176,12 +176,12 @@ ${f} Add another list
         hx-target="#add-list"
         hx-swap="outerHTML"
       >
-        ${l}
+        ${c}
       </button>
     </div>
   </form>
 </div>
-  `)}var H=j;function U(i){let{list:t,card:e}=i;return`
+  `)}var S=j;function U(i){let{list:t,card:e}=i;return`
 <div id="edit-card">
 </div>
 <div 
@@ -200,7 +200,7 @@ ${f} Add another list
       hx-target="#card-${e.id} 
       hx-swap="outerHTML"
     >
-      ${c}
+      ${p}
     </button>
   </div>
   ${e.label}
@@ -242,12 +242,12 @@ ${f} Add another list
         hx-get="/cards/cancel-edit/${t.id}/${e.id}" 
         hx-target='#edit-card' 
         hx-swap="outerHTML">
-        ${l}
+        ${c}
       </div>
     </div>
   </form>
 </div>
-  `}var P=B;function D(i){let{list:t,card:e}=i;return`
+  `}var P=B;function J(i){let{list:t,card:e}=i;return`
 <div 
   class="card" 
   id="card-${e.id}" 
@@ -258,9 +258,9 @@ ${f} Add another list
 >   
  <div class="card-icons hidden" id="card-edit-${e.id}">
   <button class="card-icon" type="button" hx-get="/cards/edit/${t.id}/${e.id}" hx-target="#card-${e.id} hx-swap="outerHTML">
-    ${c}  
+    ${p}  
   </button>
   <div id="${e.label}"></div>
   </div>
 </div>
-  `}var y=D;async function J(i){let{request:t,env:e}=i,d=new URLSearchParams(await t.text()),r=Object.fromEntries(d),{from:p,to:v,movedCard:L}=r,[,w]=p.split("-"),[,u]=v.split("-"),s=L.replace("card-",""),n=JSON.parse(await e.TrelloLists.get("lists"));try{let m=n.find(a=>a.id===w),$=m.cards.find(a=>a.id==s);$.list=u,m.cards=m.cards.filter(a=>a.id!=s),n.find(a=>a.id==u).cards.push($)}catch(m){console.error(m)}return await e.TrelloLists.put("lists",JSON.stringify(n)),{lists:n}}async function I(i){let{env:t}=i;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function q(i){let{request:t,route:e,env:d}=i,r=JSON.parse(await d.TrelloLists.get("lists")),{list_id:p}=e.pathname.groups,v=new URLSearchParams(await t.text()),w=Object.fromEntries(v)["label-"+p],u=r.find(n=>n.id==p),s={label:w,id:A({}),list:p};return console.log("new card",s),u.cards.push(s),await d.TrelloLists.put("lists",JSON.stringify(r)),{list:u,card:s}}var Ot={async fetch(i,t,e){return new k([["/",async r=>S(await I(r))],["/lists",async r=>o(h(await I(r))),"POST"],["/cards/move",async r=>o(h(await J(r))),"POST"],["/cards/new/:list_id",async r=>o(M(await q(r))),"POST"],["/cards/cancel/:id",r=>o(g(r))],["/lists/add",H],["/lists/cancel",()=>o(x)],["/cards/add/:id",()=>o(b({}))],["/cards/edit/:list_id/:id",P],["/cards/:list_id/:id",y,"PUT"],["/cancel/:id",g],["/cancel-edit/:list_id/:id",y],["/cards/:list_id/:id",()=>o(""),"DELETE"]]).handle({request:i,env:t,ctx:e})}};export{Ot as default};
+  `}var y=J;async function D(i){let{request:t,env:e}=i,d=new URLSearchParams(await t.text()),r=Object.fromEntries(d),{from:s,to:u,movedCard:L}=r,[,w]=s.split("-"),[,g]=u.split("-"),n=L.replace("card-",""),l=JSON.parse(await e.TrelloLists.get("lists"));try{let m=l.find(a=>a.id===w),$=m.cards.find(a=>a.id==n);$.list=g,m.cards=m.cards.filter(a=>a.id!=n),l.find(a=>a.id==g).cards.push($)}catch(m){console.error(m)}return await e.TrelloLists.put("lists",JSON.stringify(l)),{lists:l}}async function I(i){let{env:t}=i;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function q(i){let{request:t,route:e,env:d}=i,r=JSON.parse(await d.TrelloLists.get("lists")),{list_id:s}=e.pathname.groups,u=new URLSearchParams(await t.text()),w=Object.fromEntries(u)["label-"+s],g=r.find(l=>l.id==s),n={label:w,id:A({}),list:s};return console.log("new card",n),g.cards.push(n),await d.TrelloLists.put("lists",JSON.stringify(r)),{list:g,card:n}}async function F(i){let{env:t,route:e}=i,d=e.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(u=>u.id===d)}}var _t={async fetch(i,t,e){return new k([["/",async r=>H(await I(r))],["/lists",async r=>o(h(await I(r))),"POST"],["/cards/move",async r=>o(h(await D(r))),"POST"],["/cards/new/:list_id",async r=>o(M(await q(r))),"POST"],["/cards/cancel/:id",async r=>o(b(await F(r)))],["/lists/add",S],["/lists/cancel",()=>o(v)],["/cards/add/:id",()=>o(x({}))],["/cards/edit/:list_id/:id",P],["/cards/:list_id/:id",y,"PUT"],["/cancel-edit/:list_id/:id",y],["/cards/:list_id/:id",()=>o(""),"DELETE"]]).handle({request:i,env:t,ctx:e})}};export{_t as default};

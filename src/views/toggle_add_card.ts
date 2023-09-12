@@ -1,7 +1,8 @@
+import { List } from "../types";
 import { IconPlus } from "./mixins";
 
-function ToggleAddCard(params: any): string {
-  const { list } = params;
+function ToggleAddCard(args: { list: List }): string {
+  const { list } = args;
 
   return `
 <button 

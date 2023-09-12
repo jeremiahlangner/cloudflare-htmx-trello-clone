@@ -1,12 +1,13 @@
+import { Card, List } from "../types";
 import { IconClose } from "./mixins";
 
-function EditCard(params: any): string {
-  const { list, card } = params; // TODO: determine parameter values
+function EditCard(args: { list: List, card: Card }): string {
+  const { list, card } = args;
 
   return `
 <div id="edit-card" class="edit-card">
   <form 
-    hx-put="/cards/${list.id}/${card.id} 
+    hx-put="/cards/${list.id}/${card.id}"
     hx-target="#edit-card"
     hx-swap="outerHTML"
   >
@@ -18,12 +19,12 @@ function EditCard(params: any): string {
         maxlength="300" 
         autofocus="true"
       > ${card.label} </textarea>
-      <input type="hidden" name="listId" value=id>
+      <input type="hidden" name="listId" value="id">
     </div>
     <div class="edit-buttons">
       <button 
         class="edit-button"
-        type="submit", 
+        type="submit" 
         tabindex="0" 
         style="background-color: rgb(90, 172, 68);"
         _="on htmx:afterOnLoad remove #edit-card"
@@ -38,8 +39,9 @@ function EditCard(params: any): string {
       <div class="edit-button-cancel" 
         tabindex="0" 
         hx-get="/cards/cancel-edit/${list.id}/${card.id}" 
-        hx-target='#edit-card' 
-        hx-swap="outerHTML">
+        hx-target="#edit-card"
+        hx-swap="outerHTML"
+      >
         ${IconClose}
       </div>
     </div>

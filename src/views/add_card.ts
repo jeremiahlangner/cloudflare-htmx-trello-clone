@@ -27,7 +27,7 @@ function AddCard(args: { list: List }): string {
       hx-target="#list-${list.id}"
       hx-swap="beforeend"
       hx-params="label-${list.id}"
-      _="on htmx:afterOnLoad toggle .hidden on #add-card-${list.id} toggle .hidden on #btn-add-card-${list.id}"
+      _="on click toggle .hidden on #add-card-${list.id} toggle .hidden on #btn-add-card-${list.id}"
     >
       Add card
     </button>
