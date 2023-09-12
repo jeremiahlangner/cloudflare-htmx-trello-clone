@@ -1,27 +1,9 @@
 import { IconEdit } from "./mixins";
-import { HTMLResponse, hash } from "../util";
-import { Environment, Card } from "../types";
+import { Card, List } from "../types";
 
-function NewCard(params: any) {
-  const { request, route } = params;
-  const list_id = route.pathname.groups.list_id;
-
-  const label = request.body["label-" + list_id];
-  // TODO: retrieve list from cloudflare storage. (KV or D1)?
-  const list = {
-    id: list_id,
-    cards: [],
-  };
-
-  // TODO: hashes = list of ids in list
-  const card: Card = {
-    label,
-    id: hash({}),
-    list: list_id,
-  };
-  (list.cards as Card[]).push(card);
-
-  return HTMLResponse(`
+function NewCard(args: { list: List; card: Card }): string {
+  const { list, card } = args;
+  return `
 <div id="edit-card">
 </div>
 <div 
@@ -36,7 +18,7 @@ function NewCard(params: any) {
     <button 
       class="card-icon"
       type="button"
-      hx-get="/cards/edit/${list_id}/${card.id} 
+      hx-get="/cards/edit/${list.id}/${card.id} 
       hx-target="#card-${card.id} 
       hx-swap="outerHTML"
     >
@@ -45,7 +27,7 @@ function NewCard(params: any) {
   </div>
   ${card.label}
 </div>
-  `);
+  `;
 }
 
 export default NewCard;

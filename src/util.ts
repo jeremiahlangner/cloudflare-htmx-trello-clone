@@ -1,6 +1,8 @@
 function hash(_hashes: { [key: string]: string }): string {
   let h: string = "";
-  while (_hashes[h]) h = Math.random().toString(16).substring(2, 15);
+  do {
+    h = Math.random().toString(16).substring(2, 15);
+  } while (_hashes[h]);
   return h;
 }
 

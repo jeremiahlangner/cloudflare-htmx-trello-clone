@@ -4,9 +4,8 @@ import AddCard from "./add_card";
 import NewList from "./new_list";
 import { Card, List } from "../types";
 
-function Board(args: { lists: List[]}): string {
+function Board(args: { lists: List[] }): string {
   const { lists } = args;
-  console.log('board lists', lists);
   let template = ``;
 
   for (const list of lists) {

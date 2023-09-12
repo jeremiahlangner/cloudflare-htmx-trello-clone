@@ -1,7 +1,8 @@
 import { IconClose } from "./mixins";
+import { List } from "../types";
 
-function AddCard(params: any): string {
-  const { list } = params;
+function AddCard(args: { list: List }): string {
+  const { list } = args;
 
   return `
 <div class="edit-card hidden" id="add-card-${list.id}">

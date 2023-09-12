@@ -10,8 +10,10 @@ import NewList from "./views/new_list";
 import ToggleAddCard from "./views/toggle_add_card";
 import { HTMLResponse } from "./util";
 import { Environment, List, HandlerArgs, Card } from "./types";
+import { hash } from "./util";
 
-async function moveCard(args: HandlerArgs): Promise<any> {
+async function moveCard(args: HandlerArgs): Promise<{ lists: List[] }> {
+  // TODO: Add ordering.
   const { request, env } = args;
   const params = new URLSearchParams(await request.text());
   const body = Object.fromEntries(params);
@@ -19,7 +21,8 @@ async function moveCard(args: HandlerArgs): Promise<any> {
   const [, fromId] = from.split("-");
   const [, toId] = to.split("-");
   const cardId = movedCard.replace("card-", "");
-  const lists = JSON.parse(await env.TrelloLists.get('lists') as string);
+
+  const lists = JSON.parse((await env.TrelloLists.get("lists")) as string);
 
   try {
     const fromList = lists.find((l: List) => l.id === fromId);
@@ -29,18 +32,38 @@ async function moveCard(args: HandlerArgs): Promise<any> {
 
     const toList = lists.find((l: List) => l.id == toId);
     toList!.cards.push(card as Card);
-    env.TrelloLists.put('lists', lists);
   } catch (e) {
     console.error(e);
   }
 
+  await env.TrelloLists.put("lists", JSON.stringify(lists));
   return { lists };
 }
 
-async function getLists(args: HandlerArgs) {
+async function getLists(args: HandlerArgs): Promise<{ lists: List[] }> {
   const { env } = args;
-  const lists = JSON.parse(await env.TrelloLists.get('lists') as string);
+  const lists = JSON.parse((await env.TrelloLists.get("lists")) as string);
   return { lists };
+}
+
+async function newCard(args: HandlerArgs) {
+  const { request, route, env } = args;
+  const lists = JSON.parse((await env.TrelloLists.get("lists")) as string);
+  const { list_id } = (route.pathname as any).groups;
+  const params = new URLSearchParams(await request.text());
+  const body = Object.fromEntries(params);
+  const label = body["label-" + list_id];
+  const list = lists.find((l: List) => l.id == list_id);
+  const card = {
+    label,
+    id: hash({}),
+    list: list_id,
+  };
+  console.log("new card", card);
+  list.cards.push(card);
+
+  await env.TrelloLists.put("lists", JSON.stringify(lists));
+  return { list, card };
 }
 
 export default {
@@ -48,26 +71,32 @@ export default {
     const router = new Router([
       ["/", async (args) => Index(await getLists(args as HandlerArgs))],
       [
-        "/lists", 
-        async (args) => HTMLResponse(Board(await getLists(args as HandlerArgs))), 
-        "POST"
+        "/lists",
+        async (args) =>
+          HTMLResponse(Board(await getLists(args as HandlerArgs))),
+        "POST",
       ],
       [
         "/cards/move",
-        async (args) => HTMLResponse(Board(await moveCard(args as HandlerArgs))),
+        async (args) =>
+          HTMLResponse(Board(await moveCard(args as HandlerArgs))),
         "POST",
       ],
-      ["/cards/new/:list_id", NewCard, "POST"],
-      ["/cards/cancel/:id", (params) => HTMLResponse(ToggleAddCard(params))],
+      [
+        "/cards/new/:list_id",
+        async (args) =>
+          HTMLResponse(NewCard(await newCard(args as HandlerArgs))),
+        "POST",
+      ],
+      ["/cards/cancel/:id", (args) => HTMLResponse(ToggleAddCard(args))],
       ["/lists/add", AddList],
       ["/lists/cancel", () => HTMLResponse(NewList)],
-      ["/cards/add/:id", AddCard],
+      ["/cards/add/:id", () => HTMLResponse(AddCard({} as any))],
       ["/cards/edit/:list_id/:id", EditCard],
       ["/cards/:list_id/:id", _Card, "PUT"],
       ["/cancel/:id", ToggleAddCard],
       ["/cancel-edit/:list_id/:id", _Card],
       ["/cards/:list_id/:id", () => HTMLResponse(""), "DELETE"],
-      ["/cards/new/:list_id", NewCard, "POST"],
     ]);
     return router.handle({ request, env, ctx });
   },

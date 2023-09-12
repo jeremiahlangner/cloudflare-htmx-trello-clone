@@ -1,9 +1,9 @@
 import { PageBoilerplate } from "./mixins";
 import { HTMLResponse } from "../util";
-import { List } from '../types';
+import { List } from "../types";
 import Board from "./board";
 
-function index(args: { lists: List[] } ): Promise<Response> {
+function index(args: { lists: List[] }): Promise<Response> {
   console.log(JSON.stringify(args));
   return HTMLResponse(
     PageBoilerplate({
@@ -27,7 +27,8 @@ function index(args: { lists: List[] } ): Promise<Response> {
     </div>
     <script src="https://unpkg.com/htmx.org"></script>
     <script src="https://unpkg.com/hyperscript.org"></script>
-    <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <!-- <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script> -->
     <script>
       htmx.onLoad(function(content) {
         let sortables = content.querySelectorAll(".sortable");
