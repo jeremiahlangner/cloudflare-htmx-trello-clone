@@ -46,8 +46,8 @@ async function deleteCard(args: HandlerArgs) {
   const { list_id, id } = (route.pathname as any).groups;
   const lists = JSON.parse((await env.TrelloLists.get("lists")) as string);
   const list = lists.find((l: List) => l.id === list_id);
-  list.cards = lists.cards.filter((c: Card) => c.id !== id);
-  await env.TrelloLists.put("lists", lists);
+  list.cards = list.cards.filter((c: Card) => c.id !== id);
+  await env.TrelloLists.put("lists", JSON.stringify(lists));
 }
 
 async function addList(args: HandlerArgs): Promise<{ lists: List[] }> {
@@ -114,13 +114,17 @@ async function moveCard(args: HandlerArgs): Promise<{ lists: List[] }> {
 
   const lists = JSON.parse((await env.TrelloLists.get("lists")) as string);
 
-  const fromList = lists.find((l: List) => l.id === fromId);
-  const card = fromList!.cards.find((c: Card) => c.id == cardId);
-  card!.list = toId;
-  fromList!.cards = fromList!.cards.filter((c: Card) => c.id != cardId);
+  try {
+    const fromList = lists.find((l: List) => l.id === fromId);
+    const card = fromList!.cards.find((c: Card) => c.id == cardId);
+    card!.list = toId;
+    fromList!.cards = fromList!.cards.filter((c: Card) => c.id != cardId);
 
-  const toList = lists.find((l: List) => l.id == toId);
-  toList!.cards.push(card as Card);
+    const toList = lists.find((l: List) => l.id == toId);
+    toList!.cards.push(card as Card);
+  } catch (e) {
+    console.error(e);
+  }
 
   await env.TrelloLists.put("lists", JSON.stringify(lists));
   return { lists };

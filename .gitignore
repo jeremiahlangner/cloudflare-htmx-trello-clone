@@ -1,2 +1,3 @@
 .wrangler
+.scripts
 node_modules

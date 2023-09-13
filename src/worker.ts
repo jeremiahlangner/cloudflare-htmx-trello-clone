@@ -25,6 +25,7 @@ import {
 
 export default {
   async fetch(request: Request, env: Environment, ctx: any) {
+    console.log(request.method, request.url);
     const router = new Router([
       ["/", async (args) => Index(await getLists(args as HandlerArgs))],
       [
@@ -32,6 +33,8 @@ export default {
         async (args) => HTMLResponse(Board(await addList(args as HandlerArgs))),
         "POST",
       ],
+      ["/lists/add", AddList],
+      ["/lists/cancel", () => HTMLResponse(NewList)],
       [
         "/cards/move",
         async (args) =>
@@ -49,8 +52,6 @@ export default {
         async (args) =>
           HTMLResponse(ToggleAddCard(await cancelCard(args as HandlerArgs))),
       ],
-      ["/lists/add", AddList],
-      ["/lists/cancel", () => HTMLResponse(NewList)],
       [
         "/cards/add/:id",
         async (args) =>
@@ -67,17 +68,17 @@ export default {
         "PUT",
       ],
       [
-        "/cards/cancel-edit/:list_id/:id",
-        async (args) =>
-          HTMLResponse(_Card(await cancelEdit(args as HandlerArgs))),
-      ],
-      [
         "/cards/:list_id/:id",
         async (args) => {
           await deleteCard(args as HandlerArgs);
           return HTMLResponse("");
         },
         "DELETE",
+      ],
+      [
+        "/cards/cancel-edit/:list_id/:id",
+        async (args) =>
+          HTMLResponse(_Card(await cancelEdit(args as HandlerArgs))),
       ],
     ]);
     return router.handle({ request, env, ctx });
