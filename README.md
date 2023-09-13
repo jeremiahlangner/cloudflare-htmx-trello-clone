@@ -1,7 +1,7 @@
 # HTMX Trello Clone
 
-Not technically a fork, but a serverless implementation of the HTMX trello clone
-(without pug) developed by rajasegar
+A serverless implementation of the HTMX trello clone developed by rajasegar.
+
 [https://github.com/rajasegar/htmx-trello](https://github.com/rajasegar/htmx-trello)
 
 ## Demo
@@ -31,8 +31,8 @@ administering the application; the user will notice little difference). Because
 HTMX utilizes route/method based server access to update the client state it
 incurs a large request penalty on the serverless backend.
 
-To implement HTMX with a serverless backend, use a service worker to intercept
-the requests and store data asynchronously either on leaving the application, or
+To implement HTMX with a serverless backend, I'd use a service worker to proxy 
+the requests (for local execution/data-storage in the browser) and store data asynchronously either on leaving the application, or
 when the user requests to "save" it.
 
 ## Usage
