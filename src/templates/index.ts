@@ -4,7 +4,6 @@ import { List } from "../types";
 import Board from "./board";
 
 function index(args: { lists: List[] }): Promise<Response> {
-  console.log(JSON.stringify(args));
   return HTMLResponse(
     PageBoilerplate({
       template: html`
@@ -39,7 +38,7 @@ function index(args: { lists: List[] }): Promise<Response> {
           });
         </script>
       `,
-    })
+    }),
   );
 }
 

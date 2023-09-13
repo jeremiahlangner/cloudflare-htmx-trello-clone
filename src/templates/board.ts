@@ -5,21 +5,10 @@ import NewList from "./new_list";
 import { html } from "../util";
 import { List } from "../types";
 
-function Board(args: { lists: List[] }): string {
-  const { lists } = args;
-  let template = ``;
-
-  for (const list of lists) {
+function cards(list: List): string {
+  let template = html``;
+  for (const card of list.cards) {
     template += html`
-      <div class="list" draggable="true">
-        <div class="list-title">
-          ${list.name}
-          <div class="list-cards sortable" id="list-${list.id}"></div>
-        </div>
-      </div>
-    `;
-    for (const card of list.cards) {
-      template += html`
 <div 
   class="card" 
   id="card-${card.id}" 
@@ -40,14 +29,27 @@ function Board(args: { lists: List[] }): string {
   </div>
   ${card.label}
 </div>
-      `;
-    }
+  `;
+  }
+
+  return template;
+}
+
+function Board(args: { lists: List[] }): string {
+  const { lists } = args;
+
+  let template = html``;
+  for (const list of lists) {
     template += html`
-    </div>
-  </div>
-  ${ToggleAddCard({ list })}
-  ${AddCard({ list })}
-</div>
+      <div class="list" draggable="true">
+        <div class="list-title">
+          ${list.name}
+          <div class="list-cards sortable" id="list-${list.id}">
+            ${cards(list)}
+          </div>
+        </div>
+        ${ToggleAddCard({ list })} ${AddCard({ list })}
+      </div>
     `;
   }
 

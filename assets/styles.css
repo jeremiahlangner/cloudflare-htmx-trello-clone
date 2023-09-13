@@ -53,7 +53,9 @@ code {
   align-items: center;
   min-height: 32px;
   padding: 5px 8px;
-  transition: background-color 85ms ease-in, opacity 40ms ease-in,
+  transition:
+    background-color 85ms ease-in,
+    opacity 40ms ease-in,
     border-color 85ms ease-in;
   height: -webkit-fit-content;
   height: -moz-fit-content;
