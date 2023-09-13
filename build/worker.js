@@ -1,4 +1,4 @@
-var H=Object.freeze,Q=Object.defineProperty;var N=(e,t)=>H(Q(e,"raw",{value:H(t||e.slice())}));var O=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,i="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:i,handler:t})}handle(e){let{request:t}=e;for(let i of this.routes){if(i.method!==t.method)continue;let s=i.path.exec({pathname:new URL(t.url).pathname});if(s)return i.handler({...e,route:s})}return new Response("Not found",{status:404})}};var E={styles:`body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}code{font-family:source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace}.app{background:#3465a4;height:100vh}.header{background:rgba(0,0,0,.15);color:#fff;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.12);text-align:center;font-size:40px;font-weight:200}.board{height:92%;display:-webkit-flex;display:flex;overflow-x:auto}.add-list{width:272px;margin:10px;-webkit-flex-shrink:0;flex-shrink:0}.add-list-button{background-color:#0000001f;border-radius:4px;cursor:pointer;color:#fff;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;min-height:32px;padding:5px 8px;transition:background-color 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content}.add-list-button:hover{background-color:#0000003d}.list{background:#dfe3e6;-webkit-flex-shrink:0;flex-shrink:0;width:272px;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content;margin:10px 0 10px 10px;border-radius:4px;border:1px solid rgba(0,0,0,.12)}.list-title{cursor:pointer;padding:10px;overflow-wrap:break-word}.toggle-add-card{cursor:pointer;padding:10px;color:#333;border-radius:0 0 4px 4px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;border:none;width:100%}.toggle-add-card:hover{background-color:#092d4221;color:#17394d;text-decoration:underline}.card{position:relative;cursor:grab;background:#fff;margin:5px;padding:10px;border-radius:5px;border:1px solid rgba(0,0,0,.12);box-shadow:0 1px #092d4240;font-size:15px;overflow-wrap:break-word;min-height:18px}.card:hover{background:#f5f6f7}.card-icons{position:absolute;top:5px;right:5px;-webkit-flex-direction:row;flex-direction:row;-webkit-justify-content:flex-end;justify-content:flex-end}.card-icon,.card-icons{display:-webkit-flex;display:flex}.card-icon{cursor:pointer;width:24px;height:24px;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;border-radius:5px;margin:1px;color:#00000080;background:#f5f6f7;opacity:.9;border:none}.card-icon:hover{opacity:1;background:#dcdcdc}.edit-card .card{min-height:50px;padding-left:8px;padding-right:15px}.edit-card .card:hover{background:#fff}.edit-card-textarea{width:100%;border:none;resize:none;outline:none;font-size:15px}.edit-buttons{display:-webkit-flex;display:flex}.edit-button{cursor:pointer;box-shadow:0 1px #3f6f21;width:-webkit-fit-content;width:-moz-fit-content;width:fit-content;margin:0 5px 10px;padding:6px 12px;border-radius:5px;border:none;color:#fff;outline:none}.edit-button:hover{opacity:.7}.edit-button-cancel{cursor:pointer;margin-bottom:10px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;font-size:20px;opacity:.5;outline:none;padding:0;border:none}.edit-button-cancel:hover{opacity:1}.list-title-edit{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center}.list-title-textarea{margin:6px 0 5px 6px;border-radius:3px;border:none;resize:none;outline:none;font-size:15px;padding:5px}.list-title-textarea:focus{box-shadow:inset 0 0 0 2px #0079bf}.add-list-editor{background:#dfe3e6;border-radius:5px;padding:2px}.hidden{display:none}
+var H=Object.freeze,Q=Object.defineProperty;var O=(e,t)=>H(Q(e,"raw",{value:H(t||e.slice())}));var N=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,i="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:i,handler:t})}handle(e){let{request:t}=e;for(let i of this.routes){if(i.method!==t.method)continue;let s=i.path.exec({pathname:new URL(t.url).pathname});if(s)return i.handler({...e,route:s})}return new Response("Not found",{status:404})}};var E={styles:`body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}code{font-family:source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace}.app{background:#3465a4;height:100vh}.header{background:rgba(0,0,0,.15);color:#fff;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.12);text-align:center;font-size:40px;font-weight:200}.board{height:92%;display:-webkit-flex;display:flex;overflow-x:auto}.add-list{width:272px;margin:10px;-webkit-flex-shrink:0;flex-shrink:0}.add-list-button{background-color:#0000001f;border-radius:4px;cursor:pointer;color:#fff;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;min-height:32px;padding:5px 8px;transition:background-color 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content}.add-list-button:hover{background-color:#0000003d}.list{background:#dfe3e6;-webkit-flex-shrink:0;flex-shrink:0;width:272px;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content;margin:10px 0 10px 10px;border-radius:4px;border:1px solid rgba(0,0,0,.12)}.list-title{cursor:pointer;padding:10px;overflow-wrap:break-word}.toggle-add-card{cursor:pointer;padding:10px;color:#333;border-radius:0 0 4px 4px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;border:none;width:100%}.toggle-add-card:hover{background-color:#092d4221;color:#17394d;text-decoration:underline}.card{position:relative;cursor:grab;background:#fff;margin:5px;padding:10px;border-radius:5px;border:1px solid rgba(0,0,0,.12);box-shadow:0 1px #092d4240;font-size:15px;overflow-wrap:break-word;min-height:18px}.card:hover{background:#f5f6f7}.card-icons{position:absolute;top:5px;right:5px;-webkit-flex-direction:row;flex-direction:row;-webkit-justify-content:flex-end;justify-content:flex-end}.card-icon,.card-icons{display:-webkit-flex;display:flex}.card-icon{cursor:pointer;width:24px;height:24px;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;border-radius:5px;margin:1px;color:#00000080;background:#f5f6f7;opacity:.9;border:none}.card-icon:hover{opacity:1;background:#dcdcdc}.edit-card .card{min-height:50px;padding-left:8px;padding-right:15px}.edit-card .card:hover{background:#fff}.edit-card-textarea{width:100%;border:none;resize:none;outline:none;font-size:15px}.edit-buttons{display:-webkit-flex;display:flex}.edit-button{cursor:pointer;box-shadow:0 1px #3f6f21;width:-webkit-fit-content;width:-moz-fit-content;width:fit-content;margin:0 5px 10px;padding:6px 12px;border-radius:5px;border:none;color:#fff;outline:none}.edit-button:hover{opacity:.7}.edit-button-cancel{cursor:pointer;margin-bottom:10px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;font-size:20px;opacity:.5;outline:none;padding:0;border:none}.edit-button-cancel:hover{opacity:1}.list-title-edit{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center}.list-title-textarea{margin:6px 0 5px 6px;border-radius:3px;border:none;resize:none;outline:none;font-size:15px;padding:5px}.list-title-textarea:focus{box-shadow:inset 0 0 0 2px #0079bf}.add-list-editor{background:#dfe3e6;border-radius:5px;padding:2px}.hidden{display:none}
 `};function a(e,...t){return String.raw({raw:e},...t)}function A(e){let t="";do t=Math.random().toString(16).substring(2,15);while(e[t]);return t}async function o(e){return new Response(e,{headers:{"content-type":"text/html;charset=UTF-8"}})}function I(e){return a`
     <!doctype html>
     <html lang="en">
@@ -15,7 +15,7 @@ var H=Object.freeze,Q=Object.defineProperty;var N=(e,t)=>H(Q(e,"raw",{value:H(t|
         ${e.template}
       </body>
     </html>
-  `}var C=a`
+  `}var y=a`
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -28,7 +28,7 @@ var H=Object.freeze,Q=Object.defineProperty;var N=(e,t)=>H(Q(e,"raw",{value:H(t|
       d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
     />
   </svg>
-`,v=a`
+`,h=a`
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -41,7 +41,7 @@ var H=Object.freeze,Q=Object.defineProperty;var N=(e,t)=>H(Q(e,"raw",{value:H(t|
       d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
     />
   </svg>
-`,$=a`
+`,L=a`
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -61,10 +61,10 @@ var H=Object.freeze,Q=Object.defineProperty;var N=(e,t)=>H(Q(e,"raw",{value:H(t|
       type="button"
       _="on click toggle .hidden on me toggle .hidden on #add-card-${t.id}"
     >
-      ${C}
+      ${y}
       <span> Add another card</span>
     </button>
-  `}var k=Y;function Z(e){let{list:t}=e;return a`
+  `}var C=Y;function Z(e){let{list:t}=e;return a`
     <div class="edit-card hidden" id="add-card-${t.id}">
       <div class="card">
         <textarea
@@ -96,11 +96,11 @@ var H=Object.freeze,Q=Object.defineProperty;var N=(e,t)=>H(Q(e,"raw",{value:H(t|
           tabindex="0"
           _="on click toggle .hidden on #add-card-${t.id} toggle .hidden on #btn-add-card-${t.id}"
         >
-          ${v}
+          ${h}
         </div>
       </div>
     </div>
-  `}var T=Z;var tt=a`
+  `}var $=Z;var tt=a`
   <div
     id="add-list"
     class="add-list-button"
@@ -108,10 +108,10 @@ var H=Object.freeze,Q=Object.defineProperty;var N=(e,t)=>H(Q(e,"raw",{value:H(t|
     hx-swap="outerHTML"
     hx-target="#add-list"
   >
-    ${C} Add another list
+    ${y} Add another list
     <div></div>
   </div>
-`,S=tt;function et(e){let{list:t,card:i}=e;return a`
+`,k=tt;function et(e){let{list:t,card:i}=e;return a`
     <div
       class="card"
       id="card-${i.id}"
@@ -128,12 +128,12 @@ var H=Object.freeze,Q=Object.defineProperty;var N=(e,t)=>H(Q(e,"raw",{value:H(t|
           hx-target="#card-${i.id}"
           hx-swap="outerHTML"
         >
-          ${$}
+          ${L}
         </button>
       </div>
       ${i.label}
     </div>
-  `}var w=et;function it(e){let t=a``;for(let i of e.cards)t+=a`${w({list:e,card:i})}`;return t}function rt(e){let{lists:t}=e,i=a``;for(let s of t)i+=a`
+  `}var v=et;function it(e){let t=a``;for(let i of e.cards)t+=a`${v({list:e,card:i})}`;return t}function rt(e){let{lists:t}=e,i=a``;for(let s of t)i+=a`
       <div class="list" draggable="true">
         <div class="list-title">
           ${s.name}
@@ -141,9 +141,9 @@ var H=Object.freeze,Q=Object.defineProperty;var N=(e,t)=>H(Q(e,"raw",{value:H(t|
             ${it(s)}
           </div>
         </div>
-        ${k({list:s})} ${T({list:s})}
+        ${C({list:s})} ${$({list:s})}
       </div>
-    `;return i+=a` <div class="add-list">${S}</div> `,i}var y=rt;var J;function st(e){return o(I({template:a(J||(J=N([`
+    `;return i+=a` <div class="add-list">${k}</div> `,i}var w=rt;var P;function st(e){return o(I({template:a(P||(P=O([`
         <div class="app">
           <div class="header">htmx Trello Clone</div>
 
@@ -176,7 +176,7 @@ var H=Object.freeze,Q=Object.defineProperty;var N=(e,t)=>H(Q(e,"raw",{value:H(t|
             }
           });
         <\/script>
-      `])),y(e))}))}var P=st;function at(){return o(a`
+      `])),w(e))}))}var J=st;function at(){return o(a`
     <div id="add-list" class="add-list-editor">
       <form hx-post="/lists" hx-target="#board">
         <div class="list-title-edit">
@@ -207,7 +207,7 @@ var H=Object.freeze,Q=Object.defineProperty;var N=(e,t)=>H(Q(e,"raw",{value:H(t|
             hx-target="#add-list"
             hx-swap="outerHTML"
           >
-            ${v}
+            ${h}
           </button>
         </div>
       </form>
@@ -230,7 +230,7 @@ var H=Object.freeze,Q=Object.defineProperty;var N=(e,t)=>H(Q(e,"raw",{value:H(t|
           hx-target="#card-${i.id}"
           hx-swap="outerHTML"
         >
-          ${$}
+          ${L}
         </button>
       </div>
       ${i.label}
@@ -281,9 +281,9 @@ ${i.label}</textarea
             hx-target="#edit-card"
             hx-swap="outerHTML"
           >
-            ${v}
+            ${h}
           </div>
         </div>
       </form>
     </div>
-  `}var R=dt;async function z(e){await e.env.TrelloLists.put("lists",'[{"name":"To Do","id":"1","cards":[{"id":"2","label":"Second Card","list":"1"},{"id":"1","label":"First Card","list":"1"},{"label":"Third Card","id":"0bfdc1222adc9","list":"1"}]},{"name":"Doing","id":"2","cards":[{"id":"3","label":"First Card","list":2},{"id":"4","label":"Second Card","list":"2"}]}]')}async function j(e){let{env:t}=e;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function U(e){let{request:t,env:i,route:s}=e,{list_id:r,id:d}=s.pathname.groups,n=new URLSearchParams(await t.text()),c=Object.fromEntries(n),{label:l}=c,g=JSON.parse(await i.TrelloLists.get("lists")),f=g.find(x=>x.id===r),h=f.cards.find(x=>x.id===d);return h.label=l,await i.TrelloLists.put("lists",JSON.stringify(g)),{list:f,card:h}}async function B(e){let{env:t,route:i}=e,{list_id:s,id:r}=i.pathname.groups,n=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===s),c=n.cards.find(l=>l.id===r);return{list:n,card:c}}async function D(e){let{env:t,route:i}=e,{id:s}=i.pathname.groups;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(n=>n.id===s)}}async function q(e){let{env:t,route:i}=e,{list_id:s,id:r}=i.pathname.groups,d=JSON.parse(await t.TrelloLists.get("lists")),n=d.find(c=>c.id===s);n.cards=n.cards.filter(c=>c.id!==r),await t.TrelloLists.put("lists",JSON.stringify(d))}async function F(e){let{request:t,env:i}=e,s=new URLSearchParams(await t.text()),r=Object.fromEntries(s),{name:d}=r,n=JSON.parse(await i.TrelloLists.get("lists"));return n.push({name:d,id:A({}),cards:[]}),await i.TrelloLists.put("lists",JSON.stringify(n)),{lists:n}}async function V(e){let{request:t,route:i,env:s}=e,r=JSON.parse(await s.TrelloLists.get("lists")),{list_id:d}=i.pathname.groups,n=new URLSearchParams(await t.text()),l=Object.fromEntries(n)["label-"+d],g=r.find(h=>h.id===d),f={label:l,id:A({}),list:d};return g.cards.push(f),await s.TrelloLists.put("lists",JSON.stringify(r)),{list:g,card:f}}async function X(e){let{env:t,route:i}=e,s=i.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(n=>n.id===s)}}async function G(e){let{env:t,route:i}=e,{list_id:s,id:r}=i.pathname.groups,n=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===s),c=n.cards.find(l=>l.id===r);return{list:n,card:c}}async function K(e){let{request:t,env:i}=e,s=new URLSearchParams(await t.text()),r=Object.fromEntries(s),{from:d,to:n,movedCard:c,index:l,prevIndex:g}=r,[,f]=d.split("-"),[,h]=n.split("-"),x=c.replace("card-",""),m=JSON.parse(await i.TrelloLists.get("lists"));try{if(d==="board"&&n==="board"){let u=m[Number(g)],p=JSON.parse(JSON.stringify(m));p=p.filter(L=>L!==u),p=p.splice(Number(l),0,u),m=p,console.log(JSON.stringify(m))}else{let u=JSON.parse(JSON.stringify(m)),p=u.find(b=>b.id===f),L=p.cards.find(b=>b.id==x);L.list=h,p.cards=p.cards.filter(b=>b.id!=x),u.find(b=>b.id==h).cards.splice(Number(l),0,L),m=u,await i.TrelloLists.put("lists",JSON.stringify(m))}}catch(u){console.error(u)}return{lists:m}}var le={async fetch(e,t,i){return new O([["/",async r=>P(await j(r))],["/lists",async r=>o(y(await F(r))),"POST"],["/lists/add",M],["/lists/cancel",()=>o(S)],["/cards/move",async r=>o(y(await K(r))),"POST"],["/cards/new/:list_id",async r=>o(_(await V(r))),"POST"],["/cards/cancel/:id",async r=>o(k(await X(r)))],["/cards/add/:id",async r=>o(T(await D(r)))],["/cards/edit/:list_id/:id",async r=>o(R(await G(r)))],["/cards/:list_id/:id",async r=>o(w(await U(r))),"PUT"],["/cards/:list_id/:id",async r=>(await q(r),o("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async r=>o(w(await B(r)))]]).handle({request:e,env:t,ctx:i})},async scheduled(e,t,i){return z({event:e,env:t,ctx:i})}};export{le as default};
+  `}var R=dt;async function z(e){await e.env.TrelloLists.put("lists",'[{"name":"To Do","id":"1","cards":[{"id":"2","label":"Second Card","list":"1"},{"id":"1","label":"First Card","list":"1"},{"label":"Third Card","id":"0bfdc1222adc9","list":"1"}]},{"name":"Doing","id":"2","cards":[{"id":"3","label":"First Card","list":2},{"id":"4","label":"Second Card","list":"2"}]}]')}async function j(e){let{env:t}=e;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function U(e){let{request:t,env:i,route:s}=e,{list_id:r,id:d}=s.pathname.groups,n=new URLSearchParams(await t.text()),c=Object.fromEntries(n),{label:l}=c,g=JSON.parse(await i.TrelloLists.get("lists")),p=g.find(f=>f.id===r),m=p.cards.find(f=>f.id===d);return m.label=l,await i.TrelloLists.put("lists",JSON.stringify(g)),{list:p,card:m}}async function B(e){let{env:t,route:i}=e,{list_id:s,id:r}=i.pathname.groups,n=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===s),c=n.cards.find(l=>l.id===r);return{list:n,card:c}}async function D(e){let{env:t,route:i}=e,{id:s}=i.pathname.groups;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(n=>n.id===s)}}async function q(e){let{env:t,route:i}=e,{list_id:s,id:r}=i.pathname.groups,d=JSON.parse(await t.TrelloLists.get("lists")),n=d.find(c=>c.id===s);n.cards=n.cards.filter(c=>c.id!==r),await t.TrelloLists.put("lists",JSON.stringify(d))}async function F(e){let{request:t,env:i}=e,s=new URLSearchParams(await t.text()),r=Object.fromEntries(s),{name:d}=r,n=JSON.parse(await i.TrelloLists.get("lists"));return n.push({name:d,id:A({}),cards:[]}),await i.TrelloLists.put("lists",JSON.stringify(n)),{lists:n}}async function V(e){let{request:t,route:i,env:s}=e,r=JSON.parse(await s.TrelloLists.get("lists")),{list_id:d}=i.pathname.groups,n=new URLSearchParams(await t.text()),l=Object.fromEntries(n)["label-"+d],g=r.find(m=>m.id===d),p={label:l,id:A({}),list:d};return g.cards.push(p),await s.TrelloLists.put("lists",JSON.stringify(r)),{list:g,card:p}}async function X(e){let{env:t,route:i}=e,s=i.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(n=>n.id===s)}}async function G(e){let{env:t,route:i}=e,{list_id:s,id:r}=i.pathname.groups,n=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===s),c=n.cards.find(l=>l.id===r);return{list:n,card:c}}async function K(e){let{request:t,env:i}=e,s=new URLSearchParams(await t.text()),r=Object.fromEntries(s),{from:d,to:n,movedCard:c,index:l,prevIndex:g}=r,[,p]=d.split("-"),[,m]=n.split("-"),f=c.replace("card-",""),b=JSON.parse(await i.TrelloLists.get("lists"));try{if(d==="board"&&n==="board")console.log(JSON.stringify(b));else{let x=JSON.parse(JSON.stringify(b)),T=x.find(u=>u.id===p),S=T.cards.find(u=>u.id==f);S.list=m,T.cards=T.cards.filter(u=>u.id!=f),x.find(u=>u.id==m).cards.splice(Number(l),0,S),b=x,await i.TrelloLists.put("lists",JSON.stringify(b))}}catch(x){console.error(x)}return{lists:b}}var le={async fetch(e,t,i){return new N([["/",async r=>J(await j(r))],["/lists",async r=>o(w(await F(r))),"POST"],["/lists/add",M],["/lists/cancel",()=>o(k)],["/cards/move",async r=>o(w(await K(r))),"POST"],["/cards/new/:list_id",async r=>o(_(await V(r))),"POST"],["/cards/cancel/:id",async r=>o(C(await X(r)))],["/cards/add/:id",async r=>o($(await D(r)))],["/cards/edit/:list_id/:id",async r=>o(R(await G(r)))],["/cards/:list_id/:id",async r=>o(v(await U(r))),"PUT"],["/cards/:list_id/:id",async r=>(await q(r),o("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async r=>o(v(await B(r)))]]).handle({request:e,env:t,ctx:i})},async scheduled(e,t,i){return z({event:e,env:t,ctx:i})}};export{le as default};

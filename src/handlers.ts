@@ -126,11 +126,13 @@ async function move(args: HandlerArgs): Promise<{ lists: List[] }> {
 
   try {
     if (from === "board" && to === "board") {
+      /* 
       const list = lists[Number(prevIndex)];
       let lists2 = JSON.parse(JSON.stringify(lists));
       lists2 = lists2.filter((l: List) => l !== list);
       lists2 = lists2.splice(Number(index), 0, list);
       lists = lists2;
+      */
       console.log(JSON.stringify(lists));
     } else {
       const lists2 = JSON.parse(JSON.stringify(lists));
