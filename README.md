@@ -31,16 +31,25 @@ administering the application; the user will notice little difference). Because
 HTMX utilizes route/method based server access to update the client state it
 incurs a large request penalty on the serverless backend.
 
-To implement HTMX with a serverless backend, use a service worker to intercept the requests and store data asynchronously either on leaving the application, or when the user requests to "save" it.
+To implement HTMX with a serverless backend, use a service worker to intercept
+the requests and store data asynchronously either on leaving the application, or
+when the user requests to "save" it.
 
 ## Usage
 
-## Why No Tests?
+For development, clone the repository, navigate to the repo locally, run
+`npm install`, update the wrangler.toml file with your values, and run
+`wrangler dev`.
+
+To try it out, navigate to the app in your browser at
+[https://trello-clone.jeremiahlangner.workers.dev](https://trello-clone.jeremiahlangner.workers.dev).
+
+## Unit Tests
 
 https://grugbrain.dev/#grug-on-testing
 
 ## Attribution
 
 This project is developed from code written by Rajasegar Chandran. He is
-included as a copyright holder in the license per ISC specifications in the
-original project. This code itself is not a direct fork.
+included as a copyright holder in the license. This is not a direct fork, but
+most of his code is included in the worker scripts.
