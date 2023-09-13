@@ -31,6 +31,8 @@ administering the application; the user will notice little difference). Because
 HTMX utilizes route/method based server access to update the client state it
 incurs a large request penalty on the serverless backend.
 
+To implement HTMX with a serverless backend, use a service worker to intercept the requests and store data asynchronously either on leaving the application, or when the user requests to "save" it.
+
 ## Usage
 
 ## Why No Tests?
