@@ -112,27 +112,28 @@ var T=Object.freeze,V=Object.defineProperty;var A=(i,t)=>T(V(i,"raw",{value:T(t|
     <div></div>
   </div>
 `,L=Q;function W(i){let t=a``;for(let e of i.cards)t+=a`
-<div 
-  class="card" 
-  id="card-${e.id}" 
-  tabindex="0" 
-  aria-roledescription="Draggable item. Press space bar to lif" 
-  draggable="true"
-  _="on mouseenter toggle .hidden on #card-edit-${e.id} until mouseleave"
-  >
-  <div class="card-icons hidden" id="card-edit-${e.id}">
-    <button class="card-icon" 
-      type="button" 
-      hx-get="/cards/edit/${i.id}/${e.id}" 
-      hx-target"#card-${e.id}" 
-      hx-swap="outerHTML"
-    >
-      ${b}
-    </button>
-  </div>
-  ${e.label}
-</div>
-  `;return t}function Y(i){let{lists:t}=i,e=a``;for(let s of t)e+=a`
+      <div
+        class="card"
+        id="card-${e.id}"
+        tabindex="0"
+        aria-roledescription="Draggable item. Press space bar to lif"
+        draggable="true"
+        _="on mouseenter toggle .hidden on #card-edit-${e.id} until mouseleave"
+      >
+        <div class="card-icons hidden" id="card-edit-${e.id}">
+          <button
+            class="card-icon"
+            type="button"
+            hx-get="/cards/edit/${i.id}/${e.id}"
+            hx-target="#card-${e.id}"
+            hx-swap="outerHTML"
+          >
+            ${b}
+          </button>
+        </div>
+        ${e.label}
+      </div>
+    `;return t}function Y(i){let{lists:t}=i,e=a``;for(let s of t)e+=a`
       <div class="list" draggable="true">
         <div class="list-title">
           ${s.name}
