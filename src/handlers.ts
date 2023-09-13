@@ -113,11 +113,11 @@ async function editCard(args: HandlerArgs) {
   return { list, card };
 }
 
-async function moveCard(args: HandlerArgs): Promise<{ lists: List[] }> {
+async function move(args: HandlerArgs): Promise<{ lists: List[] }> {
   const { request, env } = args;
   const params = new URLSearchParams(await request.text());
   const body = Object.fromEntries(params);
-  const { from, to, movedCard, index } = body;
+  const { from, to, movedCard, index, prevIndex } = body;
   const [, fromId] = from.split("-");
   const [, toId] = to.split("-");
   const cardId = movedCard.replace("card-", "");
@@ -125,17 +125,25 @@ async function moveCard(args: HandlerArgs): Promise<{ lists: List[] }> {
   let lists = JSON.parse((await env.TrelloLists.get("lists")) as string);
 
   try {
-    const lists2 = JSON.parse(JSON.stringify(lists));
-    const fromList = lists2.find((l: List) => l.id === fromId);
-    const card = fromList!.cards.find((c: Card) => c.id == cardId);
-    card!.list = toId;
-    fromList!.cards = fromList!.cards.filter((c: Card) => c.id != cardId);
+    if (from === "board" && to === "board") {
+      const list = lists[Number(prevIndex)];
+      let lists2 = JSON.parse(JSON.stringify(lists));
+      lists2 = lists2.filter((l: List) => l !== list);
+      lists2 = lists2.splice(Number(index), 0, list);
+      lists = lists2;
+      console.log(JSON.stringify(lists));
+    } else {
+      const lists2 = JSON.parse(JSON.stringify(lists));
+      const fromList = lists2.find((l: List) => l.id === fromId);
+      const card = fromList!.cards.find((c: Card) => c.id == cardId);
+      card!.list = toId;
+      fromList!.cards = fromList!.cards.filter((c: Card) => c.id != cardId);
 
-    const toList = lists2.find((l: List) => l.id == toId);
-    let idx = Number(index);
-    toList.cards.splice(idx, 0, card);
-    lists = lists2;
-    await env.TrelloLists.put("lists", JSON.stringify(lists));
+      const toList = lists2.find((l: List) => l.id == toId);
+      toList.cards.splice(Number(index), 0, card);
+      lists = lists2;
+      await env.TrelloLists.put("lists", JSON.stringify(lists));
+    }
   } catch (e) {
     console.error(e);
   }
@@ -153,6 +161,6 @@ export {
   cancelCard,
   cancelEdit,
   getLists,
-  moveCard,
+  move,
   resetData,
 };

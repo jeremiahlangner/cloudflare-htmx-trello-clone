@@ -15,10 +15,11 @@ function index(args: { lists: List[] }): Promise<Response> {
             <input id="toList" type="hidden" name="to" />
             <input id="movedCard" type="hidden" name="movedCard" />
             <input id="index" type="hidden" name="index" />
+            <input id="prevIndex" type="hidden" name="prevIndex" />
             <div
               id="board"
               class="board sortable"
-              _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value put event.newIndex into #index.value then send cardmoved"
+              _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value put event.newIndex into #index.value put event.oldIndex into #prevIndex.value then send cardmoved"
             >
               ${Board(args)}
             </div>
