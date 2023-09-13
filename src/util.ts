@@ -2,6 +2,7 @@ function html(strings: TemplateStringsArray, ...values: any[]): string {
   return String.raw({ raw: strings }, ...values);
 }
 
+// TODO: add hashes to kv data to prevent collisions
 function hash(_hashes: { [key: string]: string }): string {
   let h: string = "";
   do {

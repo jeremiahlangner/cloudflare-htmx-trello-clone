@@ -1,4 +1,3 @@
-import { IconEdit } from "./mixins";
 import ToggleAddCard from "./toggle_add_card";
 import AddCard from "./add_card";
 import NewList from "./new_list";

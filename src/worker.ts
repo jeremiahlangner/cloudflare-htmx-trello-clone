@@ -26,7 +26,6 @@ import {
 
 export default {
   async fetch(request: Request, env: Environment, ctx: any) {
-    console.log(request.method, request.url);
     const router = new Router([
       ["/", async (args) => Index(await getLists(args as HandlerArgs))],
       [

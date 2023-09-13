@@ -114,31 +114,32 @@ async function editCard(args: HandlerArgs) {
 }
 
 async function moveCard(args: HandlerArgs): Promise<{ lists: List[] }> {
-  // TODO: Add ordering.
-
   const { request, env } = args;
   const params = new URLSearchParams(await request.text());
   const body = Object.fromEntries(params);
-  const { from, to, movedCard } = body;
+  const { from, to, movedCard, index } = body;
   const [, fromId] = from.split("-");
   const [, toId] = to.split("-");
   const cardId = movedCard.replace("card-", "");
 
-  const lists = JSON.parse((await env.TrelloLists.get("lists")) as string);
+  let lists = JSON.parse((await env.TrelloLists.get("lists")) as string);
 
   try {
-    const fromList = lists.find((l: List) => l.id === fromId);
+    const lists2 = JSON.parse(JSON.stringify(lists));
+    const fromList = lists2.find((l: List) => l.id === fromId);
     const card = fromList!.cards.find((c: Card) => c.id == cardId);
     card!.list = toId;
     fromList!.cards = fromList!.cards.filter((c: Card) => c.id != cardId);
 
-    const toList = lists.find((l: List) => l.id == toId);
-    toList!.cards.push(card as Card);
+    const toList = lists2.find((l: List) => l.id == toId);
+    let idx = Number(index);
+    toList.cards.splice(idx, 0, card);
+    lists = lists2;
+    await env.TrelloLists.put("lists", JSON.stringify(lists));
   } catch (e) {
     console.error(e);
   }
 
-  await env.TrelloLists.put("lists", JSON.stringify(lists));
   return { lists };
 }
 
