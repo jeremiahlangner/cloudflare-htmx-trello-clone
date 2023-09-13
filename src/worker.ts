@@ -20,6 +20,7 @@ import {
   cancelCard,
   cancelEdit,
   getLists,
+  deleteList,
   move,
   resetData,
 } from "./handlers";
@@ -35,6 +36,14 @@ export default {
       ],
       ["/lists/add", AddList],
       ["/lists/cancel", () => HTMLResponse(NewList)],
+      [
+        "/lists/:list_id",
+        async (args) => {
+          await deleteList(args as HandlerArgs);
+          return HTMLResponse("");
+        },
+        "DELETE",
+      ],
       [
         "/cards/move",
         async (args) => HTMLResponse(Board(await move(args as HandlerArgs))),

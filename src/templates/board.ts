@@ -4,6 +4,7 @@ import NewList from "./new_list";
 import Card from "./card";
 import { html } from "../util";
 import { List } from "../types";
+import { IconClose } from "./mixins";
 
 function cards(list: List): string {
   let template = html``;
@@ -19,9 +20,18 @@ function Board(args: { lists: List[] }): string {
   let template = html``;
   for (const list of lists) {
     template += html`
-      <div class="list" draggable="true">
+      <div class="list" draggable="true" id="lists-list-${list.id}">
         <div class="list-title">
-          ${list.name}
+          <--
+          <div
+            class="edit-button-cancel"
+            tabindex="0"
+            hx-delete="/lists/${list.id}"
+            _="on click remove #lists-list-${list.id}"
+          >
+            ${IconClose}
+          </div>
+          --> ${list.name}
           <div class="list-cards sortable" id="list-${list.id}">
             ${cards(list)}
           </div>
