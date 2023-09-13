@@ -20,7 +20,7 @@ function EditCard(args: { list: List; card: Card }): string {
             maxlength="300"
             autofocus="true"
           >
- ${card.label} </textarea
+${card.label}</textarea
           >
           <input type="hidden" name="listId" value="${list.id}" />
         </div>

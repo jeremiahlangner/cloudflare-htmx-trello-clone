@@ -15,10 +15,10 @@ async function putCard(args: HandlerArgs) {
   const { label } = body;
   const lists = JSON.parse((await env.TrelloLists.get("lists")) as string);
   const list = lists.find((l: List) => l.id === list_id);
-  const card = list.find((c: Card) => c.id === id);
+  const card = list.cards.find((c: Card) => c.id === id);
   card.label = label;
 
-  await env.TrelloLists.put("lists", lists);
+  await env.TrelloLists.put("lists", JSON.stringify(lists));
 
   return { list, card };
 }
@@ -28,7 +28,7 @@ async function cancelEdit(args: HandlerArgs) {
   const { list_id, id } = (route.pathname as any).groups;
   const lists = JSON.parse((await env.TrelloLists.get("lists")) as string);
   const list = lists.find((l: List) => l.id === list_id);
-  const card = list.find((c: Card) => c.id === id);
+  const card = list.cards.find((c: Card) => c.id === id);
 
   return { list, card };
 }

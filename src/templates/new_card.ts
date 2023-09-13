@@ -18,9 +18,8 @@ function NewCard(args: { list: List; card: Card }): string {
         <button
           class="card-icon"
           type="button"
-          hx-get="/cards/edit/${list.id}/${card.id} 
-      hx-target="
-          #card-${card.id}
+          hx-get="/cards/edit/${list.id}/${card.id}"
+          hx-target="#card-${card.id}"
           hx-swap="outerHTML"
         >
           ${IconEdit}

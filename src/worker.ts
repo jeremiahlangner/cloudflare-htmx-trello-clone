@@ -5,7 +5,7 @@ import Board from "./templates/board";
 import NewCard from "./templates/new_card";
 import AddCard from "./templates/add_card";
 import EditCard from "./templates/edit_card";
-import _Card from "./templates/card";
+import Card from "./templates/card";
 import NewList from "./templates/new_list";
 import ToggleAddCard from "./templates/toggle_add_card";
 import { HTMLResponse } from "./util";
@@ -64,7 +64,7 @@ export default {
       ],
       [
         "/cards/:list_id/:id",
-        async (args) => HTMLResponse(_Card(await putCard(args as HandlerArgs))),
+        async (args) => HTMLResponse(Card(await putCard(args as HandlerArgs))),
         "PUT",
       ],
       [
@@ -78,7 +78,7 @@ export default {
       [
         "/cards/cancel-edit/:list_id/:id",
         async (args) =>
-          HTMLResponse(_Card(await cancelEdit(args as HandlerArgs))),
+          HTMLResponse(Card(await cancelEdit(args as HandlerArgs))),
       ],
     ]);
     return router.handle({ request, env, ctx });

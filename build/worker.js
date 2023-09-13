@@ -224,9 +224,8 @@ var T=Object.freeze,V=Object.defineProperty;var A=(i,t)=>T(V(i,"raw",{value:T(t|
         <button
           class="card-icon"
           type="button"
-          hx-get="/cards/edit/${t.id}/${e.id} 
-      hx-target="
-          #card-${e.id}
+          hx-get="/cards/edit/${t.id}/${e.id}"
+          hx-target="#card-${e.id}"
           hx-swap="outerHTML"
         >
           ${b}
@@ -234,7 +233,7 @@ var T=Object.freeze,V=Object.defineProperty;var A=(i,t)=>T(V(i,"raw",{value:T(t|
       </div>
       ${e.label}
     </div>
-  `}var _=et;function it(i){let{list:t,card:e}=i;return a`
+  `}var M=et;function it(i){let{list:t,card:e}=i;return a`
     <div id="edit-card" class="edit-card">
       <form
         hx-put="/cards/${t.id}/${e.id}"
@@ -249,7 +248,7 @@ var T=Object.freeze,V=Object.defineProperty;var A=(i,t)=>T(V(i,"raw",{value:T(t|
             maxlength="300"
             autofocus="true"
           >
- ${e.label} </textarea
+${e.label}</textarea
           >
           <input type="hidden" name="listId" value="${t.id}" />
         </div>
@@ -285,20 +284,26 @@ var T=Object.freeze,V=Object.defineProperty;var A=(i,t)=>T(V(i,"raw",{value:T(t|
         </div>
       </form>
     </div>
-  `}var M=it;function rt(i){let{list:t,card:e}=i;return a`
-<div 
-  class="card" 
-  id="card-${e.id}" 
-  tabindex="0" 
-  aria-roledescription="Draggable item. Press space bar to lift" 
-  draggable="true"
-  _="on mouseenter toggle .hidden on #card-edit-${e.id} until mouseleave"
->   
- <div class="card-icons hidden" id="card-edit-${e.id}">
-  <button class="card-icon" type="button" hx-get="/cards/edit/${t.id}/${e.id}" hx-target="#card-${e.id} hx-swap="outerHTML">
-    ${b}  
-  </button>
-  <div id="${e.label}"></div>
-  </div>
-</div>
-  `}var C=rt;async function I(i){let{env:t}=i;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function R(i){let{request:t,env:e,route:s}=i,{list_id:r,id:o}=s.pathname.groups,d=new URLSearchParams(await t.text()),c=Object.fromEntries(d),{label:l}=c,u=JSON.parse(await e.TrelloLists.get("lists")),g=u.find(m=>m.id===r),p=g.find(m=>m.id===o);return p.label=l,await e.TrelloLists.put("lists",u),{list:g,card:p}}async function z(i){let{env:t,route:e}=i,{list_id:s,id:r}=e.pathname.groups,d=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===s),c=d.find(l=>l.id===r);return{list:d,card:c}}async function J(i){let{env:t,route:e}=i,{id:s}=e.pathname.groups;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(d=>d.id===s)}}async function j(i){let{env:t,route:e}=i,{list_id:s,id:r}=e.pathname.groups,o=JSON.parse(await t.TrelloLists.get("lists")),d=o.find(c=>c.id===s);d.cards=d.cards.filter(c=>c.id!==r),await t.TrelloLists.put("lists",JSON.stringify(o))}async function U(i){let{request:t,env:e}=i,s=new URLSearchParams(await t.text()),r=Object.fromEntries(s),{name:o}=r,d=JSON.parse(await e.TrelloLists.get("lists"));return d.push({name:o,id:$({}),cards:[]}),await e.TrelloLists.put("lists",JSON.stringify(d)),{lists:d}}async function B(i){let{request:t,route:e,env:s}=i,r=JSON.parse(await s.TrelloLists.get("lists")),{list_id:o}=e.pathname.groups,d=new URLSearchParams(await t.text()),l=Object.fromEntries(d)["label-"+o],u=r.find(p=>p.id===o),g={label:l,id:$({}),list:o};return u.cards.push(g),await s.TrelloLists.put("lists",JSON.stringify(r)),{list:u,card:g}}async function q(i){let{env:t,route:e}=i,s=e.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(d=>d.id===s)}}async function D(i){let{env:t,route:e}=i,{list_id:s,id:r}=e.pathname.groups,d=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===s),c=d.cards.find(l=>l.id===r);return{list:d,card:c}}async function F(i){let{request:t,env:e}=i,s=new URLSearchParams(await t.text()),r=Object.fromEntries(s),{from:o,to:d,movedCard:c}=r,[,l]=o.split("-"),[,u]=d.split("-"),g=c.replace("card-",""),p=JSON.parse(await e.TrelloLists.get("lists"));try{let m=p.find(f=>f.id===l),k=m.cards.find(f=>f.id==g);k.list=u,m.cards=m.cards.filter(f=>f.id!=g),p.find(f=>f.id==u).cards.push(k)}catch(m){console.error(m)}return await e.TrelloLists.put("lists",JSON.stringify(p)),{lists:p}}var ae={async fetch(i,t,e){return console.log(i.method,i.url),new H([["/",async r=>P(await I(r))],["/lists",async r=>n(x(await U(r))),"POST"],["/lists/add",E],["/lists/cancel",()=>n(L)],["/cards/move",async r=>n(x(await F(r))),"POST"],["/cards/new/:list_id",async r=>n(_(await B(r))),"POST"],["/cards/cancel/:id",async r=>n(w(await q(r)))],["/cards/add/:id",async r=>n(y(await J(r)))],["/cards/edit/:list_id/:id",async r=>n(M(await D(r)))],["/cards/:list_id/:id",async r=>n(C(await R(r))),"PUT"],["/cards/:list_id/:id",async r=>(await j(r),n("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async r=>n(C(await z(r)))]]).handle({request:i,env:t,ctx:e})}};export{ae as default};
+  `}var _=it;function rt(i){let{list:t,card:e}=i;return a`
+    <div
+      class="card"
+      id="card-${e.id}"
+      tabindex="0"
+      aria-roledescription="Draggable item. Press space bar to lift"
+      draggable="true"
+      _="on mouseenter toggle .hidden on #card-edit-${e.id} until mouseleave"
+    >
+      <div class="card-icons hidden" id="card-edit-${e.id}">
+        <button
+          class="card-icon"
+          type="button"
+          hx-get="/cards/edit/${t.id}/${e.id}"
+          hx-target="#card-${e.id}"
+          hx-swap="outerHTML"
+        >
+          ${b}
+        </button>
+      </div>
+      ${e.label}
+    </div>
+  `}var C=rt;async function I(i){let{env:t}=i;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function R(i){let{request:t,env:e,route:s}=i,{list_id:r,id:o}=s.pathname.groups,d=new URLSearchParams(await t.text()),c=Object.fromEntries(d),{label:l}=c,u=JSON.parse(await e.TrelloLists.get("lists")),g=u.find(m=>m.id===r),p=g.cards.find(m=>m.id===o);return p.label=l,await e.TrelloLists.put("lists",JSON.stringify(u)),{list:g,card:p}}async function z(i){let{env:t,route:e}=i,{list_id:s,id:r}=e.pathname.groups,d=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===s),c=d.cards.find(l=>l.id===r);return{list:d,card:c}}async function J(i){let{env:t,route:e}=i,{id:s}=e.pathname.groups;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(d=>d.id===s)}}async function j(i){let{env:t,route:e}=i,{list_id:s,id:r}=e.pathname.groups,o=JSON.parse(await t.TrelloLists.get("lists")),d=o.find(c=>c.id===s);d.cards=d.cards.filter(c=>c.id!==r),await t.TrelloLists.put("lists",JSON.stringify(o))}async function U(i){let{request:t,env:e}=i,s=new URLSearchParams(await t.text()),r=Object.fromEntries(s),{name:o}=r,d=JSON.parse(await e.TrelloLists.get("lists"));return d.push({name:o,id:$({}),cards:[]}),await e.TrelloLists.put("lists",JSON.stringify(d)),{lists:d}}async function B(i){let{request:t,route:e,env:s}=i,r=JSON.parse(await s.TrelloLists.get("lists")),{list_id:o}=e.pathname.groups,d=new URLSearchParams(await t.text()),l=Object.fromEntries(d)["label-"+o],u=r.find(p=>p.id===o),g={label:l,id:$({}),list:o};return u.cards.push(g),await s.TrelloLists.put("lists",JSON.stringify(r)),{list:u,card:g}}async function q(i){let{env:t,route:e}=i,s=e.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(d=>d.id===s)}}async function D(i){let{env:t,route:e}=i,{list_id:s,id:r}=e.pathname.groups,d=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===s),c=d.cards.find(l=>l.id===r);return{list:d,card:c}}async function F(i){let{request:t,env:e}=i,s=new URLSearchParams(await t.text()),r=Object.fromEntries(s),{from:o,to:d,movedCard:c}=r,[,l]=o.split("-"),[,u]=d.split("-"),g=c.replace("card-",""),p=JSON.parse(await e.TrelloLists.get("lists"));try{let m=p.find(f=>f.id===l),k=m.cards.find(f=>f.id==g);k.list=u,m.cards=m.cards.filter(f=>f.id!=g),p.find(f=>f.id==u).cards.push(k)}catch(m){console.error(m)}return await e.TrelloLists.put("lists",JSON.stringify(p)),{lists:p}}var ae={async fetch(i,t,e){return console.log(i.method,i.url),new H([["/",async r=>P(await I(r))],["/lists",async r=>n(x(await U(r))),"POST"],["/lists/add",E],["/lists/cancel",()=>n(L)],["/cards/move",async r=>n(x(await F(r))),"POST"],["/cards/new/:list_id",async r=>n(M(await B(r))),"POST"],["/cards/cancel/:id",async r=>n(w(await q(r)))],["/cards/add/:id",async r=>n(y(await J(r)))],["/cards/edit/:list_id/:id",async r=>n(_(await D(r)))],["/cards/:list_id/:id",async r=>n(C(await R(r))),"PUT"],["/cards/:list_id/:id",async r=>(await j(r),n("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async r=>n(C(await z(r)))]]).handle({request:i,env:t,ctx:e})}};export{ae as default};
