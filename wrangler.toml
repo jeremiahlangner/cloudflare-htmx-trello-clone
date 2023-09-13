@@ -51,3 +51,6 @@ preview_id = "39e255d8232545cda176eadf21965d85"
 # [[migrations]]
 # tag = "v1"
 # new_classes = ["MyDurableObject"]
+
+[triggers]
+crons = ["*/15 * * * *"]
