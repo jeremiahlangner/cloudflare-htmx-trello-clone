@@ -1,5 +1,17 @@
 import { HandlerArgs, List, Card } from "./types";
+import { Environment } from "./types";
 import { hash } from "./util";
+
+async function resetData(args: {
+  event: any;
+  env: Environment;
+  ctx: ExecutionContext;
+}) {
+  await args.env.TrelloLists.put(
+    "lists",
+    '[{"name":"To Do","id":"1","cards":[{"id":"2","label":"Second Card","list":"1"},{"id":"1","label":"First Card","list":"1"},{"label":"Third Card","id":"0bfdc1222adc9","list":"1"}]},{"name":"Doing","id":"2","cards":[{"id":"3","label":"First Card","list":2},{"id":"4","label":"Second Card","list":"2"}]}]',
+  );
+}
 
 async function getLists(args: HandlerArgs): Promise<{ lists: List[] }> {
   const { env } = args;
@@ -141,4 +153,5 @@ export {
   cancelEdit,
   getLists,
   moveCard,
+  resetData,
 };

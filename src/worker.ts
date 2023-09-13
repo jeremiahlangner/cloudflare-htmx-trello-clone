@@ -21,6 +21,7 @@ import {
   cancelEdit,
   getLists,
   moveCard,
+  resetData,
 } from "./handlers";
 
 export default {
@@ -82,5 +83,8 @@ export default {
       ],
     ]);
     return router.handle({ request, env, ctx });
+  },
+  async scheduled(event: any, env: Environment, ctx: ExecutionContext) {
+    return resetData({ event, env, ctx });
   },
 };
