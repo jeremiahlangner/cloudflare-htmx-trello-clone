@@ -2,21 +2,24 @@ import { IconEdit } from "./mixins";
 import ToggleAddCard from "./toggle_add_card";
 import AddCard from "./add_card";
 import NewList from "./new_list";
-import { Card, List } from "../types";
+import { html } from "../util";
+import { List } from "../types";
 
 function Board(args: { lists: List[] }): string {
   const { lists } = args;
   let template = ``;
 
   for (const list of lists) {
-    template += `
-<div class="list" draggable="true">
-  <div class="list-title">
-    ${list.name}
-    <div class="list-cards sortable" id="list-${list.id}">
+    template += html`
+      <div class="list" draggable="true">
+        <div class="list-title">
+          ${list.name}
+          <div class="list-cards sortable" id="list-${list.id}"></div>
+        </div>
+      </div>
     `;
     for (const card of list.cards) {
-      template += `
+      template += html`
 <div 
   class="card" 
   id="card-${card.id}" 
@@ -39,7 +42,7 @@ function Board(args: { lists: List[] }): string {
 </div>
       `;
     }
-    template += `
+    template += html`
     </div>
   </div>
   ${ToggleAddCard({ list })}
@@ -48,11 +51,7 @@ function Board(args: { lists: List[] }): string {
     `;
   }
 
-  template += `
-<div class="add-list">
-  ${NewList}
-</div>
-  `;
+  template += html` <div class="add-list">${NewList}</div> `;
 
   return template;
 }

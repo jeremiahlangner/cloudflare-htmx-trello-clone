@@ -1,9 +1,10 @@
 import { IconEdit } from "./mixins";
 import { Card, List } from "../types";
+import { html } from "../util";
 
 function NewCard(args: { list: List; card: Card }): string {
   const { list, card } = args;
-  return `
+  return html`
 <div id="edit-card">
 </div>
 <div 

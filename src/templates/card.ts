@@ -1,9 +1,10 @@
 import { IconEdit } from "./mixins";
+import { html } from "../util";
 
 function Card(params: any): string {
   const { list, card } = params;
 
-  const template = `
+  const template = html`
 <div 
   class="card" 
   id="card-${card.id}" 

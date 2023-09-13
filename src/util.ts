@@ -1,3 +1,7 @@
+function html(strings: TemplateStringsArray, ...values: any[]): string {
+  return String.raw({ raw: strings }, ...values);
+}
+
 function hash(_hashes: { [key: string]: string }): string {
   let h: string = "";
   do {
@@ -14,4 +18,4 @@ async function HTMLResponse(response: string) {
   });
 }
 
-export { hash, HTMLResponse };
+export { hash, html, HTMLResponse };
