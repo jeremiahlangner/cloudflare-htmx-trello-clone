@@ -21,13 +21,11 @@ function Board(args: { lists: List[] }): string {
   for (const list of lists) {
     template += html`
       <div class="list" draggable="true" id="lists-list-${list.id}">
-        <div class="list-title">
-          ${list.name}
-        </div>
+        <div class="list-title">${list.name}</div>
 
-          <div class="list-cards sortable" id="list-${list.id}">
-            ${cards(list)}
-          </div>
+        <div class="list-cards sortable" id="list-${list.id}">
+          ${cards(list)}
+        </div>
         ${ToggleAddCard({ list })} ${AddCard({ list })}
       </div>
     `;
@@ -52,5 +50,4 @@ export default Board;
           >
             ${IconClose}
           </button>
- */ 
-
+ */

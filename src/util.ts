@@ -12,11 +12,20 @@ function hash(_hashes: { [key: string]: string }): string {
 }
 
 async function HTMLResponse(response: string) {
-  return new Response(response, {
+  return new Response(minify(response), {
     headers: {
       "content-type": "text/html;charset=UTF-8",
     },
   });
 }
 
-export { hash, html, HTMLResponse };
+// naive, but a fun little add; obviously breaks display of card data.
+function minify(htmlContent: string): string {
+  htmlContent = htmlContent
+    .replace(/(\r\n|\n|\r)/gm, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return htmlContent;
+}
+
+export { hash, minify, html, HTMLResponse };

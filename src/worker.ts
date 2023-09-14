@@ -47,8 +47,7 @@ export default {
       ],
       [
         "/cards/new/:list_id",
-        async (args) =>
-          HTMLResponse(Board(await newCard(args as HandlerArgs))),
+        async (args) => HTMLResponse(Board(await newCard(args as HandlerArgs))),
         "POST",
       ],
       [
