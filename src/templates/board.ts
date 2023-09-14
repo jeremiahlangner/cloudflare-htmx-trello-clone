@@ -4,7 +4,7 @@ import NewList from "./new_list";
 import Card from "./card";
 import { html } from "../util";
 import { List } from "../types";
-import { IconClose } from "./mixins";
+// import { IconClose } from "./mixins";
 
 function cards(list: List): string {
   let template = html``;

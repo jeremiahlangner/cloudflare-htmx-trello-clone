@@ -18,7 +18,7 @@ function index(args: { lists: List[] }): Promise<Response> {
             <input id="prevIndex" type="hidden" name="prevIndex" />
             <div
               id="board"
-              class="board sortable"
+              class="board"
               _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value put event.newIndex into #index.value put event.oldIndex into #prevIndex.value then send cardmoved"
             >
               ${Board(args)}
@@ -30,11 +30,19 @@ function index(args: { lists: List[] }): Promise<Response> {
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
         <script>
           htmx.onLoad(function (content) {
-            let sortables = content.querySelectorAll(".sortable");
-            for (const sortable of sortables) {
-              new Sortable(sortable, {
+            console.log(content);
+
+            const foo = new Sortable(board, {
+              name: "board",
+              animation: 150,
+              group: "board",
+            });
+
+            const cards = document.querySelectorAll(".sortable");
+            for (const card of cards) {
+              new Sortable(card, {
                 animation: 150,
-                group: "lists",
+                group: "card",
               });
             }
           });
