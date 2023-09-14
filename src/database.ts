@@ -1,5 +1,5 @@
 class Database {
-  private name: string = '';
+  private name: string = "";
   private store: Promise<any> | undefined;
 
   constructor(name: string, DB?: Database) {
