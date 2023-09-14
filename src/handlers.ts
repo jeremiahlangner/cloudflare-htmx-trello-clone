@@ -134,14 +134,10 @@ async function move(args: HandlerArgs): Promise<{ lists: List[] }> {
 
   try {
     if (from === "board" && to === "board") {
-      /* 
-      const list = lists[Number(prevIndex)];
-      let lists2 = JSON.parse(JSON.stringify(lists));
-      lists2 = lists2.filter((l: List) => l !== list);
-      lists2 = lists2.splice(Number(index), 0, list);
-      lists = lists2;
-      */
-      console.log(JSON.stringify(lists));
+      const list = lists[prevIndex];
+      lists = lists.filter((l: List) => l.id !== list.id);
+      lists.splice(index, 0, list);
+      await env.TrelloLists.put("lists", JSON.stringify(lists));
     } else {
       const lists2 = JSON.parse(JSON.stringify(lists));
       const fromList = lists2.find((l: List) => l.id === fromId);

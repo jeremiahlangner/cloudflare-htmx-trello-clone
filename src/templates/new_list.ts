@@ -8,6 +8,7 @@ const NewList = html`
     hx-get="/lists/add"
     hx-swap="outerHTML"
     hx-target="#add-list"
+    draggable="false"
   >
     ${IconPlus} Add another list
     <div></div>

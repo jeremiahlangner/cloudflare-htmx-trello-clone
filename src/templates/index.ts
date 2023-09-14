@@ -34,7 +34,7 @@ function index(args: { lists: List[] }): Promise<Response> {
             for (const sortable of sortables) {
               new Sortable(sortable, {
                 animation: 150,
-                group: "shared",
+                group: "lists",
               });
             }
           });

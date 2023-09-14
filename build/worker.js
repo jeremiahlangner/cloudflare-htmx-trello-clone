@@ -107,6 +107,7 @@ var H=Object.freeze,W=Object.defineProperty;var O=(e,t)=>H(W(e,"raw",{value:H(t|
     hx-get="/lists/add"
     hx-swap="outerHTML"
     hx-target="#add-list"
+    draggable="false"
   >
     ${y} Add another list
     <div></div>
