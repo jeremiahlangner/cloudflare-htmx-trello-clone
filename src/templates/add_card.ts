@@ -25,10 +25,9 @@ function AddCard(args: { list: List }): string {
           tabindex="0"
           style="background-color: rgb(90, 172, 68);"
           hx-post="/cards/new/${list.id}"
-          hx-target="#list-${list.id}"
-          hx-swap="beforeend"
+          hx-target="#board"
+          hx-swap="innerHTML"
           hx-params="label-${list.id}"
-          _="on htmx:afterOnLoad toggle .hidden on #add-card-${list.id} toggle .hidden on #btn-add-card-${list.id}"
         >
           Add card
         </button>

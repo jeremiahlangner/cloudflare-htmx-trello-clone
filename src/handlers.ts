@@ -19,12 +19,13 @@ async function getLists(args: HandlerArgs): Promise<{ lists: List[] }> {
   return { lists };
 }
 
-async function deleteList(args: HandlerArgs): Promise<void> {
+async function deleteList(args: HandlerArgs): Promise<{ lists: List[] }> {
   const { route, env } = args;
   const { list_id } = (route.pathname as any).groups;
   let lists = JSON.parse((await env.TrelloLists.get("lists")) as string);
   lists = lists.filter((l: List) => l.id !== list_id);
   await env.TrelloLists.put("lists", JSON.stringify(lists));
+  return { lists };
 }
 
 async function putCard(args: HandlerArgs) {
@@ -101,7 +102,7 @@ async function newCard(args: HandlerArgs) {
   list.cards.push(card);
 
   await env.TrelloLists.put("lists", JSON.stringify(lists));
-  return { list, card };
+  return { lists };
 }
 
 async function cancelCard(args: HandlerArgs) {

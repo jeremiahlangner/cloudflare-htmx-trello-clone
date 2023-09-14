@@ -2,8 +2,6 @@ import { Router } from "simple-worker-router";
 import Index from "./templates/index";
 import AddList from "./templates/add_list";
 import Board from "./templates/board";
-import NewCard from "./templates/new_card";
-import AddCard from "./templates/add_card";
 import EditCard from "./templates/edit_card";
 import Card from "./templates/card";
 import NewList from "./templates/new_list";
@@ -16,7 +14,6 @@ import {
   putCard,
   deleteCard,
   editCard,
-  addCard,
   cancelCard,
   cancelEdit,
   getLists,
@@ -39,8 +36,7 @@ export default {
       [
         "/lists/:list_id",
         async (args) => {
-          await deleteList(args as HandlerArgs);
-          return HTMLResponse("");
+          return HTMLResponse(Board(await deleteList(args as HandlerArgs)));
         },
         "DELETE",
       ],
@@ -52,18 +48,13 @@ export default {
       [
         "/cards/new/:list_id",
         async (args) =>
-          HTMLResponse(NewCard(await newCard(args as HandlerArgs))),
+          HTMLResponse(Board(await newCard(args as HandlerArgs))),
         "POST",
       ],
       [
         "/cards/cancel/:id",
         async (args) =>
           HTMLResponse(ToggleAddCard(await cancelCard(args as HandlerArgs))),
-      ],
-      [
-        "/cards/add/:id",
-        async (args) =>
-          HTMLResponse(AddCard(await addCard(args as HandlerArgs))),
       ],
       [
         "/cards/edit/:list_id/:id",

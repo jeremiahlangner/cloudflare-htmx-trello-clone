@@ -4,7 +4,7 @@ import NewList from "./new_list";
 import Card from "./card";
 import { html } from "../util";
 import { List } from "../types";
-// import { IconClose } from "./mixins";
+import { IconClose } from "./mixins";
 
 function cards(list: List): string {
   let template = html``;
@@ -13,16 +13,6 @@ function cards(list: List): string {
   }
   return template;
 }
-/*
-          <div
-            class="edit-button-cancel"
-            tabindex="0"
-            hx-delete="/lists/${list.id}"
-            _="on click remove #lists-list-${list.id}"
-          >
-            ${IconClose}
-          </div>
-        */
 
 function Board(args: { lists: List[] }): string {
   const { lists } = args;
@@ -33,10 +23,11 @@ function Board(args: { lists: List[] }): string {
       <div class="list" draggable="true" id="lists-list-${list.id}">
         <div class="list-title">
           ${list.name}
+        </div>
+
           <div class="list-cards sortable" id="list-${list.id}">
             ${cards(list)}
           </div>
-        </div>
         ${ToggleAddCard({ list })} ${AddCard({ list })}
       </div>
     `;
@@ -48,3 +39,18 @@ function Board(args: { lists: List[] }): string {
 }
 
 export default Board;
+
+/*
+  Delete Button
+          <button
+            type="button"
+            class="edit-button-cancel"
+            tabindex="0"
+            hx-delete="/lists/${list.id}"
+            hx-target="#board"
+            hx-swap="innerHTML"
+          >
+            ${IconClose}
+          </button>
+ */ 
+
