@@ -7,6 +7,10 @@ async function resetData(args: {
   env: Environment;
   ctx: ExecutionContext;
 }) {
+  const listsStr = '[{"name":"To Do","id":"1","cards":[{"id":"2","label":"Second Card","list":"1"},{"id":"1","label":"First Card","list":"1"},{"label":"Third Card","id":"0bfdc1222adc9","list":"1"}]},{"name":"Doing","id":"2","cards":[{"id":"3","label":"First Card","list":2},{"id":"4","label":"Second Card","list":"2"}]}]';
+  const lists = await args.env.TrelloLists.get('lists');
+  if (lists == listsStr) return;
+
   await args.env.TrelloLists.put(
     "lists",
     '[{"name":"To Do","id":"1","cards":[{"id":"2","label":"Second Card","list":"1"},{"id":"1","label":"First Card","list":"1"},{"label":"Third Card","id":"0bfdc1222adc9","list":"1"}]},{"name":"Doing","id":"2","cards":[{"id":"3","label":"First Card","list":2},{"id":"4","label":"Second Card","list":"2"}]}]',
