@@ -9,7 +9,6 @@ import NewList from "./templates/new_list";
 import ToggleAddCard from "./templates/toggle_add_card";
 import { HTMLResponse } from "./util";
 import { HandlerArgs } from "./types";
-import ServiceWorker from "./service-worker";
 
 import {
   addList,
@@ -24,7 +23,7 @@ import {
   move,
 } from "./handlers";
 
-export type {};
+export type { };
 declare const self: ServiceWorkerGlobalScope;
 
 const cacheName = "cacheName";
@@ -35,11 +34,22 @@ if (!DB) DB = new Database("trelloClone", DB);
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(version + cacheName).then((cache) => cache.addAll(["/"])),
+    caches.open(version + cacheName)
+      .then((cache) => cache.addAll([
+        "/",
+      ])),
   );
 });
 
-self.addEventListener("activate", (event) => {});
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys()
+      .then(keys => Promise.all(
+        keys.filter(k => k.indexOf(version) !== 0)
+          .map(k => caches.delete(k))
+      ))
+  );
+});
 
 self.addEventListener("fetch", (event) => {
   return event.respondWith(
@@ -51,7 +61,6 @@ self.addEventListener("fetch", (event) => {
       const ctx = this as unknown as ExecutionContext;
       const router = new Router([
         ["/", async (args) => Index(await getLists(args as HandlerArgs))],
-        ["/sw.js", ServiceWorker],
         [
           "/lists",
           async (args) =>

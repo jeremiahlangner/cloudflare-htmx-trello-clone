@@ -30,14 +30,11 @@ function index(args: { lists: List[] }): Promise<Response> {
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
         <script>
           htmx.onLoad(function (content) {
-            console.log(content);
-
             const foo = new Sortable(board, {
               name: "board",
               animation: 150,
               group: "board",
             });
-
             const cards = document.querySelectorAll(".sortable");
             for (const card of cards) {
               new Sortable(card, {
