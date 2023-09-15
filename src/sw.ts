@@ -23,7 +23,7 @@ import {
   move,
 } from "./handlers";
 
-export type { };
+export type {};
 declare const self: ServiceWorkerGlobalScope;
 
 const cacheName = "cacheName";
@@ -34,20 +34,21 @@ if (!DB) DB = new Database("trelloClone", DB);
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(version + cacheName)
-      .then((cache) => cache.addAll([
-        "/",
-      ])),
+    caches.open(version + cacheName).then((cache) => cache.addAll(["/"])),
   );
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(
-        keys.filter(k => k.indexOf(version) !== 0)
-          .map(k => caches.delete(k))
-      ))
+    caches
+      .keys()
+      .then((keys) =>
+        Promise.all(
+          keys
+            .filter((k) => k.indexOf(version) !== 0)
+            .map((k) => caches.delete(k)),
+        ),
+      ),
   );
 });
 
