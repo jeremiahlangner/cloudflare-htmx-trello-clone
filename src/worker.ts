@@ -8,6 +8,7 @@ import NewList from "./templates/new_list";
 import ToggleAddCard from "./templates/toggle_add_card";
 import { HTMLResponse } from "./util";
 import { Environment, HandlerArgs } from "./types";
+import ServiceWorker from "./service-worker";
 import {
   addList,
   newCard,

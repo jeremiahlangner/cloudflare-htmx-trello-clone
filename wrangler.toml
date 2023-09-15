@@ -1,7 +1,11 @@
 name = "trello-clone"
 main = "build/worker.js"
-#main = "src/worker.ts"
 compatibility_date = "2023-09-04"
+
+[build]
+command = "npm run build"
+cwd = "./"
+watch_dir = "./src"
 
 # Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)
 # Note: Use secrets to store sensitive data.

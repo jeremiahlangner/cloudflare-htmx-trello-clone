@@ -8,7 +8,9 @@ import Card from "./templates/card";
 import NewList from "./templates/new_list";
 import ToggleAddCard from "./templates/toggle_add_card";
 import { HTMLResponse } from "./util";
-import { Environment, HandlerArgs } from "./types";
+import { HandlerArgs } from "./types";
+import ServiceWorker from "./service-worker";
+
 import {
   addList,
   newCard,
@@ -20,7 +22,6 @@ import {
   getLists,
   deleteList,
   move,
-  resetData,
 } from "./handlers";
 
 export type {};
@@ -41,13 +42,13 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {});
 
 self.addEventListener("fetch", (event) => {
-  event.respondWith(
+  return event.respondWith(
     (async () => {
       const request = event.request;
       const env = {
         TrelloList: DB,
       };
-      const ctx = this;
+      const ctx = this as unknown as ExecutionContext;
       const router = new Router([
         ["/", async (args) => Index(await getLists(args as HandlerArgs))],
         ["/sw.js", ServiceWorker],
