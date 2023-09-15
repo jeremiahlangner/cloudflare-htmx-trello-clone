@@ -8,8 +8,7 @@
     "format": "npx prettier . --prose-wrap=always --write",
     "test": "npx jest --pass-with-no-tests",
     "start": "npm run build && wrangler dev --experimental-enable-local-persistence",
-    "build": "npm run format && npm run test && rm -rf ./build && npx tsc && npx esbuild --bundle assets/styles.css --outfile=assets/styles.min.css --minify && npx tsx tools/compile.ts && npx esbuild ./src/worker.ts --bundle --outdir=build --format=esm --minify",
-    "rebuild": "rm -rf ./build && npx tsx ./esbuild.ts",
+    "build": "npm run format && npm run test && rm -rf ./build && npx tsx ./esbuild.ts",
     "deploy": "npm run build && wrangler deploy"
   },
   "keywords": [],

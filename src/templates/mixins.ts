@@ -21,7 +21,7 @@ function PageBoilerplate(params: any) {
                   "/sw.js",
                   {
                     scope: "/",
-                    type: 'module'
+                    type: "module",
                   },
                 );
                 if (registration.installing) {

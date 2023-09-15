@@ -26,7 +26,7 @@ export default {
   async fetch(request: Request, env: Environment, ctx: any) {
     const router = new Router([
       ["/", async (args) => Index(await getLists(args as HandlerArgs))],
-      ['/sw.js', ServiceWorker ],
+      ["/sw.js", ServiceWorker],
       [
         "/lists",
         async (args) => HTMLResponse(Board(await addList(args as HandlerArgs))),

@@ -1,8 +1,8 @@
-function  ServiceWorker() {
-  return new Response(' ', {
+function ServiceWorker() {
+  return new Response(" ", {
     headers: {
-      'content-type': 'text/javascript;charset=UTF-8'
-    }
+      "content-type": "text/javascript;charset=UTF-8",
+    },
   });
 }
 
