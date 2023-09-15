@@ -163,6 +163,13 @@ async function move(args: HandlerArgs): Promise<{ lists: List[] }> {
   return { lists };
 }
 
+async function jsonHandler(args: HandlerArgs): Promise<string> {
+  const { route, env } = args;
+  const key = (route.pathname as any).groups.key;
+  const data = await env.TrelloLists.get(key);
+  return data!;
+}
+
 export {
   addList,
   newCard,
@@ -176,4 +183,5 @@ export {
   deleteList,
   move,
   resetData,
+  jsonHandler,
 };

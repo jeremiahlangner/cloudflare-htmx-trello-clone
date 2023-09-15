@@ -1,8 +1,9 @@
 class Database {
   private name: string = "";
-  private store: Promise<any> | undefined;
+  private store: Promise<any> = Promise.resolve();
 
   constructor(name: string, DB?: Database) {
+    console.log("setting up");
     if (DB) return DB;
 
     this.name = name;
@@ -10,7 +11,7 @@ class Database {
     this.store = new Promise((resolve, reject) => {
       const open = indexedDB.open(this.name, 1);
       open.onerror = () => reject(open.error);
-      open.onupgradeneeded = () => open.result.createObjectStore(name);
+      open.onupgradeneeded = () => open.result.createObjectStore(this.name);
       open.onsuccess = () => resolve(open.result);
     });
   }

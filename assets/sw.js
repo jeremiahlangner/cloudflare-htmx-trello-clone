@@ -1,4 +1,4 @@
-var O=Object.freeze,Z=Object.defineProperty;var L=(e,t)=>O(Z(e,"raw",{value:O(t||e.slice())}));var $=class{name="";store;constructor(t,n){if(n)return n;this.name=t,this.store=new Promise((r,s)=>{let i=indexedDB.open(this.name,1);i.onerror=()=>s(i.error),i.onupgradeneeded=()=>i.result.createObjectStore(t),i.onsuccess=()=>r(i.result)})}async get(t){let n=await this.store;return new Promise((r,s)=>{let i=n.transaction("keyval","readonly"),a=i.objectStore(this.name).get(t);i.oncomplete=()=>r(a.result),i.onerror=()=>s(i.error)})}async put(t,n){let r=await this.store;return new Promise((s,i)=>{let a=r.transaction("keyval","readwrite"),l=a.objectStore(this.name).put(n,t);a.oncomplete=()=>s(l),a.onerror=()=>i(a.error)})}async delete(t){let n=await this.store;return new Promise((r,s)=>{let i=n.transaction("keyval","readonly"),a=i.objectStore(this.name).delete(t);i.oncomplete=()=>r(a),i.onerror=()=>s(i.error)})}},N=$;var E=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,n="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:n,handler:t})}handle(e){let{request:t}=e;for(let n of this.routes){if(n.method!==t.method)continue;let r=n.path.exec({pathname:new URL(t.url).pathname});if(r)return n.handler({...e,route:r})}return new Response("Not found",{status:404})}};var P={styles:`body {
+var O=Object.freeze,Z=Object.defineProperty;var L=(e,t)=>O(Z(e,"raw",{value:O(t||e.slice())}));var A=class{name="";store=Promise.resolve();constructor(t,n){if(console.log("setting up"),n)return n;this.name=t,this.store=new Promise((s,r)=>{let i=indexedDB.open(this.name,1);i.onerror=()=>r(i.error),i.onupgradeneeded=()=>i.result.createObjectStore(this.name),i.onsuccess=()=>s(i.result)})}async get(t){let n=await this.store;return new Promise((s,r)=>{let i=n.transaction("keyval","readonly"),a=i.objectStore(this.name).get(t);i.oncomplete=()=>s(a.result),i.onerror=()=>r(i.error)})}async put(t,n){let s=await this.store;return new Promise((r,i)=>{let a=s.transaction("keyval","readwrite"),l=a.objectStore(this.name).put(n,t);a.oncomplete=()=>r(l),a.onerror=()=>i(a.error)})}async delete(t){let n=await this.store;return new Promise((s,r)=>{let i=n.transaction("keyval","readonly"),a=i.objectStore(this.name).delete(t);i.oncomplete=()=>s(a),i.onerror=()=>r(i.error)})}},N=A;var P=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,n="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:n,handler:t})}handle(e){let{request:t}=e;for(let n of this.routes){if(n.method!==t.method)continue;let s=n.path.exec({pathname:new URL(t.url).pathname});if(s)return n.handler({...e,route:s})}return new Response("Not found",{status:404})}};var E={styles:`body {
   margin: 0;
   padding: 0;
   font-family:
@@ -232,7 +232,7 @@ code {
 .hidden {
   display: none;
 }
-`};function o(e,...t){return String.raw({raw:e},...t)}function A(e){let t="";do t=Math.random().toString(16).substring(2,15);while(e[t]);return t}async function d(e){return new Response(et(e),{headers:{"content-type":"text/html;charset=UTF-8"}})}function et(e){return e=e.replace(/(\r\n|\n|\r)/gm,"").replace(/\s+/g," ").trim(),e}var I;function J(e){return o(I||(I=L([`
+`};function o(e,...t){return String.raw({raw:e},...t)}function $(e){let t="";do t=Math.random().toString(16).substring(2,15);while(e[t]);return t}async function d(e){return new Response(et(e),{headers:{"content-type":"text/html;charset=UTF-8"}})}function et(e){return e=e.replace(/(\r\n|\n|\r)/gm,"").replace(/\s+/g," ").trim(),e}var I;function J(e){return o(I||(I=L([`
     <!doctype html>
     <html lang="en">
       <head>
@@ -273,7 +273,7 @@ code {
         `,`
       </body>
     </html>
-  `])),P.styles,e.template)}var k=o`
+  `])),E.styles,e.template)}var k=o`
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -357,7 +357,7 @@ code {
         </div>
       </div>
     </div>
-  `}var M=it;var rt=o`
+  `}var M=it;var st=o`
   <div
     id="add-list"
     class="add-list-button"
@@ -369,7 +369,7 @@ code {
     ${k} Add another list
     <div></div>
   </div>
-`,S=rt;function st(e){let{list:t,card:n}=e;return o`
+`,S=st;function rt(e){let{list:t,card:n}=e;return o`
     <div
       class="card"
       id="card-${n.id}"
@@ -391,14 +391,14 @@ code {
       </div>
       ${n.label}
     </div>
-  `}var y=st;function at(e){let t=o``;for(let n of e.cards)t+=o`${y({list:e,card:n})}`;return t}function ot(e){let{lists:t}=e,n=o``;for(let r of t)n+=o`
-      <div class="list" draggable="true" id="lists-list-${r.id}">
-        <div class="list-title">${r.name}</div>
+  `}var y=rt;function at(e){let t=o``;for(let n of e.cards)t+=o`${y({list:e,card:n})}`;return t}function ot(e){let{lists:t}=e,n=o``;for(let s of t)n+=o`
+      <div class="list" draggable="true" id="lists-list-${s.id}">
+        <div class="list-title">${s.name}</div>
 
-        <div class="list-cards sortable" id="list-${r.id}">
-          ${at(r)}
+        <div class="list-cards sortable" id="list-${s.id}">
+          ${at(s)}
         </div>
-        ${C({list:r})} ${M({list:r})}
+        ${C({list:s})} ${M({list:s})}
       </div>
     `;return n+=o` <div class="add-list">${S}</div> `,n}var f=ot;var R;function dt(e){return d(J({template:o(R||(R=L([`
         <div class="app">
@@ -525,4 +525,4 @@ ${n.label}</textarea
         </div>
       </form>
     </div>
-  `}var U=ct;async function D(e){let{env:t}=e;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function B(e){let{route:t,env:n}=e,{list_id:r}=t.pathname.groups,s=JSON.parse(await n.TrelloLists.get("lists"));return s=s.filter(i=>i.id!==r),await n.TrelloLists.put("lists",JSON.stringify(s)),{lists:s}}async function q(e){let{request:t,env:n,route:r}=e,{list_id:s,id:i}=r.pathname.groups,a=new URLSearchParams(await t.text()),l=Object.fromEntries(a),{label:c}=l,h=JSON.parse(await n.TrelloLists.get("lists")),b=h.find(x=>x.id===s),m=b.cards.find(x=>x.id===i);return m.label=c,await n.TrelloLists.put("lists",JSON.stringify(h)),{list:b,card:m}}async function F(e){let{env:t,route:n}=e,{list_id:r,id:s}=n.pathname.groups,a=JSON.parse(await t.TrelloLists.get("lists")).find(c=>c.id===r),l=a.cards.find(c=>c.id===s);return{list:a,card:l}}async function W(e){let{env:t,route:n}=e,{list_id:r,id:s}=n.pathname.groups,i=JSON.parse(await t.TrelloLists.get("lists")),a=i.find(l=>l.id===r);a.cards=a.cards.filter(l=>l.id!==s),await t.TrelloLists.put("lists",JSON.stringify(i))}async function V(e){let{request:t,env:n}=e,r=new URLSearchParams(await t.text()),s=Object.fromEntries(r),{name:i}=s,a=JSON.parse(await n.TrelloLists.get("lists"));return a.push({name:i,id:A({}),cards:[]}),await n.TrelloLists.put("lists",JSON.stringify(a)),{lists:a}}async function G(e){let{request:t,route:n,env:r}=e,s=JSON.parse(await r.TrelloLists.get("lists")),{list_id:i}=n.pathname.groups,a=new URLSearchParams(await t.text()),c=Object.fromEntries(a)["label-"+i],h=s.find(m=>m.id===i),b={label:c,id:A({}),list:i};return h.cards.push(b),await r.TrelloLists.put("lists",JSON.stringify(s)),{lists:s}}async function X(e){let{env:t,route:n}=e,r=n.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(a=>a.id===r)}}async function K(e){let{env:t,route:n}=e,{list_id:r,id:s}=n.pathname.groups,a=JSON.parse(await t.TrelloLists.get("lists")).find(c=>c.id===r),l=a.cards.find(c=>c.id===s);return{list:a,card:l}}async function Q(e){let{request:t,env:n}=e,r=new URLSearchParams(await t.text()),s=Object.fromEntries(r),{from:i,to:a,movedCard:l,index:c,prevIndex:h}=s,[,b]=i.split("-"),[,m]=a.split("-"),x=l.replace("card-",""),p=JSON.parse(await n.TrelloLists.get("lists"));try{if(i==="board"&&a==="board"){let u=p[h];p=p.filter(w=>w.id!==u.id),p.splice(c,0,u),await n.TrelloLists.put("lists",JSON.stringify(p))}else{let u=JSON.parse(JSON.stringify(p)),w=u.find(g=>g.id===b),H=w.cards.find(g=>g.id==x);H.list=m,w.cards=w.cards.filter(g=>g.id!=x),u.find(g=>g.id==m).cards.splice(Number(c),0,H),p=u,await n.TrelloLists.put("lists",JSON.stringify(p))}}catch(u){console.error(u)}return{lists:p}}var pt="cacheName",Y="0",T;T||(T=new N("trelloClone",T));self.addEventListener("install",e=>{e.waitUntil(caches.open(Y+pt).then(t=>t.addAll(["/"])))});self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(t=>Promise.all(t.filter(n=>n.indexOf(Y)!==0).map(n=>caches.delete(n)))))});self.addEventListener("fetch",e=>e.respondWith((async()=>{let t=e.request,n={TrelloList:T},r=void 0;return new E([["/",async i=>_(await D(i))],["/lists",async i=>d(f(await V(i))),"POST"],["/lists/add",z],["/lists/cancel",()=>d(S)],["/lists/:list_id",async i=>d(f(await B(i))),"DELETE"],["/cards/move",async i=>d(f(await Q(i))),"POST"],["/cards/new/:list_id",async i=>d(f(await G(i))),"POST"],["/cards/cancel/:id",async i=>d(C(await X(i)))],["/cards/edit/:list_id/:id",async i=>d(U(await K(i)))],["/cards/:list_id/:id",async i=>d(y(await q(i))),"PUT"],["/cards/:list_id/:id",async i=>(await W(i),d("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async i=>d(y(await F(i)))]]).handle({request:t,env:n,ctx:r})})()));
+  `}var U=ct;async function D(e){let{env:t}=e;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function B(e){let{route:t,env:n}=e,{list_id:s}=t.pathname.groups,r=JSON.parse(await n.TrelloLists.get("lists"));return r=r.filter(i=>i.id!==s),await n.TrelloLists.put("lists",JSON.stringify(r)),{lists:r}}async function q(e){let{request:t,env:n,route:s}=e,{list_id:r,id:i}=s.pathname.groups,a=new URLSearchParams(await t.text()),l=Object.fromEntries(a),{label:c}=l,h=JSON.parse(await n.TrelloLists.get("lists")),b=h.find(x=>x.id===r),m=b.cards.find(x=>x.id===i);return m.label=c,await n.TrelloLists.put("lists",JSON.stringify(h)),{list:b,card:m}}async function F(e){let{env:t,route:n}=e,{list_id:s,id:r}=n.pathname.groups,a=JSON.parse(await t.TrelloLists.get("lists")).find(c=>c.id===s),l=a.cards.find(c=>c.id===r);return{list:a,card:l}}async function W(e){let{env:t,route:n}=e,{list_id:s,id:r}=n.pathname.groups,i=JSON.parse(await t.TrelloLists.get("lists")),a=i.find(l=>l.id===s);a.cards=a.cards.filter(l=>l.id!==r),await t.TrelloLists.put("lists",JSON.stringify(i))}async function V(e){let{request:t,env:n}=e,s=new URLSearchParams(await t.text()),r=Object.fromEntries(s),{name:i}=r,a=JSON.parse(await n.TrelloLists.get("lists"));return a.push({name:i,id:$({}),cards:[]}),await n.TrelloLists.put("lists",JSON.stringify(a)),{lists:a}}async function G(e){let{request:t,route:n,env:s}=e,r=JSON.parse(await s.TrelloLists.get("lists")),{list_id:i}=n.pathname.groups,a=new URLSearchParams(await t.text()),c=Object.fromEntries(a)["label-"+i],h=r.find(m=>m.id===i),b={label:c,id:$({}),list:i};return h.cards.push(b),await s.TrelloLists.put("lists",JSON.stringify(r)),{lists:r}}async function X(e){let{env:t,route:n}=e,s=n.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(a=>a.id===s)}}async function K(e){let{env:t,route:n}=e,{list_id:s,id:r}=n.pathname.groups,a=JSON.parse(await t.TrelloLists.get("lists")).find(c=>c.id===s),l=a.cards.find(c=>c.id===r);return{list:a,card:l}}async function Q(e){let{request:t,env:n}=e,s=new URLSearchParams(await t.text()),r=Object.fromEntries(s),{from:i,to:a,movedCard:l,index:c,prevIndex:h}=r,[,b]=i.split("-"),[,m]=a.split("-"),x=l.replace("card-",""),p=JSON.parse(await n.TrelloLists.get("lists"));try{if(i==="board"&&a==="board"){let u=p[h];p=p.filter(w=>w.id!==u.id),p.splice(c,0,u),await n.TrelloLists.put("lists",JSON.stringify(p))}else{let u=JSON.parse(JSON.stringify(p)),w=u.find(g=>g.id===b),H=w.cards.find(g=>g.id==x);H.list=m,w.cards=w.cards.filter(g=>g.id!=x),u.find(g=>g.id==m).cards.splice(Number(c),0,H),p=u,await n.TrelloLists.put("lists",JSON.stringify(p))}}catch(u){console.error(u)}return{lists:p}}var pt="cacheName",Y="0",T;T||(T=new N("trelloClone",T));self.addEventListener("install",e=>{e.waitUntil(caches.open(Y+pt).then(t=>t.addAll(["/","/db/lists"])))});self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(t=>Promise.all(t.filter(n=>n.indexOf(Y)!==0).map(n=>caches.delete(n)))))});self.addEventListener("fetch",e=>e.respondWith((async()=>{let t=e.request,n={TrelloLists:T},s=void 0;return new P([["/",async i=>_(await D(i))],["/lists",async i=>d(f(await V(i))),"POST"],["/lists/add",z],["/lists/cancel",()=>d(S)],["/lists/:list_id",async i=>d(f(await B(i))),"DELETE"],["/cards/move",async i=>d(f(await Q(i))),"POST"],["/cards/new/:list_id",async i=>d(f(await G(i))),"POST"],["/cards/cancel/:id",async i=>d(C(await X(i)))],["/cards/edit/:list_id/:id",async i=>d(U(await K(i)))],["/cards/:list_id/:id",async i=>d(y(await q(i))),"PUT"],["/cards/:list_id/:id",async i=>(await W(i),d("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async i=>d(y(await F(i)))]]).handle({request:t,env:n,ctx:s})})()));

@@ -34,7 +34,9 @@ if (!DB) DB = new Database("trelloClone", DB);
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(version + cacheName).then((cache) => cache.addAll(["/"])),
+    caches
+      .open(version + cacheName)
+      .then((cache) => cache.addAll(["/", "/db/lists"])),
   );
 });
 
@@ -57,7 +59,7 @@ self.addEventListener("fetch", (event) => {
     (async () => {
       const request = event.request;
       const env = {
-        TrelloList: DB,
+        TrelloLists: DB,
       };
       const ctx = this as unknown as ExecutionContext;
       const router = new Router([

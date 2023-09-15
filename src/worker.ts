@@ -21,6 +21,7 @@ import {
   deleteList,
   move,
   resetData,
+  jsonHandler,
 } from "./handlers";
 
 export default {
@@ -79,6 +80,25 @@ export default {
         "/cards/cancel-edit/:list_id/:id",
         async (args) =>
           HTMLResponse(Card(await cancelEdit(args as HandlerArgs))),
+      ],
+      [
+        "/db/:key",
+        async (args) =>
+          new Response(await jsonHandler(args as HandlerArgs), {
+            headers: {
+              "content-type": "application/json",
+            },
+          }),
+      ],
+      [
+        "/db/:key",
+        async (args) =>
+          new Response(await jsonHandler(args as HandlerArgs), {
+            headers: {
+              "content-type": "application/json",
+            },
+          }),
+        "POST",
       ],
     ]);
     return router.handle({ request, env, ctx });

@@ -1,4 +1,4 @@
-var O=Object.freeze,Q=Object.defineProperty;var L=(n,t)=>O(Q(n,"raw",{value:O(t||n.slice())}));var N=class{routes;constructor(n=[]){this.routes=[];for(let t of n)this.register(...t)}register(n,t,e="GET"){this.routes.push({path:new URLPattern({pathname:n}),method:e,handler:t})}handle(n){let{request:t}=n;for(let e of this.routes){if(e.method!==t.method)continue;let r=e.path.exec({pathname:new URL(t.url).pathname});if(r)return e.handler({...n,route:r})}return new Response("Not found",{status:404})}};var A={styles:`body {
+var A=Object.freeze,Z=Object.defineProperty;var L=(n,t)=>A(Z(n,"raw",{value:A(t||n.slice())}));var H=class{routes;constructor(n=[]){this.routes=[];for(let t of n)this.register(...t)}register(n,t,e="GET"){this.routes.push({path:new URLPattern({pathname:n}),method:e,handler:t})}handle(n){let{request:t}=n;for(let e of this.routes){if(e.method!==t.method)continue;let r=e.path.exec({pathname:new URL(t.url).pathname});if(r)return e.handler({...n,route:r})}return new Response("Not found",{status:404})}};var N={styles:`body {
   margin: 0;
   padding: 0;
   font-family:
@@ -232,7 +232,7 @@ code {
 .hidden {
   display: none;
 }
-`};function a(n,...t){return String.raw({raw:n},...t)}function $(n){let t="";do t=Math.random().toString(16).substring(2,15);while(n[t]);return t}async function d(n){return new Response(tt(n),{headers:{"content-type":"text/html;charset=UTF-8"}})}function tt(n){return n=n.replace(/(\r\n|\n|\r)/gm,"").replace(/\s+/g," ").trim(),n}var H;function E(n){return a(H||(H=L([`
+`};function s(n,...t){return String.raw({raw:n},...t)}function $(n){let t="";do t=Math.random().toString(16).substring(2,15);while(n[t]);return t}async function d(n){return new Response(nt(n),{headers:{"content-type":"text/html;charset=UTF-8"}})}function nt(n){return n=n.replace(/(\r\n|\n|\r)/gm,"").replace(/\s+/g," ").trim(),n}var E;function j(n){return s(E||(E=L([`
     <!doctype html>
     <html lang="en">
       <head>
@@ -273,7 +273,7 @@ code {
         `,`
       </body>
     </html>
-  `])),A.styles,n.template)}var k=a`
+  `])),N.styles,n.template)}var k=s`
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -286,7 +286,7 @@ code {
       d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
     />
   </svg>
-`,v=a`
+`,v=s`
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -299,7 +299,7 @@ code {
       d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
     />
   </svg>
-`,J=a`
+`,J=s`
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -312,7 +312,7 @@ code {
       d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
     />
   </svg>
-`;function nt(n){let{list:t}=n;return a`
+`;function et(n){let{list:t}=n;return s`
     <button
       class="toggle-add-card"
       id="btn-add-card-${t.id}"
@@ -322,7 +322,7 @@ code {
       ${k}
       <span> Add another card</span>
     </button>
-  `}var S=nt;function et(n){let{list:t}=n;return a`
+  `}var S=et;function it(n){let{list:t}=n;return s`
     <div class="edit-card hidden" id="add-card-${t.id}">
       <div class="card">
         <textarea
@@ -357,7 +357,7 @@ code {
         </div>
       </div>
     </div>
-  `}var j=et;var it=a`
+  `}var P=it;var rt=s`
   <div
     id="add-list"
     class="add-list-button"
@@ -369,7 +369,7 @@ code {
     ${k} Add another list
     <div></div>
   </div>
-`,T=it;function rt(n){let{list:t,card:e}=n;return a`
+`,T=rt;function st(n){let{list:t,card:e}=n;return s`
     <div
       class="card"
       id="card-${e.id}"
@@ -391,16 +391,16 @@ code {
       </div>
       ${e.label}
     </div>
-  `}var y=rt;function at(n){let t=a``;for(let e of n.cards)t+=a`${y({list:n,card:e})}`;return t}function st(n){let{lists:t}=n,e=a``;for(let r of t)e+=a`
+  `}var y=st;function at(n){let t=s``;for(let e of n.cards)t+=s`${y({list:n,card:e})}`;return t}function ot(n){let{lists:t}=n,e=s``;for(let r of t)e+=s`
       <div class="list" draggable="true" id="lists-list-${r.id}">
         <div class="list-title">${r.name}</div>
 
         <div class="list-cards sortable" id="list-${r.id}">
           ${at(r)}
         </div>
-        ${S({list:r})} ${j({list:r})}
+        ${S({list:r})} ${P({list:r})}
       </div>
-    `;return e+=a` <div class="add-list">${T}</div> `,e}var h=st;var P;function ot(n){return d(E({template:a(P||(P=L([`
+    `;return e+=s` <div class="add-list">${T}</div> `,e}var f=ot;var _;function dt(n){return d(j({template:s(_||(_=L([`
         <div class="app">
           <div class="header">htmx Trello Clone</div>
 
@@ -438,7 +438,7 @@ code {
             }
           });
         <\/script>
-      `])),h(n))}))}var _=ot;function dt(){return d(a`
+      `])),f(n))}))}var z=dt;function lt(){return d(s`
     <div id="add-list" class="add-list-editor">
       <form hx-post="/lists" hx-target="#board">
         <div class="list-title-edit">
@@ -474,7 +474,7 @@ code {
         </div>
       </form>
     </div>
-  `)}var z=dt;function lt(n){let{list:t,card:e}=n;return a`
+  `)}var I=lt;function ct(n){let{list:t,card:e}=n;return s`
     <div id="edit-card" class="edit-card">
       <form
         hx-put="/cards/${t.id}/${e.id}"
@@ -525,7 +525,7 @@ ${e.label}</textarea
         </div>
       </form>
     </div>
-  `}var I=lt;var M={sw:`var O=Object.freeze,Z=Object.defineProperty;var L=(e,t)=>O(Z(e,"raw",{value:O(t||e.slice())}));var $=class{name="";store;constructor(t,n){if(n)return n;this.name=t,this.store=new Promise((r,s)=>{let i=indexedDB.open(this.name,1);i.onerror=()=>s(i.error),i.onupgradeneeded=()=>i.result.createObjectStore(t),i.onsuccess=()=>r(i.result)})}async get(t){let n=await this.store;return new Promise((r,s)=>{let i=n.transaction("keyval","readonly"),a=i.objectStore(this.name).get(t);i.oncomplete=()=>r(a.result),i.onerror=()=>s(i.error)})}async put(t,n){let r=await this.store;return new Promise((s,i)=>{let a=r.transaction("keyval","readwrite"),l=a.objectStore(this.name).put(n,t);a.oncomplete=()=>s(l),a.onerror=()=>i(a.error)})}async delete(t){let n=await this.store;return new Promise((r,s)=>{let i=n.transaction("keyval","readonly"),a=i.objectStore(this.name).delete(t);i.oncomplete=()=>r(a),i.onerror=()=>s(i.error)})}},N=$;var E=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,n="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:n,handler:t})}handle(e){let{request:t}=e;for(let n of this.routes){if(n.method!==t.method)continue;let r=n.path.exec({pathname:new URL(t.url).pathname});if(r)return n.handler({...e,route:r})}return new Response("Not found",{status:404})}};var P={styles:\`body {
+  `}var M=ct;var R={sw:`var O=Object.freeze,Z=Object.defineProperty;var L=(e,t)=>O(Z(e,"raw",{value:O(t||e.slice())}));var A=class{name="";store=Promise.resolve();constructor(t,n){if(console.log("setting up"),n)return n;this.name=t,this.store=new Promise((s,r)=>{let i=indexedDB.open(this.name,1);i.onerror=()=>r(i.error),i.onupgradeneeded=()=>i.result.createObjectStore(this.name),i.onsuccess=()=>s(i.result)})}async get(t){let n=await this.store;return new Promise((s,r)=>{let i=n.transaction("keyval","readonly"),a=i.objectStore(this.name).get(t);i.oncomplete=()=>s(a.result),i.onerror=()=>r(i.error)})}async put(t,n){let s=await this.store;return new Promise((r,i)=>{let a=s.transaction("keyval","readwrite"),l=a.objectStore(this.name).put(n,t);a.oncomplete=()=>r(l),a.onerror=()=>i(a.error)})}async delete(t){let n=await this.store;return new Promise((s,r)=>{let i=n.transaction("keyval","readonly"),a=i.objectStore(this.name).delete(t);i.oncomplete=()=>s(a),i.onerror=()=>r(i.error)})}},N=A;var P=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,n="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:n,handler:t})}handle(e){let{request:t}=e;for(let n of this.routes){if(n.method!==t.method)continue;let s=n.path.exec({pathname:new URL(t.url).pathname});if(s)return n.handler({...e,route:s})}return new Response("Not found",{status:404})}};var E={styles:\`body {
   margin: 0;
   padding: 0;
   font-family:
@@ -759,7 +759,7 @@ code {
 .hidden {
   display: none;
 }
-\`};function o(e,...t){return String.raw({raw:e},...t)}function A(e){let t="";do t=Math.random().toString(16).substring(2,15);while(e[t]);return t}async function d(e){return new Response(et(e),{headers:{"content-type":"text/html;charset=UTF-8"}})}function et(e){return e=e.replace(/(\\r\\n|\\n|\\r)/gm,"").replace(/\\s+/g," ").trim(),e}var I;function J(e){return o(I||(I=L([\`
+\`};function o(e,...t){return String.raw({raw:e},...t)}function $(e){let t="";do t=Math.random().toString(16).substring(2,15);while(e[t]);return t}async function d(e){return new Response(et(e),{headers:{"content-type":"text/html;charset=UTF-8"}})}function et(e){return e=e.replace(/(\\r\\n|\\n|\\r)/gm,"").replace(/\\s+/g," ").trim(),e}var I;function J(e){return o(I||(I=L([\`
     <!doctype html>
     <html lang="en">
       <head>
@@ -800,7 +800,7 @@ code {
         \`,\`
       </body>
     </html>
-  \`])),P.styles,e.template)}var k=o\`
+  \`])),E.styles,e.template)}var k=o\`
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -884,7 +884,7 @@ code {
         </div>
       </div>
     </div>
-  \`}var M=it;var rt=o\`
+  \`}var M=it;var st=o\`
   <div
     id="add-list"
     class="add-list-button"
@@ -896,7 +896,7 @@ code {
     \${k} Add another list
     <div></div>
   </div>
-\`,S=rt;function st(e){let{list:t,card:n}=e;return o\`
+\`,S=st;function rt(e){let{list:t,card:n}=e;return o\`
     <div
       class="card"
       id="card-\${n.id}"
@@ -918,14 +918,14 @@ code {
       </div>
       \${n.label}
     </div>
-  \`}var y=st;function at(e){let t=o\`\`;for(let n of e.cards)t+=o\`\${y({list:e,card:n})}\`;return t}function ot(e){let{lists:t}=e,n=o\`\`;for(let r of t)n+=o\`
-      <div class="list" draggable="true" id="lists-list-\${r.id}">
-        <div class="list-title">\${r.name}</div>
+  \`}var y=rt;function at(e){let t=o\`\`;for(let n of e.cards)t+=o\`\${y({list:e,card:n})}\`;return t}function ot(e){let{lists:t}=e,n=o\`\`;for(let s of t)n+=o\`
+      <div class="list" draggable="true" id="lists-list-\${s.id}">
+        <div class="list-title">\${s.name}</div>
 
-        <div class="list-cards sortable" id="list-\${r.id}">
-          \${at(r)}
+        <div class="list-cards sortable" id="list-\${s.id}">
+          \${at(s)}
         </div>
-        \${C({list:r})} \${M({list:r})}
+        \${C({list:s})} \${M({list:s})}
       </div>
     \`;return n+=o\` <div class="add-list">\${S}</div> \`,n}var f=ot;var R;function dt(e){return d(J({template:o(R||(R=L([\`
         <div class="app">
@@ -1052,5 +1052,5 @@ code {
         </div>
       </form>
     </div>
-  \`}var U=ct;async function D(e){let{env:t}=e;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function B(e){let{route:t,env:n}=e,{list_id:r}=t.pathname.groups,s=JSON.parse(await n.TrelloLists.get("lists"));return s=s.filter(i=>i.id!==r),await n.TrelloLists.put("lists",JSON.stringify(s)),{lists:s}}async function q(e){let{request:t,env:n,route:r}=e,{list_id:s,id:i}=r.pathname.groups,a=new URLSearchParams(await t.text()),l=Object.fromEntries(a),{label:c}=l,h=JSON.parse(await n.TrelloLists.get("lists")),b=h.find(x=>x.id===s),m=b.cards.find(x=>x.id===i);return m.label=c,await n.TrelloLists.put("lists",JSON.stringify(h)),{list:b,card:m}}async function F(e){let{env:t,route:n}=e,{list_id:r,id:s}=n.pathname.groups,a=JSON.parse(await t.TrelloLists.get("lists")).find(c=>c.id===r),l=a.cards.find(c=>c.id===s);return{list:a,card:l}}async function W(e){let{env:t,route:n}=e,{list_id:r,id:s}=n.pathname.groups,i=JSON.parse(await t.TrelloLists.get("lists")),a=i.find(l=>l.id===r);a.cards=a.cards.filter(l=>l.id!==s),await t.TrelloLists.put("lists",JSON.stringify(i))}async function V(e){let{request:t,env:n}=e,r=new URLSearchParams(await t.text()),s=Object.fromEntries(r),{name:i}=s,a=JSON.parse(await n.TrelloLists.get("lists"));return a.push({name:i,id:A({}),cards:[]}),await n.TrelloLists.put("lists",JSON.stringify(a)),{lists:a}}async function G(e){let{request:t,route:n,env:r}=e,s=JSON.parse(await r.TrelloLists.get("lists")),{list_id:i}=n.pathname.groups,a=new URLSearchParams(await t.text()),c=Object.fromEntries(a)["label-"+i],h=s.find(m=>m.id===i),b={label:c,id:A({}),list:i};return h.cards.push(b),await r.TrelloLists.put("lists",JSON.stringify(s)),{lists:s}}async function X(e){let{env:t,route:n}=e,r=n.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(a=>a.id===r)}}async function K(e){let{env:t,route:n}=e,{list_id:r,id:s}=n.pathname.groups,a=JSON.parse(await t.TrelloLists.get("lists")).find(c=>c.id===r),l=a.cards.find(c=>c.id===s);return{list:a,card:l}}async function Q(e){let{request:t,env:n}=e,r=new URLSearchParams(await t.text()),s=Object.fromEntries(r),{from:i,to:a,movedCard:l,index:c,prevIndex:h}=s,[,b]=i.split("-"),[,m]=a.split("-"),x=l.replace("card-",""),p=JSON.parse(await n.TrelloLists.get("lists"));try{if(i==="board"&&a==="board"){let u=p[h];p=p.filter(w=>w.id!==u.id),p.splice(c,0,u),await n.TrelloLists.put("lists",JSON.stringify(p))}else{let u=JSON.parse(JSON.stringify(p)),w=u.find(g=>g.id===b),H=w.cards.find(g=>g.id==x);H.list=m,w.cards=w.cards.filter(g=>g.id!=x),u.find(g=>g.id==m).cards.splice(Number(c),0,H),p=u,await n.TrelloLists.put("lists",JSON.stringify(p))}}catch(u){console.error(u)}return{lists:p}}var pt="cacheName",Y="0",T;T||(T=new N("trelloClone",T));self.addEventListener("install",e=>{e.waitUntil(caches.open(Y+pt).then(t=>t.addAll(["/"])))});self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(t=>Promise.all(t.filter(n=>n.indexOf(Y)!==0).map(n=>caches.delete(n)))))});self.addEventListener("fetch",e=>e.respondWith((async()=>{let t=e.request,n={TrelloList:T},r=void 0;return new E([["/",async i=>_(await D(i))],["/lists",async i=>d(f(await V(i))),"POST"],["/lists/add",z],["/lists/cancel",()=>d(S)],["/lists/:list_id",async i=>d(f(await B(i))),"DELETE"],["/cards/move",async i=>d(f(await Q(i))),"POST"],["/cards/new/:list_id",async i=>d(f(await G(i))),"POST"],["/cards/cancel/:id",async i=>d(C(await X(i)))],["/cards/edit/:list_id/:id",async i=>d(U(await K(i)))],["/cards/:list_id/:id",async i=>d(y(await q(i))),"PUT"],["/cards/:list_id/:id",async i=>(await W(i),d("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async i=>d(y(await F(i)))]]).handle({request:t,env:n,ctx:r})})()));
-`};function pt(){return new Response(M.sw,{headers:{"content-type":"text/javascript;charset=UTF-8"}})}var R=pt;async function U(n){let t='[{"name":"To Do","id":"1","cards":[{"id":"2","label":"Second Card","list":"1"},{"id":"1","label":"First Card","list":"1"},{"label":"Third Card","id":"0bfdc1222adc9","list":"1"}]},{"name":"Doing","id":"2","cards":[{"id":"3","label":"First Card","list":2},{"id":"4","label":"Second Card","list":"2"}]}]';await n.env.TrelloLists.get("lists")!=t&&await n.env.TrelloLists.put("lists",'[{"name":"To Do","id":"1","cards":[{"id":"2","label":"Second Card","list":"1"},{"id":"1","label":"First Card","list":"1"},{"label":"Third Card","id":"0bfdc1222adc9","list":"1"}]},{"name":"Doing","id":"2","cards":[{"id":"3","label":"First Card","list":2},{"id":"4","label":"Second Card","list":"2"}]}]')}async function q(n){let{env:t}=n;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function D(n){let{route:t,env:e}=n,{list_id:r}=t.pathname.groups,i=JSON.parse(await e.TrelloLists.get("lists"));return i=i.filter(o=>o.id!==r),await e.TrelloLists.put("lists",JSON.stringify(i)),{lists:i}}async function B(n){let{request:t,env:e,route:r}=n,{list_id:i,id:o}=r.pathname.groups,s=new URLSearchParams(await t.text()),c=Object.fromEntries(s),{label:l}=c,m=JSON.parse(await e.TrelloLists.get("lists")),b=m.find(x=>x.id===i),g=b.cards.find(x=>x.id===o);return g.label=l,await e.TrelloLists.put("lists",JSON.stringify(m)),{list:b,card:g}}async function F(n){let{env:t,route:e}=n,{list_id:r,id:i}=e.pathname.groups,s=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===r),c=s.cards.find(l=>l.id===i);return{list:s,card:c}}async function W(n){let{env:t,route:e}=n,{list_id:r,id:i}=e.pathname.groups,o=JSON.parse(await t.TrelloLists.get("lists")),s=o.find(c=>c.id===r);s.cards=s.cards.filter(c=>c.id!==i),await t.TrelloLists.put("lists",JSON.stringify(o))}async function V(n){let{request:t,env:e}=n,r=new URLSearchParams(await t.text()),i=Object.fromEntries(r),{name:o}=i,s=JSON.parse(await e.TrelloLists.get("lists"));return s.push({name:o,id:$({}),cards:[]}),await e.TrelloLists.put("lists",JSON.stringify(s)),{lists:s}}async function X(n){let{request:t,route:e,env:r}=n,i=JSON.parse(await r.TrelloLists.get("lists")),{list_id:o}=e.pathname.groups,s=new URLSearchParams(await t.text()),l=Object.fromEntries(s)["label-"+o],m=i.find(g=>g.id===o),b={label:l,id:$({}),list:o};return m.cards.push(b),await r.TrelloLists.put("lists",JSON.stringify(i)),{lists:i}}async function G(n){let{env:t,route:e}=n,r=e.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(s=>s.id===r)}}async function Y(n){let{env:t,route:e}=n,{list_id:r,id:i}=e.pathname.groups,s=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===r),c=s.cards.find(l=>l.id===i);return{list:s,card:c}}async function K(n){let{request:t,env:e}=n,r=new URLSearchParams(await t.text()),i=Object.fromEntries(r),{from:o,to:s,movedCard:c,index:l,prevIndex:m}=i,[,b]=o.split("-"),[,g]=s.split("-"),x=c.replace("card-",""),p=JSON.parse(await e.TrelloLists.get("lists"));try{if(o==="board"&&s==="board"){let u=p[m];p=p.filter(w=>w.id!==u.id),p.splice(l,0,u),await e.TrelloLists.put("lists",JSON.stringify(p))}else{let u=JSON.parse(JSON.stringify(p)),w=u.find(f=>f.id===b),C=w.cards.find(f=>f.id==x);C.list=g,w.cards=w.cards.filter(f=>f.id!=x),u.find(f=>f.id==g).cards.splice(Number(l),0,C),p=u,await e.TrelloLists.put("lists",JSON.stringify(p))}}catch(u){console.error(u)}return{lists:p}}var fn={async fetch(n,t,e){return new N([["/",async i=>_(await q(i))],["/sw.js",R],["/lists",async i=>d(h(await V(i))),"POST"],["/lists/add",z],["/lists/cancel",()=>d(T)],["/lists/:list_id",async i=>d(h(await D(i))),"DELETE"],["/cards/move",async i=>d(h(await K(i))),"POST"],["/cards/new/:list_id",async i=>d(h(await X(i))),"POST"],["/cards/cancel/:id",async i=>d(S(await G(i)))],["/cards/edit/:list_id/:id",async i=>d(I(await Y(i)))],["/cards/:list_id/:id",async i=>d(y(await B(i))),"PUT"],["/cards/:list_id/:id",async i=>(await W(i),d("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async i=>d(y(await F(i)))]]).handle({request:n,env:t,ctx:e})},async scheduled(n,t,e){return U({event:n,env:t,ctx:e})}};export{fn as default};
+  \`}var U=ct;async function D(e){let{env:t}=e;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function B(e){let{route:t,env:n}=e,{list_id:s}=t.pathname.groups,r=JSON.parse(await n.TrelloLists.get("lists"));return r=r.filter(i=>i.id!==s),await n.TrelloLists.put("lists",JSON.stringify(r)),{lists:r}}async function q(e){let{request:t,env:n,route:s}=e,{list_id:r,id:i}=s.pathname.groups,a=new URLSearchParams(await t.text()),l=Object.fromEntries(a),{label:c}=l,h=JSON.parse(await n.TrelloLists.get("lists")),b=h.find(x=>x.id===r),m=b.cards.find(x=>x.id===i);return m.label=c,await n.TrelloLists.put("lists",JSON.stringify(h)),{list:b,card:m}}async function F(e){let{env:t,route:n}=e,{list_id:s,id:r}=n.pathname.groups,a=JSON.parse(await t.TrelloLists.get("lists")).find(c=>c.id===s),l=a.cards.find(c=>c.id===r);return{list:a,card:l}}async function W(e){let{env:t,route:n}=e,{list_id:s,id:r}=n.pathname.groups,i=JSON.parse(await t.TrelloLists.get("lists")),a=i.find(l=>l.id===s);a.cards=a.cards.filter(l=>l.id!==r),await t.TrelloLists.put("lists",JSON.stringify(i))}async function V(e){let{request:t,env:n}=e,s=new URLSearchParams(await t.text()),r=Object.fromEntries(s),{name:i}=r,a=JSON.parse(await n.TrelloLists.get("lists"));return a.push({name:i,id:$({}),cards:[]}),await n.TrelloLists.put("lists",JSON.stringify(a)),{lists:a}}async function G(e){let{request:t,route:n,env:s}=e,r=JSON.parse(await s.TrelloLists.get("lists")),{list_id:i}=n.pathname.groups,a=new URLSearchParams(await t.text()),c=Object.fromEntries(a)["label-"+i],h=r.find(m=>m.id===i),b={label:c,id:$({}),list:i};return h.cards.push(b),await s.TrelloLists.put("lists",JSON.stringify(r)),{lists:r}}async function X(e){let{env:t,route:n}=e,s=n.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(a=>a.id===s)}}async function K(e){let{env:t,route:n}=e,{list_id:s,id:r}=n.pathname.groups,a=JSON.parse(await t.TrelloLists.get("lists")).find(c=>c.id===s),l=a.cards.find(c=>c.id===r);return{list:a,card:l}}async function Q(e){let{request:t,env:n}=e,s=new URLSearchParams(await t.text()),r=Object.fromEntries(s),{from:i,to:a,movedCard:l,index:c,prevIndex:h}=r,[,b]=i.split("-"),[,m]=a.split("-"),x=l.replace("card-",""),p=JSON.parse(await n.TrelloLists.get("lists"));try{if(i==="board"&&a==="board"){let u=p[h];p=p.filter(w=>w.id!==u.id),p.splice(c,0,u),await n.TrelloLists.put("lists",JSON.stringify(p))}else{let u=JSON.parse(JSON.stringify(p)),w=u.find(g=>g.id===b),H=w.cards.find(g=>g.id==x);H.list=m,w.cards=w.cards.filter(g=>g.id!=x),u.find(g=>g.id==m).cards.splice(Number(c),0,H),p=u,await n.TrelloLists.put("lists",JSON.stringify(p))}}catch(u){console.error(u)}return{lists:p}}var pt="cacheName",Y="0",T;T||(T=new N("trelloClone",T));self.addEventListener("install",e=>{e.waitUntil(caches.open(Y+pt).then(t=>t.addAll(["/","/db/lists"])))});self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(t=>Promise.all(t.filter(n=>n.indexOf(Y)!==0).map(n=>caches.delete(n)))))});self.addEventListener("fetch",e=>e.respondWith((async()=>{let t=e.request,n={TrelloLists:T},s=void 0;return new P([["/",async i=>_(await D(i))],["/lists",async i=>d(f(await V(i))),"POST"],["/lists/add",z],["/lists/cancel",()=>d(S)],["/lists/:list_id",async i=>d(f(await B(i))),"DELETE"],["/cards/move",async i=>d(f(await Q(i))),"POST"],["/cards/new/:list_id",async i=>d(f(await G(i))),"POST"],["/cards/cancel/:id",async i=>d(C(await X(i)))],["/cards/edit/:list_id/:id",async i=>d(U(await K(i)))],["/cards/:list_id/:id",async i=>d(y(await q(i))),"PUT"],["/cards/:list_id/:id",async i=>(await W(i),d("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async i=>d(y(await F(i)))]]).handle({request:t,env:n,ctx:s})})()));
+`};function ut(){return new Response(R.sw,{headers:{"content-type":"text/javascript;charset=UTF-8"}})}var U=ut;async function q(n){let t='[{"name":"To Do","id":"1","cards":[{"id":"2","label":"Second Card","list":"1"},{"id":"1","label":"First Card","list":"1"},{"label":"Third Card","id":"0bfdc1222adc9","list":"1"}]},{"name":"Doing","id":"2","cards":[{"id":"3","label":"First Card","list":2},{"id":"4","label":"Second Card","list":"2"}]}]';await n.env.TrelloLists.get("lists")!=t&&await n.env.TrelloLists.put("lists",'[{"name":"To Do","id":"1","cards":[{"id":"2","label":"Second Card","list":"1"},{"id":"1","label":"First Card","list":"1"},{"label":"Third Card","id":"0bfdc1222adc9","list":"1"}]},{"name":"Doing","id":"2","cards":[{"id":"3","label":"First Card","list":2},{"id":"4","label":"Second Card","list":"2"}]}]')}async function D(n){let{env:t}=n;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function B(n){let{route:t,env:e}=n,{list_id:r}=t.pathname.groups,i=JSON.parse(await e.TrelloLists.get("lists"));return i=i.filter(o=>o.id!==r),await e.TrelloLists.put("lists",JSON.stringify(i)),{lists:i}}async function F(n){let{request:t,env:e,route:r}=n,{list_id:i,id:o}=r.pathname.groups,a=new URLSearchParams(await t.text()),c=Object.fromEntries(a),{label:l}=c,m=JSON.parse(await e.TrelloLists.get("lists")),b=m.find(x=>x.id===i),g=b.cards.find(x=>x.id===o);return g.label=l,await e.TrelloLists.put("lists",JSON.stringify(m)),{list:b,card:g}}async function W(n){let{env:t,route:e}=n,{list_id:r,id:i}=e.pathname.groups,a=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===r),c=a.cards.find(l=>l.id===i);return{list:a,card:c}}async function V(n){let{env:t,route:e}=n,{list_id:r,id:i}=e.pathname.groups,o=JSON.parse(await t.TrelloLists.get("lists")),a=o.find(c=>c.id===r);a.cards=a.cards.filter(c=>c.id!==i),await t.TrelloLists.put("lists",JSON.stringify(o))}async function X(n){let{request:t,env:e}=n,r=new URLSearchParams(await t.text()),i=Object.fromEntries(r),{name:o}=i,a=JSON.parse(await e.TrelloLists.get("lists"));return a.push({name:o,id:$({}),cards:[]}),await e.TrelloLists.put("lists",JSON.stringify(a)),{lists:a}}async function G(n){let{request:t,route:e,env:r}=n,i=JSON.parse(await r.TrelloLists.get("lists")),{list_id:o}=e.pathname.groups,a=new URLSearchParams(await t.text()),l=Object.fromEntries(a)["label-"+o],m=i.find(g=>g.id===o),b={label:l,id:$({}),list:o};return m.cards.push(b),await r.TrelloLists.put("lists",JSON.stringify(i)),{lists:i}}async function Y(n){let{env:t,route:e}=n,r=e.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(a=>a.id===r)}}async function K(n){let{env:t,route:e}=n,{list_id:r,id:i}=e.pathname.groups,a=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===r),c=a.cards.find(l=>l.id===i);return{list:a,card:c}}async function Q(n){let{request:t,env:e}=n,r=new URLSearchParams(await t.text()),i=Object.fromEntries(r),{from:o,to:a,movedCard:c,index:l,prevIndex:m}=i,[,b]=o.split("-"),[,g]=a.split("-"),x=c.replace("card-",""),p=JSON.parse(await e.TrelloLists.get("lists"));try{if(o==="board"&&a==="board"){let u=p[m];p=p.filter(w=>w.id!==u.id),p.splice(l,0,u),await e.TrelloLists.put("lists",JSON.stringify(p))}else{let u=JSON.parse(JSON.stringify(p)),w=u.find(h=>h.id===b),O=w.cards.find(h=>h.id==x);O.list=g,w.cards=w.cards.filter(h=>h.id!=x),u.find(h=>h.id==g).cards.splice(Number(l),0,O),p=u,await e.TrelloLists.put("lists",JSON.stringify(p))}}catch(u){console.error(u)}return{lists:p}}async function C(n){let{route:t,env:e}=n,r=t.pathname.groups.key;return await e.TrelloLists.get(r)}var fn={async fetch(n,t,e){return new H([["/",async i=>z(await D(i))],["/sw.js",U],["/lists",async i=>d(f(await X(i))),"POST"],["/lists/add",I],["/lists/cancel",()=>d(T)],["/lists/:list_id",async i=>d(f(await B(i))),"DELETE"],["/cards/move",async i=>d(f(await Q(i))),"POST"],["/cards/new/:list_id",async i=>d(f(await G(i))),"POST"],["/cards/cancel/:id",async i=>d(S(await Y(i)))],["/cards/edit/:list_id/:id",async i=>d(M(await K(i)))],["/cards/:list_id/:id",async i=>d(y(await F(i))),"PUT"],["/cards/:list_id/:id",async i=>(await V(i),d("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async i=>d(y(await W(i)))],["/db/:key",async i=>new Response(await C(i),{headers:{"content-type":"application/json"}})],["/db/:key",async i=>new Response(await C(i),{headers:{"content-type":"application/json"}}),"POST"]]).handle({request:n,env:t,ctx:e})},async scheduled(n,t,e){return q({event:n,env:t,ctx:e})}};export{fn as default};
