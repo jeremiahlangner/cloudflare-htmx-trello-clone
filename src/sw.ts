@@ -36,7 +36,7 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches
       .open(version + cacheName)
-      .then((cache) => cache.addAll(["/", "/db/lists"])),
+      .then((cache) => cache.addAll(["/db/lists"])),
   );
 });
 
@@ -63,7 +63,6 @@ self.addEventListener("fetch", (event) => {
       };
       const ctx = this as unknown as ExecutionContext;
       const router = new Router([
-        ["/", async (args) => Index(await getLists(args as HandlerArgs))],
         [
           "/lists",
           async (args) =>
