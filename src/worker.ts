@@ -83,13 +83,11 @@ export default {
       ],
       [
         "/db/:key",
-        async (args) =>
-          JSONResponse(await jsonHandler(args as HandlerArgs))
+        async (args) => JSONResponse(await jsonHandler(args as HandlerArgs)),
       ],
       [
         "/db/:key",
-        async (args) =>
-          JSONResponse(await jsonHandler(args as HandlerArgs)),
+        async (args) => JSONResponse(await jsonHandler(args as HandlerArgs)),
         "POST",
       ],
     ]);

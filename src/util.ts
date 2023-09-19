@@ -20,13 +20,12 @@ async function HTMLResponse(response: string): Promise<Response> {
 }
 
 async function JSONResponse(response: string | any): Promise<Response> {
-  if (typeof response !== 'string') response = JSON.stringify(response);
+  if (typeof response !== "string") response = JSON.stringify(response);
   return new Response(response, {
     headers: {
       "content-type": "application/json",
     },
   });
 }
-
 
 export { hash, html, HTMLResponse, JSONResponse };

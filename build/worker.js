@@ -1,4 +1,4 @@
-var A=Object.freeze,Z=Object.defineProperty;var L=(n,t)=>A(Z(n,"raw",{value:A(t||n.slice())}));var H=class{routes;constructor(n=[]){this.routes=[];for(let t of n)this.register(...t)}register(n,t,e="GET"){this.routes.push({path:new URLPattern({pathname:n}),method:e,handler:t})}handle(n){let{request:t}=n;for(let e of this.routes){if(e.method!==t.method)continue;let r=e.path.exec({pathname:new URL(t.url).pathname});if(r)return e.handler({...n,route:r})}return new Response("Not found",{status:404})}};var N={styles:`body {
+var A=Object.freeze,tt=Object.defineProperty;var L=(t,n)=>A(tt(t,"raw",{value:A(n||t.slice())}));var H=class{routes;constructor(t=[]){this.routes=[];for(let n of t)this.register(...n)}register(t,n,e="GET"){this.routes.push({path:new URLPattern({pathname:t}),method:e,handler:n})}handle(t){let{request:n}=t;for(let e of this.routes){if(e.method!==n.method)continue;let r=e.path.exec({pathname:new URL(n.url).pathname});if(r)return e.handler({...t,route:r})}return new Response("Not found",{status:404})}};var J={styles:`body {
   margin: 0;
   padding: 0;
   font-family:
@@ -232,7 +232,7 @@ code {
 .hidden {
   display: none;
 }
-`};function s(n,...t){return String.raw({raw:n},...t)}function $(n){let t="";do t=Math.random().toString(16).substring(2,15);while(n[t]);return t}async function d(n){return new Response(nt(n),{headers:{"content-type":"text/html;charset=UTF-8"}})}function nt(n){return n=n.replace(/(\r\n|\n|\r)/gm,"").replace(/\s+/g," ").trim(),n}var E;function j(n){return s(E||(E=L([`
+`};function s(t,...n){return String.raw({raw:t},...n)}function $(t){let n="";do n=Math.random().toString(16).substring(2,15);while(t[n]);return n}async function d(t){return new Response(t,{headers:{"content-type":"text/html;charset=UTF-8"}})}async function C(t){return typeof t!="string"&&(t=JSON.stringify(t)),new Response(t,{headers:{"content-type":"application/json"}})}var E;function j(t){return s(E||(E=L([`
     <!doctype html>
     <html lang="en">
       <head>
@@ -273,7 +273,7 @@ code {
         `,`
       </body>
     </html>
-  `])),N.styles,n.template)}var k=s`
+  `])),J.styles,t.template)}var k=s`
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -299,7 +299,7 @@ code {
       d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
     />
   </svg>
-`,J=s`
+`,P=s`
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -312,28 +312,28 @@ code {
       d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
     />
   </svg>
-`;function et(n){let{list:t}=n;return s`
+`;function et(t){let{list:n}=t;return s`
     <button
       class="toggle-add-card"
-      id="btn-add-card-${t.id}"
+      id="btn-add-card-${n.id}"
       type="button"
-      _="on click toggle .hidden on me toggle .hidden on #add-card-${t.id}"
+      _="on click toggle .hidden on me toggle .hidden on #add-card-${n.id}"
     >
       ${k}
       <span> Add another card</span>
     </button>
-  `}var S=et;function it(n){let{list:t}=n;return s`
-    <div class="edit-card hidden" id="add-card-${t.id}">
+  `}var S=et;function it(t){let{list:n}=t;return s`
+    <div class="edit-card hidden" id="add-card-${n.id}">
       <div class="card">
         <textarea
           class="edit-card-textarea"
-          name="label-${t.id}"
+          name="label-${n.id}"
           placeholder="Enter a title for this card..."
           style="height: 34px;"
           maxlength="300"
           autofocus="true"
         ></textarea>
-        <input type="hidden" name="listId" value="${t.id}" />
+        <input type="hidden" name="listId" value="${n.id}" />
       </div>
       <div class="edit-buttons">
         <button
@@ -341,23 +341,23 @@ code {
           type="button"
           tabindex="0"
           style="background-color: rgb(90, 172, 68);"
-          hx-post="/cards/new/${t.id}"
+          hx-post="/cards/new/${n.id}"
           hx-target="#board"
           hx-swap="innerHTML"
-          hx-params="label-${t.id}"
+          hx-params="label-${n.id}"
         >
           Add card
         </button>
         <div
           class="edit-button-cancel"
           tabindex="0"
-          _="on click toggle .hidden on #add-card-${t.id} toggle .hidden on #btn-add-card-${t.id}"
+          _="on click toggle .hidden on #add-card-${n.id} toggle .hidden on #btn-add-card-${n.id}"
         >
           ${v}
         </div>
       </div>
     </div>
-  `}var P=it;var rt=s`
+  `}var _=it;var rt=s`
   <div
     id="add-list"
     class="add-list-button"
@@ -369,7 +369,7 @@ code {
     ${k} Add another list
     <div></div>
   </div>
-`,T=rt;function st(n){let{list:t,card:e}=n;return s`
+`,T=rt;function st(t){let{list:n,card:e}=t;return s`
     <div
       class="card"
       id="card-${e.id}"
@@ -382,25 +382,25 @@ code {
         <button
           class="card-icon"
           type="button"
-          hx-get="/cards/edit/${t.id}/${e.id}"
+          hx-get="/cards/edit/${n.id}/${e.id}"
           hx-target="#card-${e.id}"
           hx-swap="outerHTML"
         >
-          ${J}
+          ${P}
         </button>
       </div>
       ${e.label}
     </div>
-  `}var y=st;function at(n){let t=s``;for(let e of n.cards)t+=s`${y({list:n,card:e})}`;return t}function ot(n){let{lists:t}=n,e=s``;for(let r of t)e+=s`
+  `}var y=st;function at(t){let n=s``;for(let e of t.cards)n+=s`${y({list:t,card:e})}`;return n}function ot(t){let{lists:n}=t,e=s``;for(let r of n)e+=s`
       <div class="list" draggable="true" id="lists-list-${r.id}">
         <div class="list-title">${r.name}</div>
 
         <div class="list-cards sortable" id="list-${r.id}">
           ${at(r)}
         </div>
-        ${S({list:r})} ${P({list:r})}
+        ${S({list:r})} ${_({list:r})}
       </div>
-    `;return e+=s` <div class="add-list">${T}</div> `,e}var f=ot;var _;function dt(n){return d(j({template:s(_||(_=L([`
+    `;return e+=s` <div class="add-list">${T}</div> `,e}var f=ot;var R;function dt(t){return d(j({template:s(R||(R=L([`
         <div class="app">
           <div class="header">htmx Trello Clone</div>
 
@@ -438,7 +438,7 @@ code {
             }
           });
         <\/script>
-      `])),f(n))}))}var z=dt;function lt(){return d(s`
+      `])),f(t))}))}var z=dt;function lt(){return d(s`
     <div id="add-list" class="add-list-editor">
       <form hx-post="/lists" hx-target="#board">
         <div class="list-title-edit">
@@ -474,10 +474,10 @@ code {
         </div>
       </form>
     </div>
-  `)}var I=lt;function ct(n){let{list:t,card:e}=n;return s`
+  `)}var M=lt;function ct(t){let{list:n,card:e}=t;return s`
     <div id="edit-card" class="edit-card">
       <form
-        hx-put="/cards/${t.id}/${e.id}"
+        hx-put="/cards/${n.id}/${e.id}"
         hx-target="#edit-card"
         hx-swap="outerHTML"
       >
@@ -491,7 +491,7 @@ code {
           >
 ${e.label}</textarea
           >
-          <input type="hidden" name="listId" value="${t.id}" />
+          <input type="hidden" name="listId" value="${n.id}" />
         </div>
         <div class="edit-buttons">
           <button
@@ -508,7 +508,7 @@ ${e.label}</textarea
             type="button"
             tabindex="0"
             style="background-color: rgb(234, 37, 37);"
-            hx-delete="/cards/${t.id}/${e.id}"
+            hx-delete="/cards/${n.id}/${e.id}"
             _="on htmx:afterOnLoad remove #edit-card"
           >
             Delete
@@ -516,7 +516,7 @@ ${e.label}</textarea
           <div
             class="edit-button-cancel"
             tabindex="0"
-            hx-get="/cards/cancel-edit/${t.id}/${e.id}"
+            hx-get="/cards/cancel-edit/${n.id}/${e.id}"
             hx-target="#edit-card"
             hx-swap="outerHTML"
           >
@@ -525,7 +525,7 @@ ${e.label}</textarea
         </div>
       </form>
     </div>
-  `}var M=ct;var R={sw:`var O=Object.freeze,Y=Object.defineProperty;var L=(e,t)=>O(Y(e,"raw",{value:O(t||e.slice())}));var $=class{name="";store=Promise.resolve();constructor(t,n){if(console.log("setting up"),n)return n;this.name=t,this.store=new Promise((s,a)=>{let r=indexedDB.open(this.name,1);r.onerror=()=>a(r.error),r.onupgradeneeded=()=>r.result.createObjectStore(this.name),r.onsuccess=()=>s(r.result)})}async get(t){let n=await this.store;return new Promise((s,a)=>{let r=n.transaction(this.name,"readonly"),i=r.objectStore(this.name).get(t);r.oncomplete=()=>s(i.result),r.onerror=()=>a(r.error)})}async put(t,n){let s=await this.store;return new Promise((a,r)=>{let i=s.transaction(this.name,"readwrite"),d=i.objectStore(this.name).put(n,t);i.oncomplete=()=>a(d),i.onerror=()=>r(i.error)})}async delete(t){let n=await this.store;return new Promise((s,a)=>{let r=n.transaction(this.name,"readwrite"),i=r.objectStore(this.name).delete(t);r.oncomplete=()=>s(i),r.onerror=()=>a(r.error)})}},N=$;var P=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,n="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:n,handler:t})}handle(e){let{request:t}=e;for(let n of this.routes){if(n.method!==t.method)continue;let s=n.path.exec({pathname:new URL(t.url).pathname});if(s)return n.handler({...e,route:s})}return new Response("Not found",{status:404})}};var E={styles:\`body {
+  `}var I=ct;var U={sw:`var O=Object.freeze,Y=Object.defineProperty;var L=(n,t)=>O(Y(n,"raw",{value:O(t||n.slice())}));var $=class{name="";store=Promise.resolve();constructor(t,e){if(console.log("setting up"),e)return e;this.name=t,this.store=new Promise((s,a)=>{let r=indexedDB.open(this.name,1);r.onerror=()=>a(r.error),r.onupgradeneeded=()=>r.result.createObjectStore(this.name),r.onsuccess=()=>s(r.result)})}async get(t){let e=await this.store;return new Promise((s,a)=>{let r=e.transaction(this.name,"readonly"),i=r.objectStore(this.name).get(t);r.oncomplete=()=>s(i.result),r.onerror=()=>a(r.error)})}async put(t,e){let s=await this.store;return new Promise((a,r)=>{let i=s.transaction(this.name,"readwrite"),d=i.objectStore(this.name).put(e,t);i.oncomplete=()=>a(d),i.onerror=()=>r(i.error)})}async delete(t){let e=await this.store;return new Promise((s,a)=>{let r=e.transaction(this.name,"readwrite"),i=r.objectStore(this.name).delete(t);r.oncomplete=()=>s(i),r.onerror=()=>a(r.error)})}},N=$;var P=class{routes;constructor(n=[]){this.routes=[];for(let t of n)this.register(...t)}register(n,t,e="GET"){this.routes.push({path:new URLPattern({pathname:n}),method:e,handler:t})}handle(n){let{request:t}=n;for(let e of this.routes){if(e.method!==t.method)continue;let s=e.path.exec({pathname:new URL(t.url).pathname});if(s)return e.handler({...n,route:s})}return new Response("Not found",{status:404})}};var E={styles:\`body {
   margin: 0;
   padding: 0;
   font-family:
@@ -759,7 +759,7 @@ code {
 .hidden {
   display: none;
 }
-\`};function o(e,...t){return String.raw({raw:e},...t)}function A(e){let t="";do t=Math.random().toString(16).substring(2,15);while(e[t]);return t}async function l(e){return new Response(tt(e),{headers:{"content-type":"text/html;charset=UTF-8"}})}function tt(e){return e=e.replace(/(\\r\\n|\\n|\\r)/gm,"").replace(/\\s+/g," ").trim(),e}var I;function J(e){return o(I||(I=L([\`
+\`};function o(n,...t){return String.raw({raw:n},...t)}function A(n){let t="";do t=Math.random().toString(16).substring(2,15);while(n[t]);return t}async function l(n){return new Response(n,{headers:{"content-type":"text/html;charset=UTF-8"}})}var J;function I(n){return o(J||(J=L([\`
     <!doctype html>
     <html lang="en">
       <head>
@@ -800,7 +800,7 @@ code {
         \`,\`
       </body>
     </html>
-  \`])),E.styles,e.template)}var k=o\`
+  \`])),E.styles,n.template)}var k=o\`
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -826,7 +826,7 @@ code {
       d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
     />
   </svg>
-\`,j=o\`
+\`,R=o\`
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -839,7 +839,7 @@ code {
       d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
     />
   </svg>
-\`;function et(e){let{list:t}=e;return o\`
+\`;function tt(n){let{list:t}=n;return o\`
     <button
       class="toggle-add-card"
       id="btn-add-card-\${t.id}"
@@ -849,7 +849,7 @@ code {
       \${k}
       <span> Add another card</span>
     </button>
-  \`}var C=et;function nt(e){let{list:t}=e;return o\`
+  \`}var C=tt;function et(n){let{list:t}=n;return o\`
     <div class="edit-card hidden" id="add-card-\${t.id}">
       <div class="card">
         <textarea
@@ -884,7 +884,7 @@ code {
         </div>
       </div>
     </div>
-  \`}var M=nt;var it=o\`
+  \`}var j=et;var nt=o\`
   <div
     id="add-list"
     class="add-list-button"
@@ -896,38 +896,38 @@ code {
     \${k} Add another list
     <div></div>
   </div>
-\`,S=it;function st(e){let{list:t,card:n}=e;return o\`
+\`,S=nt;function it(n){let{list:t,card:e}=n;return o\`
     <div
       class="card"
-      id="card-\${n.id}"
+      id="card-\${e.id}"
       tabindex="0"
       aria-roledescription="Draggable item. Press space bar to lift"
       draggable="true"
-      _="on mouseenter toggle .hidden on #card-edit-\${n.id} until mouseleave"
+      _="on mouseenter toggle .hidden on #card-edit-\${e.id} until mouseleave"
     >
-      <div class="card-icons hidden" id="card-edit-\${n.id}">
+      <div class="card-icons hidden" id="card-edit-\${e.id}">
         <button
           class="card-icon"
           type="button"
-          hx-get="/cards/edit/\${t.id}/\${n.id}"
-          hx-target="#card-\${n.id}"
+          hx-get="/cards/edit/\${t.id}/\${e.id}"
+          hx-target="#card-\${e.id}"
           hx-swap="outerHTML"
         >
-          \${j}
+          \${R}
         </button>
       </div>
-      \${n.label}
+      \${e.label}
     </div>
-  \`}var y=st;function rt(e){let t=o\`\`;for(let n of e.cards)t+=o\`\${y({list:e,card:n})}\`;return t}function at(e){let{lists:t}=e,n=o\`\`;for(let s of t)n+=o\`
+  \`}var y=it;function st(n){let t=o\`\`;for(let e of n.cards)t+=o\`\${y({list:n,card:e})}\`;return t}function rt(n){let{lists:t}=n,e=o\`\`;for(let s of t)e+=o\`
       <div class="list" draggable="true" id="lists-list-\${s.id}">
         <div class="list-title">\${s.name}</div>
 
         <div class="list-cards sortable" id="list-\${s.id}">
-          \${rt(s)}
+          \${st(s)}
         </div>
-        \${C({list:s})} \${M({list:s})}
+        \${C({list:s})} \${j({list:s})}
       </div>
-    \`;return n+=o\` <div class="add-list">\${S}</div> \`,n}var f=at;var R;function ot(e){return l(J({template:o(R||(R=L([\`
+    \`;return e+=o\` <div class="add-list">\${S}</div> \`,e}var f=rt;var M;function at(n){return l(I({template:o(M||(M=L([\`
         <div class="app">
           <div class="header">htmx Trello Clone</div>
 
@@ -965,7 +965,7 @@ code {
             }
           });
         <\\/script>
-      \`])),f(e))}))}var _=ot;function dt(){return l(o\`
+      \`])),f(n))}))}var _=at;function ot(){return l(o\`
     <div id="add-list" class="add-list-editor">
       <form hx-post="/lists" hx-target="#board">
         <div class="list-title-edit">
@@ -1001,10 +1001,10 @@ code {
         </div>
       </form>
     </div>
-  \`)}var z=dt;function lt(e){let{list:t,card:n}=e;return o\`
+  \`)}var z=ot;function dt(n){let{list:t,card:e}=n;return o\`
     <div id="edit-card" class="edit-card">
       <form
-        hx-put="/cards/\${t.id}/\${n.id}"
+        hx-put="/cards/\${t.id}/\${e.id}"
         hx-target="#edit-card"
         hx-swap="outerHTML"
       >
@@ -1016,7 +1016,7 @@ code {
             maxlength="300"
             autofocus="true"
           >
-\${n.label}</textarea
+\${e.label}</textarea
           >
           <input type="hidden" name="listId" value="\${t.id}" />
         </div>
@@ -1035,7 +1035,7 @@ code {
             type="button"
             tabindex="0"
             style="background-color: rgb(234, 37, 37);"
-            hx-delete="/cards/\${t.id}/\${n.id}"
+            hx-delete="/cards/\${t.id}/\${e.id}"
             _="on htmx:afterOnLoad remove #edit-card"
           >
             Delete
@@ -1043,7 +1043,7 @@ code {
           <div
             class="edit-button-cancel"
             tabindex="0"
-            hx-get="/cards/cancel-edit/\${t.id}/\${n.id}"
+            hx-get="/cards/cancel-edit/\${t.id}/\${e.id}"
             hx-target="#edit-card"
             hx-swap="outerHTML"
           >
@@ -1052,5 +1052,5 @@ code {
         </div>
       </form>
     </div>
-  \`}var D=lt;async function U(e){let{env:t}=e;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function B(e){let{route:t,env:n}=e,{list_id:s}=t.pathname.groups,a=JSON.parse(await n.TrelloLists.get("lists"));return a=a.filter(r=>r.id!==s),await n.TrelloLists.put("lists",JSON.stringify(a)),{lists:a}}async function q(e){let{request:t,env:n,route:s}=e,{list_id:a,id:r}=s.pathname.groups,i=new URLSearchParams(await t.text()),d=Object.fromEntries(i),{label:c}=d,h=JSON.parse(await n.TrelloLists.get("lists")),b=h.find(x=>x.id===a),m=b.cards.find(x=>x.id===r);return m.label=c,await n.TrelloLists.put("lists",JSON.stringify(h)),{list:b,card:m}}async function F(e){let{env:t,route:n}=e,{list_id:s,id:a}=n.pathname.groups,i=JSON.parse(await t.TrelloLists.get("lists")).find(c=>c.id===s),d=i.cards.find(c=>c.id===a);return{list:i,card:d}}async function W(e){let{env:t,route:n}=e,{list_id:s,id:a}=n.pathname.groups,r=JSON.parse(await t.TrelloLists.get("lists")),i=r.find(d=>d.id===s);i.cards=i.cards.filter(d=>d.id!==a),await t.TrelloLists.put("lists",JSON.stringify(r))}async function V(e){let{request:t,env:n}=e,s=new URLSearchParams(await t.text()),a=Object.fromEntries(s),{name:r}=a,i=JSON.parse(await n.TrelloLists.get("lists"));return i.push({name:r,id:A({}),cards:[]}),await n.TrelloLists.put("lists",JSON.stringify(i)),{lists:i}}async function G(e){let{request:t,route:n,env:s}=e,a=JSON.parse(await s.TrelloLists.get("lists")),{list_id:r}=n.pathname.groups,i=new URLSearchParams(await t.text()),c=Object.fromEntries(i)["label-"+r],h=a.find(m=>m.id===r),b={label:c,id:A({}),list:r};return h.cards.push(b),await s.TrelloLists.put("lists",JSON.stringify(a)),{lists:a}}async function X(e){let{env:t,route:n}=e,s=n.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(i=>i.id===s)}}async function K(e){let{env:t,route:n}=e,{list_id:s,id:a}=n.pathname.groups,i=JSON.parse(await t.TrelloLists.get("lists")).find(c=>c.id===s),d=i.cards.find(c=>c.id===a);return{list:i,card:d}}async function Q(e){let{request:t,env:n}=e,s=new URLSearchParams(await t.text()),a=Object.fromEntries(s),{from:r,to:i,movedCard:d,index:c,prevIndex:h}=a,[,b]=r.split("-"),[,m]=i.split("-"),x=d.replace("card-",""),p=JSON.parse(await n.TrelloLists.get("lists"));try{if(r==="board"&&i==="board"){let u=p[h];p=p.filter(w=>w.id!==u.id),p.splice(c,0,u),await n.TrelloLists.put("lists",JSON.stringify(p))}else{let u=JSON.parse(JSON.stringify(p)),w=u.find(g=>g.id===b),H=w.cards.find(g=>g.id==x);H.list=m,w.cards=w.cards.filter(g=>g.id!=x),u.find(g=>g.id==m).cards.splice(Number(c),0,H),p=u,await n.TrelloLists.put("lists",JSON.stringify(p))}}catch(u){console.error(u)}return{lists:p}}var T;T||(T=new N("trelloClone",T));self.addEventListener("install",e=>{});self.addEventListener("activate",e=>{});self.addEventListener("fetch",e=>e.respondWith((async()=>{let t=e.request,n={TrelloLists:T},s=void 0,a;try{let i=await n.TrelloLists.get("lists")}catch{}if(!a){let i=await fetch("/db/lists").then(d=>d.json());await n.TrelloLists.put("lists",JSON.stringify(i))}return new P([["/",async i=>_(await U(i))],["/lists",async i=>l(f(await V(i))),"POST"],["/lists/add",z],["/lists/cancel",()=>l(S)],["/lists/:list_id",async i=>l(f(await B(i))),"DELETE"],["/cards/move",async i=>l(f(await Q(i))),"POST"],["/cards/new/:list_id",async i=>l(f(await G(i))),"POST"],["/cards/cancel/:id",async i=>l(C(await X(i)))],["/cards/edit/:list_id/:id",async i=>l(D(await K(i)))],["/cards/:list_id/:id",async i=>l(y(await q(i))),"PUT"],["/cards/:list_id/:id",async i=>(await W(i),l("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async i=>l(y(await F(i)))]]).handle({request:t,env:n,ctx:s})})()));
-`};function ut(){return new Response(R.sw,{headers:{"content-type":"text/javascript;charset=UTF-8"}})}var U=ut;async function q(n){let t='[{"name":"To Do","id":"1","cards":[{"id":"2","label":"Second Card","list":"1"},{"id":"1","label":"First Card","list":"1"},{"label":"Third Card","id":"0bfdc1222adc9","list":"1"}]},{"name":"Doing","id":"2","cards":[{"id":"3","label":"First Card","list":2},{"id":"4","label":"Second Card","list":"2"}]}]';await n.env.TrelloLists.get("lists")!=t&&await n.env.TrelloLists.put("lists",'[{"name":"To Do","id":"1","cards":[{"id":"2","label":"Second Card","list":"1"},{"id":"1","label":"First Card","list":"1"},{"label":"Third Card","id":"0bfdc1222adc9","list":"1"}]},{"name":"Doing","id":"2","cards":[{"id":"3","label":"First Card","list":2},{"id":"4","label":"Second Card","list":"2"}]}]')}async function D(n){let{env:t}=n;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function B(n){let{route:t,env:e}=n,{list_id:r}=t.pathname.groups,i=JSON.parse(await e.TrelloLists.get("lists"));return i=i.filter(o=>o.id!==r),await e.TrelloLists.put("lists",JSON.stringify(i)),{lists:i}}async function F(n){let{request:t,env:e,route:r}=n,{list_id:i,id:o}=r.pathname.groups,a=new URLSearchParams(await t.text()),c=Object.fromEntries(a),{label:l}=c,m=JSON.parse(await e.TrelloLists.get("lists")),b=m.find(x=>x.id===i),g=b.cards.find(x=>x.id===o);return g.label=l,await e.TrelloLists.put("lists",JSON.stringify(m)),{list:b,card:g}}async function W(n){let{env:t,route:e}=n,{list_id:r,id:i}=e.pathname.groups,a=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===r),c=a.cards.find(l=>l.id===i);return{list:a,card:c}}async function V(n){let{env:t,route:e}=n,{list_id:r,id:i}=e.pathname.groups,o=JSON.parse(await t.TrelloLists.get("lists")),a=o.find(c=>c.id===r);a.cards=a.cards.filter(c=>c.id!==i),await t.TrelloLists.put("lists",JSON.stringify(o))}async function X(n){let{request:t,env:e}=n,r=new URLSearchParams(await t.text()),i=Object.fromEntries(r),{name:o}=i,a=JSON.parse(await e.TrelloLists.get("lists"));return a.push({name:o,id:$({}),cards:[]}),await e.TrelloLists.put("lists",JSON.stringify(a)),{lists:a}}async function G(n){let{request:t,route:e,env:r}=n,i=JSON.parse(await r.TrelloLists.get("lists")),{list_id:o}=e.pathname.groups,a=new URLSearchParams(await t.text()),l=Object.fromEntries(a)["label-"+o],m=i.find(g=>g.id===o),b={label:l,id:$({}),list:o};return m.cards.push(b),await r.TrelloLists.put("lists",JSON.stringify(i)),{lists:i}}async function K(n){let{env:t,route:e}=n,r=e.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(a=>a.id===r)}}async function Q(n){let{env:t,route:e}=n,{list_id:r,id:i}=e.pathname.groups,a=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===r),c=a.cards.find(l=>l.id===i);return{list:a,card:c}}async function Y(n){let{request:t,env:e}=n,r=new URLSearchParams(await t.text()),i=Object.fromEntries(r),{from:o,to:a,movedCard:c,index:l,prevIndex:m}=i,[,b]=o.split("-"),[,g]=a.split("-"),x=c.replace("card-",""),p=JSON.parse(await e.TrelloLists.get("lists"));try{if(o==="board"&&a==="board"){let u=p[m];p=p.filter(w=>w.id!==u.id),p.splice(l,0,u),await e.TrelloLists.put("lists",JSON.stringify(p))}else{let u=JSON.parse(JSON.stringify(p)),w=u.find(h=>h.id===b),O=w.cards.find(h=>h.id==x);O.list=g,w.cards=w.cards.filter(h=>h.id!=x),u.find(h=>h.id==g).cards.splice(Number(l),0,O),p=u,await e.TrelloLists.put("lists",JSON.stringify(p))}}catch(u){console.error(u)}return{lists:p}}async function C(n){let{route:t,env:e}=n,r=t.pathname.groups.key;return await e.TrelloLists.get(r)}var fn={async fetch(n,t,e){return new H([["/",async i=>z(await D(i))],["/sw.js",U],["/lists",async i=>d(f(await X(i))),"POST"],["/lists/add",I],["/lists/cancel",()=>d(T)],["/lists/:list_id",async i=>d(f(await B(i))),"DELETE"],["/cards/move",async i=>d(f(await Y(i))),"POST"],["/cards/new/:list_id",async i=>d(f(await G(i))),"POST"],["/cards/cancel/:id",async i=>d(S(await K(i)))],["/cards/edit/:list_id/:id",async i=>d(M(await Q(i)))],["/cards/:list_id/:id",async i=>d(y(await F(i))),"PUT"],["/cards/:list_id/:id",async i=>(await V(i),d("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async i=>d(y(await W(i)))],["/db/:key",async i=>new Response(await C(i),{headers:{"content-type":"application/json"}})],["/db/:key",async i=>new Response(await C(i),{headers:{"content-type":"application/json"}}),"POST"]]).handle({request:n,env:t,ctx:e})},async scheduled(n,t,e){return q({event:n,env:t,ctx:e})}};export{fn as default};
+  \`}var D=dt;async function U(n){let{env:t}=n;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function B(n){let{route:t,env:e}=n,{list_id:s}=t.pathname.groups,a=JSON.parse(await e.TrelloLists.get("lists"));return a=a.filter(r=>r.id!==s),await e.TrelloLists.put("lists",JSON.stringify(a)),{lists:a}}async function q(n){let{request:t,env:e,route:s}=n,{list_id:a,id:r}=s.pathname.groups,i=new URLSearchParams(await t.text()),d=Object.fromEntries(i),{label:c}=d,h=JSON.parse(await e.TrelloLists.get("lists")),b=h.find(x=>x.id===a),m=b.cards.find(x=>x.id===r);return m.label=c,await e.TrelloLists.put("lists",JSON.stringify(h)),{list:b,card:m}}async function F(n){let{env:t,route:e}=n,{list_id:s,id:a}=e.pathname.groups,i=JSON.parse(await t.TrelloLists.get("lists")).find(c=>c.id===s),d=i.cards.find(c=>c.id===a);return{list:i,card:d}}async function W(n){let{env:t,route:e}=n,{list_id:s,id:a}=e.pathname.groups,r=JSON.parse(await t.TrelloLists.get("lists")),i=r.find(d=>d.id===s);i.cards=i.cards.filter(d=>d.id!==a),await t.TrelloLists.put("lists",JSON.stringify(r))}async function V(n){let{request:t,env:e}=n,s=new URLSearchParams(await t.text()),a=Object.fromEntries(s),{name:r}=a,i=JSON.parse(await e.TrelloLists.get("lists"));return i.push({name:r,id:A({}),cards:[]}),await e.TrelloLists.put("lists",JSON.stringify(i)),{lists:i}}async function G(n){let{request:t,route:e,env:s}=n,a=JSON.parse(await s.TrelloLists.get("lists")),{list_id:r}=e.pathname.groups,i=new URLSearchParams(await t.text()),c=Object.fromEntries(i)["label-"+r],h=a.find(m=>m.id===r),b={label:c,id:A({}),list:r};return h.cards.push(b),await s.TrelloLists.put("lists",JSON.stringify(a)),{lists:a}}async function X(n){let{env:t,route:e}=n,s=e.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(i=>i.id===s)}}async function K(n){let{env:t,route:e}=n,{list_id:s,id:a}=e.pathname.groups,i=JSON.parse(await t.TrelloLists.get("lists")).find(c=>c.id===s),d=i.cards.find(c=>c.id===a);return{list:i,card:d}}async function Q(n){let{request:t,env:e}=n,s=new URLSearchParams(await t.text()),a=Object.fromEntries(s),{from:r,to:i,movedCard:d,index:c,prevIndex:h}=a,[,b]=r.split("-"),[,m]=i.split("-"),x=d.replace("card-",""),p=JSON.parse(await e.TrelloLists.get("lists"));try{if(r==="board"&&i==="board"){let u=p[h];p=p.filter(w=>w.id!==u.id),p.splice(c,0,u),await e.TrelloLists.put("lists",JSON.stringify(p))}else{let u=JSON.parse(JSON.stringify(p)),w=u.find(g=>g.id===b),H=w.cards.find(g=>g.id==x);H.list=m,w.cards=w.cards.filter(g=>g.id!=x),u.find(g=>g.id==m).cards.splice(Number(c),0,H),p=u,await e.TrelloLists.put("lists",JSON.stringify(p))}}catch(u){console.error(u)}return{lists:p}}var T;T||(T=new N("trelloClone",T));self.addEventListener("install",n=>{});self.addEventListener("activate",n=>{});self.addEventListener("fetch",n=>n.respondWith((async()=>{let t=n.request,e={TrelloLists:T},s=void 0,a;try{let i=await e.TrelloLists.get("lists")}catch{}if(!a){let i=await fetch("/db/lists").then(d=>d.json());await e.TrelloLists.put("lists",JSON.stringify(i))}return new P([["/",async i=>_(await U(i))],["/lists",async i=>l(f(await V(i))),"POST"],["/lists/add",z],["/lists/cancel",()=>l(S)],["/lists/:list_id",async i=>l(f(await B(i))),"DELETE"],["/cards/move",async i=>l(f(await Q(i))),"POST"],["/cards/new/:list_id",async i=>l(f(await G(i))),"POST"],["/cards/cancel/:id",async i=>l(C(await X(i)))],["/cards/edit/:list_id/:id",async i=>l(D(await K(i)))],["/cards/:list_id/:id",async i=>l(y(await q(i))),"PUT"],["/cards/:list_id/:id",async i=>(await W(i),l("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async i=>l(y(await F(i)))]]).handle({request:t,env:e,ctx:s})})()));
+`};function ut(){return new Response(U.sw,{headers:{"content-type":"text/javascript;charset=UTF-8"}})}var q=ut;async function D(t){let n='[{"name":"To Do","id":"1","cards":[{"id":"2","label":"Second Card","list":"1"},{"id":"1","label":"First Card","list":"1"},{"label":"Third Card","id":"0bfdc1222adc9","list":"1"}]},{"name":"Doing","id":"2","cards":[{"id":"3","label":"First Card","list":2},{"id":"4","label":"Second Card","list":"2"}]}]';await t.env.TrelloLists.get("lists")!=n&&await t.env.TrelloLists.put("lists",'[{"name":"To Do","id":"1","cards":[{"id":"2","label":"Second Card","list":"1"},{"id":"1","label":"First Card","list":"1"},{"label":"Third Card","id":"0bfdc1222adc9","list":"1"}]},{"name":"Doing","id":"2","cards":[{"id":"3","label":"First Card","list":2},{"id":"4","label":"Second Card","list":"2"}]}]')}async function B(t){let{env:n}=t;return{lists:JSON.parse(await n.TrelloLists.get("lists"))}}async function F(t){let{route:n,env:e}=t,{list_id:r}=n.pathname.groups,i=JSON.parse(await e.TrelloLists.get("lists"));return i=i.filter(o=>o.id!==r),await e.TrelloLists.put("lists",JSON.stringify(i)),{lists:i}}async function W(t){let{request:n,env:e,route:r}=t,{list_id:i,id:o}=r.pathname.groups,a=new URLSearchParams(await n.text()),c=Object.fromEntries(a),{label:l}=c,m=JSON.parse(await e.TrelloLists.get("lists")),b=m.find(x=>x.id===i),g=b.cards.find(x=>x.id===o);return g.label=l,await e.TrelloLists.put("lists",JSON.stringify(m)),{list:b,card:g}}async function V(t){let{env:n,route:e}=t,{list_id:r,id:i}=e.pathname.groups,a=JSON.parse(await n.TrelloLists.get("lists")).find(l=>l.id===r),c=a.cards.find(l=>l.id===i);return{list:a,card:c}}async function X(t){let{env:n,route:e}=t,{list_id:r,id:i}=e.pathname.groups,o=JSON.parse(await n.TrelloLists.get("lists")),a=o.find(c=>c.id===r);a.cards=a.cards.filter(c=>c.id!==i),await n.TrelloLists.put("lists",JSON.stringify(o))}async function G(t){let{request:n,env:e}=t,r=new URLSearchParams(await n.text()),i=Object.fromEntries(r),{name:o}=i,a=JSON.parse(await e.TrelloLists.get("lists"));return a.push({name:o,id:$({}),cards:[]}),await e.TrelloLists.put("lists",JSON.stringify(a)),{lists:a}}async function K(t){let{request:n,route:e,env:r}=t,i=JSON.parse(await r.TrelloLists.get("lists")),{list_id:o}=e.pathname.groups,a=new URLSearchParams(await n.text()),l=Object.fromEntries(a)["label-"+o],m=i.find(g=>g.id===o),b={label:l,id:$({}),list:o};return m.cards.push(b),await r.TrelloLists.put("lists",JSON.stringify(i)),{lists:i}}async function Q(t){let{env:n,route:e}=t,r=e.pathname.groups.id;return{list:JSON.parse(await n.TrelloLists.get("lists")).find(a=>a.id===r)}}async function Y(t){let{env:n,route:e}=t,{list_id:r,id:i}=e.pathname.groups,a=JSON.parse(await n.TrelloLists.get("lists")).find(l=>l.id===r),c=a.cards.find(l=>l.id===i);return{list:a,card:c}}async function Z(t){let{request:n,env:e}=t,r=new URLSearchParams(await n.text()),i=Object.fromEntries(r),{from:o,to:a,movedCard:c,index:l,prevIndex:m}=i,[,b]=o.split("-"),[,g]=a.split("-"),x=c.replace("card-",""),p=JSON.parse(await e.TrelloLists.get("lists"));try{if(o==="board"&&a==="board"){let u=p[m];p=p.filter(w=>w.id!==u.id),p.splice(l,0,u),await e.TrelloLists.put("lists",JSON.stringify(p))}else{let u=JSON.parse(JSON.stringify(p)),w=u.find(h=>h.id===b),N=w.cards.find(h=>h.id==x);N.list=g,w.cards=w.cards.filter(h=>h.id!=x),u.find(h=>h.id==g).cards.splice(Number(l),0,N),p=u,await e.TrelloLists.put("lists",JSON.stringify(p))}}catch(u){console.error(u)}return{lists:p}}async function O(t){let{route:n,env:e}=t,r=n.pathname.groups.key;return await e.TrelloLists.get(r)}var fn={async fetch(t,n,e){return new H([["/",async i=>z(await B(i))],["/sw.js",q],["/lists",async i=>d(f(await G(i))),"POST"],["/lists/add",M],["/lists/cancel",()=>d(T)],["/lists/:list_id",async i=>d(f(await F(i))),"DELETE"],["/cards/move",async i=>d(f(await Z(i))),"POST"],["/cards/new/:list_id",async i=>d(f(await K(i))),"POST"],["/cards/cancel/:id",async i=>d(S(await Q(i)))],["/cards/edit/:list_id/:id",async i=>d(I(await Y(i)))],["/cards/:list_id/:id",async i=>d(y(await W(i))),"PUT"],["/cards/:list_id/:id",async i=>(await X(i),d("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async i=>d(y(await V(i)))],["/db/:key",async i=>C(await O(i))],["/db/:key",async i=>C(await O(i)),"POST"]]).handle({request:t,env:n,ctx:e})},async scheduled(t,n,e){return D({event:t,env:n,ctx:e})}};export{fn as default};
