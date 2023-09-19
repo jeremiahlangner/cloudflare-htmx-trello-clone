@@ -1,5 +1,5 @@
 import Database from "./database";
-import { Router } from "simple-worker-router";
+import { Handler, Router } from "simple-worker-router";
 import Index from "./templates/index";
 import AddList from "./templates/add_list";
 import Board from "./templates/board";
@@ -21,6 +21,7 @@ import {
   getLists,
   deleteList,
   move,
+  resetData,
 } from "./handlers";
 
 export type {};
@@ -55,10 +56,11 @@ self.addEventListener("fetch", (event) => {
       };
       const ctx = this as unknown as ExecutionContext;
 
+      // await resetData({ env } as any);
       // Populate the service worker db.
       let dbCheck;
       try {
-        dbCheck = await env.TrelloLists!.get("lists");
+        dbCheck = JSON.parse(await env.TrelloLists!.get("lists"));
       } catch {}
       if (!dbCheck) {
         const lists = await fetch("/db/lists").then((res) => res.json());
@@ -67,6 +69,7 @@ self.addEventListener("fetch", (event) => {
 
       const router = new Router([
         ["/", async (args) => Index(await getLists(args as HandlerArgs))],
+        // ["/", async (args) => Index({ lists: [] })],
         [
           "/lists",
           async (args) =>
@@ -121,6 +124,31 @@ self.addEventListener("fetch", (event) => {
           "/cards/cancel-edit/:list_id/:id",
           async (args) =>
             HTMLResponse(Card(await cancelEdit(args as HandlerArgs))),
+        ],
+        [
+          "/db/:key",
+          async (args: any) => {
+            const key = args.route.pathname.groups.key;
+            const data = await fetch(args.request).then((res) => res.json());
+            await env.TrelloLists!.put(key, JSON.stringify(data));
+            if (key === "lists") {
+              return HTMLResponse(Board({ lists: data }));
+            }
+          },
+        ],
+        [
+          "/db/:key",
+          async (args: any) => {
+            const key = args.route.pathname.groups.key;
+            const data = await env.TrelloLists!.get(key);
+            await fetch("/db/" + key, {
+              headers: { "content-type": "application/json" },
+              body: data,
+              method: "POST",
+            });
+            return HTMLResponse("");
+          },
+          "POST",
         ],
       ]);
       return router.handle({ request, env, ctx }) as Response;

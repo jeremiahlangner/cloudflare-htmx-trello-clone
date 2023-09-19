@@ -16,7 +16,7 @@ class Database {
     });
   }
 
-  async get(key: string) {
+  async get(key: string): Promise<string> {
     const store = await this.store;
     return new Promise((resolve, reject) => {
       const transaction = store.transaction(this.name, "readonly");

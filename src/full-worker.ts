@@ -26,7 +26,6 @@ import {
 
 export default {
   async fetch(request: Request, env: Environment, ctx: any) {
-    // await resetData({ env } as any);
     const router = new Router([
       ["/", async (args) => Index(await getLists(args as HandlerArgs))],
       ["/sw.js", ServiceWorker],
@@ -88,18 +87,7 @@ export default {
       ],
       [
         "/db/:key",
-        async (args: any) => {
-          try {
-            const body = await args.request.json();
-            env.TrelloLists.put(
-              args.route.pathname.groups.key,
-              JSON.stringify(body),
-            );
-            return JSONResponse(await jsonHandler(args as HandlerArgs));
-          } catch (e) {
-            return HTMLResponse('');
-          }
-        },
+        async (args) => JSONResponse(await jsonHandler(args as HandlerArgs)),
         "POST",
       ],
     ]);

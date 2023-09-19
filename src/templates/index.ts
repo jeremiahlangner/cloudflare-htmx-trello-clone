@@ -8,7 +8,28 @@ function index(args: { lists: List[] }): Promise<Response> {
     PageBoilerplate({
       template: html`
         <div class="app">
-          <div class="header">htmx Trello Clone</div>
+          <div class="header">
+            htmx Trello Clone
+            <button
+              class="edit-button"
+              type="button"
+              style="background-color: rgb(90, 172, 68);"
+              hx-get="/db/lists"
+              hx-target="#board"
+              hx-swap="innerHTML"
+            >
+              Sync
+            </button>
+            <button
+              class="edit-button"
+              type="button"
+              style="background-color: rgb(90, 172, 68);"
+              hx-post="/db/lists"
+              hx-swap="none"
+            >
+              Save
+            </button>
+          </div>
 
           <form hx-post="/cards/move" hx-trigger="cardmoved" hx-target="#board">
             <input id="fromList" type="hidden" name="from" />
