@@ -28,12 +28,12 @@ code {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   font-size: 40px;
   font-weight: 200;
-  padding-left: 16px;
+  padding-left: 20px;
 }
 
 .header-buttons {
-  margin-right: 16px;
   display: flex;
+  margin-right: 16px;
   margin-left: auto;
 }
 

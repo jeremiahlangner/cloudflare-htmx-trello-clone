@@ -14,7 +14,15 @@ const NoSW = html`
         ${styles}
       </style>
       <script>
-        const registerServiceWorker = async () => {
+        function reload(state) {
+          state.onstatechange = () => {
+            if (state.state === "installed") {
+              location.reload();
+            }
+          };
+        }
+
+        async function registerServiceWorker() {
           if ("serviceWorker" in navigator) {
             try {
               const registration = await navigator.serviceWorker.register(
@@ -26,29 +34,29 @@ const NoSW = html`
               );
               if (registration.installing) {
                 console.log("Service worker installing");
-                registration.installing.onstatechange = () => {
-                  if (registration.waiting.state === "installed")
-                    location.reload();
-                };
+                reload(registration.installing);
               } else if (registration.waiting) {
                 console.log("Service worker installed");
-                registration.waiting.onstatechange = () => {
-                  if (registration.waiting.state === "installed")
-                    location.reload();
-                };
+                reload(registration.waiting);
               } else if (registration.active) {
                 console.log("Service worker active");
+                location.reload();
               }
             } catch (error) {
               console.error("Registration failed with" + error);
             }
           }
-        };
+        }
         registerServiceWorker();
       </script>
     </head>
     <body>
-      <div class="app" style="text-align: center;">Loading...</div>
+      <div
+        class="app"
+        style="text-align: center; display: flex; justify-content: center; align-items: center; color: white;"
+      >
+        Loading...
+      </div>
     </body>
   </html>
 `;
