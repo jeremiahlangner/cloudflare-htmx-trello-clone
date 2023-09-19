@@ -278,7 +278,7 @@ code {
       <\/script>
     </head>
     <body>
-      Loading...
+      <div class="app" style="text-align: center;">Loading...</div>
     </body>
   </html>
 `])),h.styles);var o=i`
@@ -688,7 +688,7 @@ code {
       <\\/script>
     </head>
     <body>
-      Loading...
+      <div class="app" style="text-align: center;">Loading...</div>
     </body>
   </html>
 \`])),A.styles),J;function I(e){return d(J||(J=y([\`

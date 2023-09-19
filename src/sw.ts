@@ -1,5 +1,5 @@
 import Database from "./database";
-import { Handler, Router } from "simple-worker-router";
+import { Router } from "simple-worker-router";
 import Index from "./templates/index";
 import AddList from "./templates/add_list";
 import Board from "./templates/board";

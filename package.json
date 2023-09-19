@@ -1,9 +1,8 @@
 {
-  "name": "trello-clone",
+  "name": "cloudflare-htmx-trello-clone",
   "version": "0.0.1",
   "description": "A Trello Clone using HTMX and Cloudflare Workers",
   "main": "build/worker.js",
-  "types": "build/worker.d.ts",
   "scripts": {
     "format": "npx prettier . --prose-wrap=always --write",
     "test": "npx jest --pass-with-no-tests",

@@ -47,7 +47,7 @@ const NoSW = html`
       </script>
     </head>
     <body>
-      Loading...
+      <div class="app" style="text-align: center;">Loading...</div>
     </body>
   </html>
 `;
