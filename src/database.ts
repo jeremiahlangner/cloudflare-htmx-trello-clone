@@ -19,7 +19,7 @@ class Database {
   async get(key: string) {
     const store = await this.store;
     return new Promise((resolve, reject) => {
-      const transaction = store.transaction("keyval", "readonly");
+      const transaction = store.transaction(this.name, "readonly");
       const value = transaction.objectStore(this.name).get(key);
       transaction.oncomplete = () => resolve(value.result);
       transaction.onerror = () => reject(transaction.error);
@@ -29,7 +29,7 @@ class Database {
   async put(key: string, value: string) {
     const store = await this.store;
     return new Promise((resolve, reject) => {
-      const transaction = store.transaction("keyval", "readwrite");
+      const transaction = store.transaction(this.name, "readwrite");
       const result = transaction.objectStore(this.name).put(value, key);
       transaction.oncomplete = () => resolve(result);
       transaction.onerror = () => reject(transaction.error);
@@ -39,7 +39,7 @@ class Database {
   async delete(key: string) {
     const store = await this.store;
     return new Promise((resolve, reject) => {
-      const transaction = store.transaction("keyval", "readonly");
+      const transaction = store.transaction(this.name, "readwrite");
       const result = transaction.objectStore(this.name).delete(key);
       transaction.oncomplete = () => resolve(result);
       transaction.onerror = () => reject(transaction.error);

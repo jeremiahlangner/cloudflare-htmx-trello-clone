@@ -36,7 +36,7 @@ function PageBoilerplate(params: any) {
               }
             }
           };
-          // registerServiceWorker();
+          registerServiceWorker();
         </script>
       </head>
       <body>

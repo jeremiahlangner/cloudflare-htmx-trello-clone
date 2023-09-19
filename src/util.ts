@@ -19,13 +19,4 @@ async function HTMLResponse(response: string) {
   });
 }
 
-// naive, but a fun little add; obviously breaks display of card data.
-function minify(htmlContent: string): string {
-  htmlContent = htmlContent
-    .replace(/(\r\n|\n|\r)/gm, "")
-    .replace(/\s+/g, " ")
-    .trim();
-  return htmlContent;
-}
-
-export { hash, minify, html, HTMLResponse };
+export { hash, html, HTMLResponse };
