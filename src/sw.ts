@@ -33,7 +33,7 @@ const version = "0";
 let DB: Database | undefined;
 if (!DB) DB = new Database("trelloClone", DB);
 
-self.addEventListener("install", (event: any) => {});
+self.addEventListener("install", (event) => {});
 
 self.addEventListener("activate", (event) => {});
 
