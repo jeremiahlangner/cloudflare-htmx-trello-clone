@@ -1,4 +1,4 @@
-import { PageBoilerplate } from "./mixins";
+import { IconSync, PageBoilerplate } from "./mixins";
 import { HTMLResponse, html } from "../util";
 import { List } from "../types";
 import Board from "./board";
@@ -10,25 +10,27 @@ function Index(args: { lists: List[] }): Promise<Response> {
         <div class="app">
           <div class="header">
             htmx Trello Clone
-            <button
-              class="edit-button"
-              type="button"
-              style="background-color: rgb(90, 172, 68);"
-              hx-get="/db/lists"
-              hx-target="#board"
-              hx-swap="innerHTML"
-            >
-              Sync
-            </button>
-            <button
-              class="edit-button"
-              type="button"
-              style="background-color: rgb(90, 172, 68);"
-              hx-post="/db/lists"
-              hx-swap="none"
-            >
-              Save
-            </button>
+            <div class="header-buttons">
+              <button
+                class="edit-button"
+                type="button"
+                style="background-color: #0d6efd;"
+                hx-get="/db/lists"
+                hx-target="#board"
+                hx-swap="innerHTML"
+              >
+                ${IconSync} Sync
+              </button>
+              <button
+                class="edit-button"
+                type="button"
+                style="background-color: rgb(90, 172, 68);"
+                hx-post="/db/lists"
+                hx-swap="none"
+              >
+                Save
+              </button>
+            </div>
           </div>
 
           <form hx-post="/cards/move" hx-trigger="cardmoved" hx-target="#board">
