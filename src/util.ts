@@ -11,12 +11,22 @@ function hash(_hashes: { [key: string]: string }): string {
   return h;
 }
 
-async function HTMLResponse(response: string) {
-  return new Response(minify(response), {
+async function HTMLResponse(response: string): Promise<Response> {
+  return new Response(response, {
     headers: {
       "content-type": "text/html;charset=UTF-8",
     },
   });
 }
 
-export { hash, html, HTMLResponse };
+async function JSONResponse(response: string | any): Promise<Response> {
+  if (typeof response !== 'string') response = JSON.stringify(response);
+  return new Response(response, {
+    headers: {
+      "content-type": "application/json",
+    },
+  });
+}
+
+
+export { hash, html, HTMLResponse, JSONResponse };

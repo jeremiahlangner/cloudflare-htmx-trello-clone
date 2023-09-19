@@ -6,7 +6,7 @@ import EditCard from "./templates/edit_card";
 import Card from "./templates/card";
 import NewList from "./templates/new_list";
 import ToggleAddCard from "./templates/toggle_add_card";
-import { HTMLResponse } from "./util";
+import { HTMLResponse, JSONResponse } from "./util";
 import { Environment, HandlerArgs } from "./types";
 import ServiceWorker from "./service-worker";
 import {
@@ -84,20 +84,12 @@ export default {
       [
         "/db/:key",
         async (args) =>
-          new Response(await jsonHandler(args as HandlerArgs), {
-            headers: {
-              "content-type": "application/json",
-            },
-          }),
+          JSONResponse(await jsonHandler(args as HandlerArgs))
       ],
       [
         "/db/:key",
         async (args) =>
-          new Response(await jsonHandler(args as HandlerArgs), {
-            headers: {
-              "content-type": "application/json",
-            },
-          }),
+          JSONResponse(await jsonHandler(args as HandlerArgs)),
         "POST",
       ],
     ]);
