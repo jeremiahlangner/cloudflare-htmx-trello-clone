@@ -1,6 +1,6 @@
 # HTMX Trello Clone
 
-A serverless implementation of the HTMX trello clone developed by rajasegar.
+A serverless implementation of the HTMX trello clone developed by rajasegar. This may be better referred to as an HTMX SPA.
 
 [https://github.com/rajasegar/htmx-trello](https://github.com/rajasegar/htmx-trello)
 
@@ -31,10 +31,8 @@ administering the application; the user will notice little difference). Because
 HTMX utilizes route/method based server access to update the client state it
 incurs a large request penalty on the serverless backend.
 
-To implement HTMX with a serverless backend, I'd use a service worker to proxy
-the requests (for local execution/data-storage in the browser) and store data
-asynchronously either on leaving the application, or when the user requests to
-"save" it.
+As with this application, I recommend using a service worker as a backend to serve the state and requests for HTMX. 
+
 
 ## Usage
 
@@ -45,9 +43,11 @@ For development, clone the repository, navigate to the repo locally, run
 To try it out, navigate to the app in your browser at
 [https://trello-clone.jeremiahlangner.workers.dev](https://trello-clone.jeremiahlangner.workers.dev).
 
-## Unit Tests
+The application loads a service worker and can function offline until any updates are necessary.
 
-https://grugbrain.dev/#grug-on-testing
+To save your board data to the remote database click "save" in the upper-right corner.
+
+To download the data from the remote database click "sync" in the upper right corner.
 
 ## Attribution
 

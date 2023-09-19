@@ -32,7 +32,7 @@ ${card.label}</textarea
             style="background-color: rgb(90, 172, 68);"
             _="on htmx:afterOnLoad remove #edit-card"
           >
-            Save
+            Update
           </button>
           <button
             class="edit-button"
