@@ -32,11 +32,21 @@ const version = "0";
 let DB: Database | undefined;
 if (!DB) DB = new Database("trelloClone", DB);
 
-self.addEventListener("install", (event) => {});
+self.addEventListener("install", (event: any) => {});
 
 self.addEventListener("activate", (event) => {});
 
 self.addEventListener("fetch", (event) => {
+  const allowedSources = [
+    "https://unpkg.com/hyperscript.org",
+    "https://unpkg.com/htmx.org",
+    "https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js",
+  ];
+
+  if (allowedSources.includes(event.request.url)) {
+    return fetch(event.request);
+  }
+
   return event.respondWith(
     (async () => {
       const request = event.request;
@@ -48,7 +58,7 @@ self.addEventListener("fetch", (event) => {
       // Populate the service worker db.
       let dbCheck;
       try {
-        const dbCheck = await env.TrelloLists!.get("lists");
+        dbCheck = await env.TrelloLists!.get("lists");
       } catch {}
       if (!dbCheck) {
         const lists = await fetch("/db/lists").then((res) => res.json());
