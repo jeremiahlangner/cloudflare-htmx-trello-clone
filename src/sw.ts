@@ -30,12 +30,11 @@ declare const self: ServiceWorkerGlobalScope;
 const cacheName = "cacheName";
 const version = "0";
 
-let DB: Database | undefined;
-if (!DB) DB = new Database("trelloClone", DB);
-
 self.addEventListener("install", (event) => {});
 
 self.addEventListener("activate", (event) => {});
+
+let DB: Database | undefined;
 
 self.addEventListener("fetch", (event) => {
   const allowedSources = [
@@ -50,6 +49,8 @@ self.addEventListener("fetch", (event) => {
 
   return event.respondWith(
     (async () => {
+      if (!DB) DB = new Database("trelloClone", DB);
+
       const request = event.request;
       const env = {
         TrelloLists: DB,
@@ -69,7 +70,6 @@ self.addEventListener("fetch", (event) => {
 
       const router = new Router([
         ["/", async (args) => Index(await getLists(args as HandlerArgs))],
-        // ["/", async (args) => Index({ lists: [] })],
         [
           "/lists",
           async (args) =>

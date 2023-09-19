@@ -3,7 +3,7 @@ import { HTMLResponse, html } from "../util";
 import { List } from "../types";
 import Board from "./board";
 
-function index(args: { lists: List[] }): Promise<Response> {
+function Index(args: { lists: List[] }): Promise<Response> {
   return HTMLResponse(
     PageBoilerplate({
       template: html`
@@ -70,4 +70,4 @@ function index(args: { lists: List[] }): Promise<Response> {
   );
 }
 
-export default index;
+export default Index;

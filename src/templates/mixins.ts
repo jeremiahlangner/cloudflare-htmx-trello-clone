@@ -1,6 +1,57 @@
 import json from "./styles.json" assert { type: "json" };
 import { html } from "../util";
 
+const NoSW = html`
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <title>HTMX Trello Clone</title>
+      <style>
+        ${json.styles}
+      </style>
+      <script>
+        const registerServiceWorker = async () => {
+          if ("serviceWorker" in navigator) {
+            try {
+              const registration = await navigator.serviceWorker.register(
+                "/sw.js",
+                {
+                  scope: "/",
+                  type: "module",
+                },
+              );
+              if (registration.installing) {
+                console.log("Service worker installing");
+                registration.installing.onstatechange = () => {
+                  if (registration.waiting.state === "installed")
+                    location.reload();
+                };
+              } else if (registration.waiting) {
+                console.log("Service worker installed");
+                registration.waiting.onstatechange = () => {
+                  if (registration.waiting.state === "installed")
+                    location.reload();
+                };
+              } else if (registration.active) {
+                console.log("Service worker active");
+              }
+            } catch (error) {
+              console.error("Registration failed with" + error);
+            }
+          }
+        };
+        registerServiceWorker();
+      </script>
+    </head>
+    <body>
+      Loading...
+    </body>
+  </html>
+`;
+
 function PageBoilerplate(params: any) {
   return html`
     <!doctype html>
@@ -91,4 +142,4 @@ const IconEdit = html`
   </svg>
 `;
 
-export { PageBoilerplate, IconPlus, IconClose, IconEdit };
+export { PageBoilerplate, NoSW, IconPlus, IconClose, IconEdit };

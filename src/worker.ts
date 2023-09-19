@@ -1,5 +1,5 @@
 import { Router } from "simple-worker-router";
-import Index from "./templates/index";
+import { NoSW } from "./templates/mixins";
 import AddList from "./templates/add_list";
 import Board from "./templates/board";
 import EditCard from "./templates/edit_card";
@@ -28,7 +28,7 @@ export default {
   async fetch(request: Request, env: Environment, ctx: any) {
     // await resetData({ env } as any);
     const router = new Router([
-      ["/", async (args) => Index(await getLists(args as HandlerArgs))],
+      ["/", async (args) => HTMLResponse(NoSW)],
       ["/sw.js", ServiceWorker],
       [
         "/lists",
