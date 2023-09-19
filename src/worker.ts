@@ -84,7 +84,13 @@ export default {
       ],
       [
         "/db/:key",
-        async (args) => JSONResponse(await jsonHandler(args as HandlerArgs)),
+        async (args) => {
+          if (request.headers.get("Hx-Target") === "board") {
+            return HTMLResponse(Board(await getLists(args as HandlerArgs)));
+          } else {
+            return JSONResponse(await jsonHandler(args as HandlerArgs));
+          }
+        },
       ],
       [
         "/db/:key",
@@ -97,7 +103,7 @@ export default {
             );
             return JSONResponse(await jsonHandler(args as HandlerArgs));
           } catch (e) {
-            return HTMLResponse('');
+            return HTMLResponse("");
           }
         },
         "POST",

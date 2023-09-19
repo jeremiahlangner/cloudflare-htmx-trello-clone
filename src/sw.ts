@@ -129,7 +129,7 @@ self.addEventListener("fetch", (event) => {
           "/db/:key",
           async (args: any) => {
             const key = args.route.pathname.groups.key;
-            const data = await fetch(args.request).then((res) => res.json());
+            const data = await fetch("/db/" + key).then((res) => res.json());
             await env.TrelloLists!.put(key, JSON.stringify(data));
             if (key === "lists") {
               return HTMLResponse(Board({ lists: data }));
