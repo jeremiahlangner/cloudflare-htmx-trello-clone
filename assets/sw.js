@@ -1,238 +1,5 @@
-var N=Object.freeze,Z=Object.defineProperty;var y=(e,t)=>N(Z(e,"raw",{value:N(t||e.slice())}));var $=class{name="";store=Promise.resolve();constructor(t,n){if(console.log("setting up"),n)return n;this.name=t,this.store=new Promise((i,a)=>{let s=indexedDB.open(this.name,1);s.onerror=()=>a(s.error),s.onupgradeneeded=()=>s.result.createObjectStore(this.name),s.onsuccess=()=>i(s.result)})}async get(t){let n=await this.store;return new Promise((i,a)=>{let s=n.transaction(this.name,"readonly"),o=s.objectStore(this.name).get(t);s.oncomplete=()=>i(o.result),s.onerror=()=>a(s.error)})}async put(t,n){let i=await this.store;return new Promise((a,s)=>{let o=i.transaction(this.name,"readwrite"),r=o.objectStore(this.name).put(n,t);o.oncomplete=()=>a(r),o.onerror=()=>s(o.error)})}async delete(t){let n=await this.store;return new Promise((i,a)=>{let s=n.transaction(this.name,"readwrite"),o=s.objectStore(this.name).delete(t);s.oncomplete=()=>i(o),s.onerror=()=>a(s.error)})}},P=$;var j=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,n="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:n,handler:t})}handle(e){let{request:t}=e;for(let n of this.routes){if(n.method!==t.method)continue;let i=n.path.exec({pathname:new URL(t.url).pathname});if(i)return n.handler({...e,route:i})}return new Response("Not found",{status:404})}};var A={styles:`body {
-  margin: 0;
-  padding: 0;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    Segoe UI,
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    Fira Sans,
-    Droid Sans,
-    Helvetica Neue,
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-code {
-  font-family:
-    source-code-pro,
-    Menlo,
-    Monaco,
-    Consolas,
-    Courier New,
-    monospace;
-}
-.app {
-  background: #3465a4;
-  height: 100vh;
-}
-.header {
-  background: rgba(0, 0, 0, 0.15);
-  color: #fff;
-  padding: 5px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  text-align: center;
-  font-size: 40px;
-  font-weight: 200;
-}
-.board {
-  height: 92%;
-  display: -webkit-flex;
-  display: flex;
-  overflow-x: auto;
-}
-.add-list {
-  width: 272px;
-  margin: 10px;
-  -webkit-flex-shrink: 0;
-  flex-shrink: 0;
-}
-.add-list-button {
-  background-color: #0000001f;
-  border-radius: 4px;
-  cursor: pointer;
-  color: #fff;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-  align-items: center;
-  min-height: 32px;
-  padding: 5px 8px;
-  transition:
-    background-color 85ms ease-in,
-    opacity 40ms ease-in,
-    border-color 85ms ease-in;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-}
-.add-list-button:hover {
-  background-color: #0000003d;
-}
-.list {
-  background: #dfe3e6;
-  -webkit-flex-shrink: 0;
-  flex-shrink: 0;
-  width: 272px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  margin: 10px 0 10px 10px;
-  border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-}
-.list-title {
-  cursor: pointer;
-  padding: 10px;
-  overflow-wrap: break-word;
-}
-.toggle-add-card {
-  cursor: pointer;
-  padding: 10px;
-  color: #333;
-  border-radius: 0 0 4px 4px;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-  align-items: center;
-  border: none;
-  width: 100%;
-}
-.toggle-add-card:hover {
-  background-color: #092d4221;
-  color: #17394d;
-  text-decoration: underline;
-}
-.card {
-  position: relative;
-  cursor: grab;
-  background: #fff;
-  margin: 5px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-shadow: 0 1px #092d4240;
-  font-size: 15px;
-  overflow-wrap: break-word;
-  min-height: 18px;
-}
-.card:hover {
-  background: #f5f6f7;
-}
-.card-icons {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  -webkit-justify-content: flex-end;
-  justify-content: flex-end;
-}
-.card-icon,
-.card-icons {
-  display: -webkit-flex;
-  display: flex;
-}
-.card-icon {
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  -webkit-align-items: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  border-radius: 5px;
-  margin: 1px;
-  color: #00000080;
-  background: #f5f6f7;
-  opacity: 0.9;
-  border: none;
-}
-.card-icon:hover {
-  opacity: 1;
-  background: #dcdcdc;
-}
-.edit-card .card {
-  min-height: 50px;
-  padding-left: 8px;
-  padding-right: 15px;
-}
-.edit-card .card:hover {
-  background: #fff;
-}
-.edit-card-textarea {
-  width: 100%;
-  border: none;
-  resize: none;
-  outline: none;
-  font-size: 15px;
-}
-.edit-buttons {
-  display: -webkit-flex;
-  display: flex;
-}
-.edit-button {
-  cursor: pointer;
-  box-shadow: 0 1px #3f6f21;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin: 0 5px 10px;
-  padding: 6px 12px;
-  border-radius: 5px;
-  border: none;
-  color: #fff;
-  outline: none;
-}
-.edit-button:hover {
-  opacity: 0.7;
-}
-.edit-button-cancel {
-  cursor: pointer;
-  margin-bottom: 10px;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-  align-items: center;
-  font-size: 20px;
-  opacity: 0.5;
-  outline: none;
-  padding: 0;
-  border: none;
-}
-.edit-button-cancel:hover {
-  opacity: 1;
-}
-.list-title-edit {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-  align-items: center;
-}
-.list-title-textarea {
-  margin: 6px 0 5px 6px;
-  border-radius: 3px;
-  border: none;
-  resize: none;
-  outline: none;
-  font-size: 15px;
-  padding: 5px;
-}
-.list-title-textarea:focus {
-  box-shadow: inset 0 0 0 2px #0079bf;
-}
-.add-list-editor {
-  background: #dfe3e6;
-  border-radius: 5px;
-  padding: 2px;
-}
-.hidden {
-  display: none;
-}
-`};function d(e,...t){return String.raw({raw:e},...t)}function H(e){let t="";do t=Math.random().toString(16).substring(2,15);while(e[t]);return t}async function c(e){return new Response(e,{headers:{"content-type":"text/html;charset=UTF-8"}})}var E,wt=d(E||(E=y([`
+var O=Object.freeze,tt=Object.defineProperty;var y=(e,t)=>O(tt(e,"raw",{value:O(t||e.slice())}));var $=class{name="";store=Promise.resolve();constructor(t,i){if(console.log("setting up"),i)return i;this.name=t,this.store=new Promise((s,n)=>{let r=indexedDB.open(this.name,1);r.onerror=()=>n(r.error),r.onupgradeneeded=()=>r.result.createObjectStore(this.name),r.onsuccess=()=>s(r.result)})}async get(t){let i=await this.store;return new Promise((s,n)=>{let r=i.transaction(this.name,"readonly"),o=r.objectStore(this.name).get(t);r.oncomplete=()=>s(o.result),r.onerror=()=>n(r.error)})}async put(t,i){let s=await this.store;return new Promise((n,r)=>{let o=s.transaction(this.name,"readwrite"),a=o.objectStore(this.name).put(i,t);o.oncomplete=()=>n(a),o.onerror=()=>r(o.error)})}async delete(t){let i=await this.store;return new Promise((s,n)=>{let r=i.transaction(this.name,"readwrite"),o=r.objectStore(this.name).delete(t);r.oncomplete=()=>s(o),r.onerror=()=>n(r.error)})}},N=$;var P=class{routes;constructor(e=[]){this.routes=[];for(let t of e)this.register(...t)}register(e,t,i="GET"){this.routes.push({path:new URLPattern({pathname:e}),method:i,handler:t})}handle(e){let{request:t}=e;for(let i of this.routes){if(i.method!==t.method)continue;let s=i.path.exec({pathname:new URL(t.url).pathname});if(s)return i.handler({...e,route:s})}return new Response("Not found",{status:404})}};var j={styles:`body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}code{font-family:source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace}.app{background:#3465a4;height:100vh}.header{background:rgba(0,0,0,.15);color:#fff;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.12);text-align:center;font-size:40px;font-weight:200}.board{height:92%;display:-webkit-flex;display:flex;overflow-x:auto}.add-list{width:272px;margin:10px;-webkit-flex-shrink:0;flex-shrink:0}.add-list-button{background-color:#0000001f;border-radius:4px;cursor:pointer;color:#fff;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;min-height:32px;padding:5px 8px;transition:background-color 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content}.add-list-button:hover{background-color:#0000003d}.list{background:#dfe3e6;-webkit-flex-shrink:0;flex-shrink:0;width:272px;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content;margin:10px 0 10px 10px;border-radius:4px;border:1px solid rgba(0,0,0,.12)}.list-title{cursor:pointer;padding:10px;overflow-wrap:break-word}.toggle-add-card{cursor:pointer;padding:10px;color:#333;border-radius:0 0 4px 4px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;border:none;width:100%}.toggle-add-card:hover{background-color:#092d4221;color:#17394d;text-decoration:underline}.card{position:relative;cursor:grab;background:#fff;margin:5px;padding:10px;border-radius:5px;border:1px solid rgba(0,0,0,.12);box-shadow:0 1px #092d4240;font-size:15px;overflow-wrap:break-word;min-height:18px}.card:hover{background:#f5f6f7}.card-icons{position:absolute;top:5px;right:5px;-webkit-flex-direction:row;flex-direction:row;-webkit-justify-content:flex-end;justify-content:flex-end}.card-icon,.card-icons{display:-webkit-flex;display:flex}.card-icon{cursor:pointer;width:24px;height:24px;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;border-radius:5px;margin:1px;color:#00000080;background:#f5f6f7;opacity:.9;border:none}.card-icon:hover{opacity:1;background:#dcdcdc}.edit-card .card{min-height:50px;padding-left:8px;padding-right:15px}.edit-card .card:hover{background:#fff}.edit-card-textarea{width:100%;border:none;resize:none;outline:none;font-size:15px}.edit-buttons{display:-webkit-flex;display:flex}.edit-button{cursor:pointer;box-shadow:0 1px #3f6f21;width:-webkit-fit-content;width:-moz-fit-content;width:fit-content;margin:0 5px 10px;padding:6px 12px;border-radius:5px;border:none;color:#fff;outline:none}.edit-button:hover{opacity:.7}.edit-button-cancel{cursor:pointer;margin-bottom:10px;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;font-size:20px;opacity:.5;outline:none;padding:0;border:none}.edit-button-cancel:hover{opacity:1}.list-title-edit{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center}.list-title-textarea{margin:6px 0 5px 6px;border-radius:3px;border:none;resize:none;outline:none;font-size:15px;padding:5px}.list-title-textarea:focus{box-shadow:inset 0 0 0 2px #0079bf}.add-list-editor{background:#dfe3e6;border-radius:5px;padding:2px}.hidden{display:none}
+`};function d(e,...t){return String.raw({raw:e},...t)}function A(e){let t="";do t=Math.random().toString(16).substring(2,15);while(e[t]);return t}async function c(e){return new Response(e,{headers:{"content-type":"text/html;charset=UTF-8"}})}var I=j.styles,E,vt=d(E||(E=y([`
   <!doctype html>
   <html lang="en">
     <head>
@@ -281,7 +48,7 @@ code {
       <div class="app" style="text-align: center;">Loading...</div>
     </body>
   </html>
-`])),A.styles),J;function I(e){return d(J||(J=y([`
+`])),I),J;function R(e){return d(J||(J=y([`
     <!doctype html>
     <html lang="en">
       <head>
@@ -322,7 +89,7 @@ code {
         `,`
       </body>
     </html>
-  `])),A.styles,e.template)}var k=d`
+  `])),I,e.template)}var k=d`
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -348,7 +115,7 @@ code {
       d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
     />
   </svg>
-`,R=d`
+`,M=d`
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -361,7 +128,7 @@ code {
       d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
     />
   </svg>
-`;function et(e){let{list:t}=e;return d`
+`;function it(e){let{list:t}=e;return d`
     <button
       class="toggle-add-card"
       id="btn-add-card-${t.id}"
@@ -371,7 +138,7 @@ code {
       ${k}
       <span> Add another card</span>
     </button>
-  `}var S=et;function nt(e){let{list:t}=e;return d`
+  `}var S=it;function st(e){let{list:t}=e;return d`
     <div class="edit-card hidden" id="add-card-${t.id}">
       <div class="card">
         <textarea
@@ -406,7 +173,7 @@ code {
         </div>
       </div>
     </div>
-  `}var M=nt;var it=d`
+  `}var _=st;var rt=d`
   <div
     id="add-list"
     class="add-list-button"
@@ -418,38 +185,38 @@ code {
     ${k} Add another list
     <div></div>
   </div>
-`,C=it;function st(e){let{list:t,card:n}=e;return d`
+`,C=rt;function at(e){let{list:t,card:i}=e;return d`
     <div
       class="card"
-      id="card-${n.id}"
+      id="card-${i.id}"
       tabindex="0"
       aria-roledescription="Draggable item. Press space bar to lift"
       draggable="true"
-      _="on mouseenter toggle .hidden on #card-edit-${n.id} until mouseleave"
+      _="on mouseenter toggle .hidden on #card-edit-${i.id} until mouseleave"
     >
-      <div class="card-icons hidden" id="card-edit-${n.id}">
+      <div class="card-icons hidden" id="card-edit-${i.id}">
         <button
           class="card-icon"
           type="button"
-          hx-get="/cards/edit/${t.id}/${n.id}"
-          hx-target="#card-${n.id}"
+          hx-get="/cards/edit/${t.id}/${i.id}"
+          hx-target="#card-${i.id}"
           hx-swap="outerHTML"
         >
-          ${R}
+          ${M}
         </button>
       </div>
-      ${n.label}
+      ${i.label}
     </div>
-  `}var L=st;function rt(e){let t=d``;for(let n of e.cards)t+=d`${L({list:e,card:n})}`;return t}function at(e){let{lists:t}=e,n=d``;for(let i of t)n+=d`
-      <div class="list" draggable="true" id="lists-list-${i.id}">
-        <div class="list-title">${i.name}</div>
+  `}var L=at;function nt(e){let t=d``;for(let i of e.cards)t+=d`${L({list:e,card:i})}`;return t}function ot(e){let{lists:t}=e,i=d``;for(let s of t)i+=d`
+      <div class="list" draggable="true" id="lists-list-${s.id}">
+        <div class="list-title">${s.name}</div>
 
-        <div class="list-cards sortable" id="list-${i.id}">
-          ${rt(i)}
+        <div class="list-cards sortable" id="list-${s.id}">
+          ${nt(s)}
         </div>
-        ${S({list:i})} ${M({list:i})}
+        ${S({list:s})} ${_({list:s})}
       </div>
-    `;return n+=d` <div class="add-list">${C}</div> `,n}var h=at;var _;function ot(e){return c(I({template:d(_||(_=y([`
+    `;return i+=d` <div class="add-list">${C}</div> `,i}var h=ot;var z;function dt(e){return c(R({template:d(z||(z=y([`
         <div class="app">
           <div class="header">
             htmx Trello Clone
@@ -508,7 +275,7 @@ code {
             }
           });
         <\/script>
-      `])),h(e))}))}var z=ot;function dt(){return c(d`
+      `])),h(e))}))}var D=dt;function lt(){return c(d`
     <div id="add-list" class="add-list-editor">
       <form hx-post="/lists" hx-target="#board">
         <div class="list-title-edit">
@@ -544,10 +311,10 @@ code {
         </div>
       </form>
     </div>
-  `)}var D=dt;function lt(e){let{list:t,card:n}=e;return d`
+  `)}var U=lt;function ct(e){let{list:t,card:i}=e;return d`
     <div id="edit-card" class="edit-card">
       <form
-        hx-put="/cards/${t.id}/${n.id}"
+        hx-put="/cards/${t.id}/${i.id}"
         hx-target="#edit-card"
         hx-swap="outerHTML"
       >
@@ -559,7 +326,7 @@ code {
             maxlength="300"
             autofocus="true"
           >
-${n.label}</textarea
+${i.label}</textarea
           >
           <input type="hidden" name="listId" value="${t.id}" />
         </div>
@@ -578,7 +345,7 @@ ${n.label}</textarea
             type="button"
             tabindex="0"
             style="background-color: rgb(234, 37, 37);"
-            hx-delete="/cards/${t.id}/${n.id}"
+            hx-delete="/cards/${t.id}/${i.id}"
             _="on htmx:afterOnLoad remove #edit-card"
           >
             Delete
@@ -586,7 +353,7 @@ ${n.label}</textarea
           <div
             class="edit-button-cancel"
             tabindex="0"
-            hx-get="/cards/cancel-edit/${t.id}/${n.id}"
+            hx-get="/cards/cancel-edit/${t.id}/${i.id}"
             hx-target="#edit-card"
             hx-swap="outerHTML"
           >
@@ -595,4 +362,4 @@ ${n.label}</textarea
         </div>
       </form>
     </div>
-  `}var U=lt;async function q(e){let{env:t}=e;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function W(e){let{route:t,env:n}=e,{list_id:i}=t.pathname.groups,a=JSON.parse(await n.TrelloLists.get("lists"));return a=a.filter(s=>s.id!==i),await n.TrelloLists.put("lists",JSON.stringify(a)),{lists:a}}async function B(e){let{request:t,env:n,route:i}=e,{list_id:a,id:s}=i.pathname.groups,o=new URLSearchParams(await t.text()),r=Object.fromEntries(o),{label:l}=r,p=JSON.parse(await n.TrelloLists.get("lists")),u=p.find(x=>x.id===a),f=u.cards.find(x=>x.id===s);return f.label=l,await n.TrelloLists.put("lists",JSON.stringify(p)),{list:u,card:f}}async function F(e){let{env:t,route:n}=e,{list_id:i,id:a}=n.pathname.groups,o=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===i),r=o.cards.find(l=>l.id===a);return{list:o,card:r}}async function V(e){let{env:t,route:n}=e,{list_id:i,id:a}=n.pathname.groups,s=JSON.parse(await t.TrelloLists.get("lists")),o=s.find(r=>r.id===i);o.cards=o.cards.filter(r=>r.id!==a),await t.TrelloLists.put("lists",JSON.stringify(s))}async function X(e){let{request:t,env:n}=e,i=new URLSearchParams(await t.text()),a=Object.fromEntries(i),{name:s}=a,o=JSON.parse(await n.TrelloLists.get("lists"));return o.push({name:s,id:H({}),cards:[]}),await n.TrelloLists.put("lists",JSON.stringify(o)),{lists:o}}async function G(e){let{request:t,route:n,env:i}=e,a=JSON.parse(await i.TrelloLists.get("lists")),{list_id:s}=n.pathname.groups,o=new URLSearchParams(await t.text()),l=Object.fromEntries(o)["label-"+s],p=a.find(f=>f.id===s),u={label:l,id:H({}),list:s};return p.cards.push(u),await i.TrelloLists.put("lists",JSON.stringify(a)),{lists:a}}async function K(e){let{env:t,route:n}=e,i=n.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(o=>o.id===i)}}async function Q(e){let{env:t,route:n}=e,{list_id:i,id:a}=n.pathname.groups,o=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===i),r=o.cards.find(l=>l.id===a);return{list:o,card:r}}async function Y(e){let{request:t,env:n}=e,i=new URLSearchParams(await t.text()),a=Object.fromEntries(i),{from:s,to:o,movedCard:r,index:l,prevIndex:p}=a,[,u]=s.split("-"),[,f]=o.split("-"),x=r.replace("card-",""),g=JSON.parse(await n.TrelloLists.get("lists"));try{if(s==="board"&&o==="board"){let m=g[p];g=g.filter(v=>v.id!==m.id),g.splice(l,0,m),await n.TrelloLists.put("lists",JSON.stringify(g))}else{let m=JSON.parse(JSON.stringify(g)),v=m.find(b=>b.id===u),O=v.cards.find(b=>b.id==x);O.list=f,v.cards=v.cards.filter(b=>b.id!=x),m.find(b=>b.id==f).cards.splice(Number(l),0,O),g=m,await n.TrelloLists.put("lists",JSON.stringify(g))}}catch(m){console.error(m)}return{lists:g}}self.addEventListener("install",e=>{});self.addEventListener("activate",e=>{});var T;self.addEventListener("fetch",e=>["https://unpkg.com/hyperscript.org","https://unpkg.com/htmx.org","https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"].includes(e.request.url)?fetch(e.request):e.respondWith((async()=>{T||(T=new P("trelloClone",T));let n=e.request,i={TrelloLists:T},a=void 0,s;try{s=JSON.parse(await i.TrelloLists.get("lists"))}catch{}if(!s){let r=await fetch("/db/lists").then(l=>l.json());await i.TrelloLists.put("lists",JSON.stringify(r))}return new j([["/",async r=>z(await q(r))],["/lists",async r=>c(h(await X(r))),"POST"],["/lists/add",D],["/lists/cancel",()=>c(C)],["/lists/:list_id",async r=>c(h(await W(r))),"DELETE"],["/cards/move",async r=>c(h(await Y(r))),"POST"],["/cards/new/:list_id",async r=>c(h(await G(r))),"POST"],["/cards/cancel/:id",async r=>c(S(await K(r)))],["/cards/edit/:list_id/:id",async r=>c(U(await Q(r)))],["/cards/:list_id/:id",async r=>c(L(await B(r))),"PUT"],["/cards/:list_id/:id",async r=>(await V(r),c("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async r=>c(L(await F(r)))],["/db/:key",async r=>{let l=r.route.pathname.groups.key,p=await fetch("/db/"+l).then(u=>u.json());if(await i.TrelloLists.put(l,JSON.stringify(p)),l==="lists")return c(h({lists:p}))}],["/db/:key",async r=>{let l=r.route.pathname.groups.key,p=await i.TrelloLists.get(l);return await fetch("/db/"+l,{headers:{"content-type":"application/json"},body:p,method:"POST"}),c("")},"POST"]]).handle({request:n,env:i,ctx:a})})()));
+  `}var q=ct;async function W(e){let{env:t}=e;return{lists:JSON.parse(await t.TrelloLists.get("lists"))}}async function B(e){let{route:t,env:i}=e,{list_id:s}=t.pathname.groups,n=JSON.parse(await i.TrelloLists.get("lists"));return n=n.filter(r=>r.id!==s),await i.TrelloLists.put("lists",JSON.stringify(n)),{lists:n}}async function F(e){let{request:t,env:i,route:s}=e,{list_id:n,id:r}=s.pathname.groups,o=new URLSearchParams(await t.text()),a=Object.fromEntries(o),{label:l}=a,p=JSON.parse(await i.TrelloLists.get("lists")),u=p.find(x=>x.id===n),f=u.cards.find(x=>x.id===r);return f.label=l,await i.TrelloLists.put("lists",JSON.stringify(p)),{list:u,card:f}}async function V(e){let{env:t,route:i}=e,{list_id:s,id:n}=i.pathname.groups,o=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===s),a=o.cards.find(l=>l.id===n);return{list:o,card:a}}async function X(e){let{env:t,route:i}=e,{list_id:s,id:n}=i.pathname.groups,r=JSON.parse(await t.TrelloLists.get("lists")),o=r.find(a=>a.id===s);o.cards=o.cards.filter(a=>a.id!==n),await t.TrelloLists.put("lists",JSON.stringify(r))}async function G(e){let{request:t,env:i}=e,s=new URLSearchParams(await t.text()),n=Object.fromEntries(s),{name:r}=n,o=JSON.parse(await i.TrelloLists.get("lists"));return o.push({name:r,id:A({}),cards:[]}),await i.TrelloLists.put("lists",JSON.stringify(o)),{lists:o}}async function K(e){let{request:t,route:i,env:s}=e,n=JSON.parse(await s.TrelloLists.get("lists")),{list_id:r}=i.pathname.groups,o=new URLSearchParams(await t.text()),l=Object.fromEntries(o)["label-"+r],p=n.find(f=>f.id===r),u={label:l,id:A({}),list:r};return p.cards.push(u),await s.TrelloLists.put("lists",JSON.stringify(n)),{lists:n}}async function Q(e){let{env:t,route:i}=e,s=i.pathname.groups.id;return{list:JSON.parse(await t.TrelloLists.get("lists")).find(o=>o.id===s)}}async function Y(e){let{env:t,route:i}=e,{list_id:s,id:n}=i.pathname.groups,o=JSON.parse(await t.TrelloLists.get("lists")).find(l=>l.id===s),a=o.cards.find(l=>l.id===n);return{list:o,card:a}}async function Z(e){let{request:t,env:i}=e,s=new URLSearchParams(await t.text()),n=Object.fromEntries(s),{from:r,to:o,movedCard:a,index:l,prevIndex:p}=n,[,u]=r.split("-"),[,f]=o.split("-"),x=a.replace("card-",""),g=JSON.parse(await i.TrelloLists.get("lists"));try{if(r==="board"&&o==="board"){let m=g[p];g=g.filter(v=>v.id!==m.id),g.splice(l,0,m),await i.TrelloLists.put("lists",JSON.stringify(g))}else{let m=JSON.parse(JSON.stringify(g)),v=m.find(b=>b.id===u),H=v.cards.find(b=>b.id==x);H.list=f,v.cards=v.cards.filter(b=>b.id!=x),m.find(b=>b.id==f).cards.splice(Number(l),0,H),g=m,await i.TrelloLists.put("lists",JSON.stringify(g))}}catch(m){console.error(m)}return{lists:g}}self.addEventListener("install",e=>{});self.addEventListener("activate",e=>{});var T;self.addEventListener("fetch",e=>["https://unpkg.com/hyperscript.org","https://unpkg.com/htmx.org","https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"].includes(e.request.url)?fetch(e.request):e.respondWith((async()=>{T||(T=new N("trelloClone",T));let i=e.request,s={TrelloLists:T},n=void 0,r;try{r=JSON.parse(await s.TrelloLists.get("lists"))}catch{}if(!r){let a=await fetch("/db/lists").then(l=>l.json());await s.TrelloLists.put("lists",JSON.stringify(a))}return new P([["/",async a=>D(await W(a))],["/lists",async a=>c(h(await G(a))),"POST"],["/lists/add",U],["/lists/cancel",()=>c(C)],["/lists/:list_id",async a=>c(h(await B(a))),"DELETE"],["/cards/move",async a=>c(h(await Z(a))),"POST"],["/cards/new/:list_id",async a=>c(h(await K(a))),"POST"],["/cards/cancel/:id",async a=>c(S(await Q(a)))],["/cards/edit/:list_id/:id",async a=>c(q(await Y(a)))],["/cards/:list_id/:id",async a=>c(L(await F(a))),"PUT"],["/cards/:list_id/:id",async a=>(await X(a),c("")),"DELETE"],["/cards/cancel-edit/:list_id/:id",async a=>c(L(await V(a)))],["/db/:key",async a=>{let l=a.route.pathname.groups.key,p=await fetch("/db/"+l).then(u=>u.json());if(await s.TrelloLists.put(l,JSON.stringify(p)),l==="lists")return c(h({lists:p}))}],["/db/:key",async a=>{let l=a.route.pathname.groups.key,p=await s.TrelloLists.get(l);return await fetch("/db/"+l,{headers:{"content-type":"application/json"},body:p,method:"POST"}),c("")},"POST"]]).handle({request:i,env:s,ctx:n})})()));

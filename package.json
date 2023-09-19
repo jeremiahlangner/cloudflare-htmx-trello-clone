@@ -8,7 +8,7 @@
     "test": "npx jest --pass-with-no-tests",
     "start": "wrangler dev --experimental-enable-local-persistence",
     "build": "npx tsc && npm run format && npm run test && rm -rf ./build && npx tsx ./esbuild.ts",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "wrangler deploy"
   },
   "keywords": [],
   "author": "Jeremiah Langner",

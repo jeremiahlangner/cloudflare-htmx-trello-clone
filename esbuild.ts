@@ -4,7 +4,7 @@ async function Build() {
   try {
     await build({
       entryPoints: ["./assets/styles.css"],
-      outfile: "styles.min.css",
+      outfile: "./assets/styles.min.css",
       minify: true,
       bundle: true,
     });

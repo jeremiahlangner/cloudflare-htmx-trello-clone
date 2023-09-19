@@ -1,6 +1,7 @@
 import json from "./styles.json" assert { type: "json" };
 import { html } from "../util";
 
+const styles = json.styles;
 const NoSW = html`
   <!doctype html>
   <html lang="en">
@@ -10,7 +11,7 @@ const NoSW = html`
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
       <title>HTMX Trello Clone</title>
       <style>
-        ${json.styles}
+        ${styles}
       </style>
       <script>
         const registerServiceWorker = async () => {
@@ -62,7 +63,7 @@ function PageBoilerplate(params: any) {
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>HTMX Trello Clone</title>
         <style>
-          ${json.styles}
+          ${styles}
         </style>
         <script>
           const registerServiceWorker = async () => {
