@@ -5,30 +5,29 @@ import { Environment, HandlerArgs } from "./types";
 import ServiceWorker from "./service-worker";
 import { resetData, jsonHandler } from "./handlers";
 
+const router = new Router([
+  ["/", async () => HTMLResponse(NoSW)],
+  ["/sw.js", ServiceWorker],
+  [
+    "/db/:key",
+    async (args) => JSONResponse(await jsonHandler(args as HandlerArgs)),
+  ],
+  [
+    "/db/:key",
+    async (args) => {
+      const body = await args.request.json();
+      args.env.TrelloLists.put(
+        args.route.pathname.groups.key,
+        JSON.stringify(body),
+      );
+      return JSONResponse(await jsonHandler(args as HandlerArgs));
+    },
+    "POST",
+  ],
+]);
+
 export default {
-  async fetch(request: Request, env: Environment, ctx: any) {
-    const router = new Router([
-      ["/", async (args) => HTMLResponse(NoSW)],
-      ["/sw.js", ServiceWorker],
-      [
-        "/db/:key",
-        async (args) => {
-          return JSONResponse(await jsonHandler(args as HandlerArgs));
-        },
-      ],
-      [
-        "/db/:key",
-        async (args: any) => {
-          const body = await args.request.json();
-          env.TrelloLists.put(
-            args.route.pathname.groups.key,
-            JSON.stringify(body),
-          );
-          return JSONResponse(await jsonHandler(args as HandlerArgs));
-        },
-        "POST",
-      ],
-    ]);
+  async fetch(request: Request, env: Environment, ctx: ExecutionContext) {
     return router.handle({ request, env, ctx });
   },
   async scheduled(event: any, env: Environment, ctx: ExecutionContext) {
