@@ -1,5 +1,5 @@
 import { Router } from "simple-worker-router";
-import { NoSW } from "./templates/mixins";
+import NoSW from "./templates/nosw";
 import { HTMLResponse, JSONResponse } from "./util";
 import { Environment, HandlerArgs } from "./types";
 import ServiceWorker from "./service-worker";

@@ -1,4 +1,5 @@
-import { IconSync, PageBoilerplate } from "./mixins";
+import { IconSync } from "./mixins";
+import PageBoilerplate from "./boilerplate";
 import { HTMLResponse, html } from "../util";
 import { List } from "../types";
 import Board from "./board";

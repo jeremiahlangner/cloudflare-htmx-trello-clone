@@ -15,6 +15,7 @@ async function Build() {
       format: "esm",
       minify: true,
       bundle: true,
+      treeShaking: true,
     });
 
     const styles = readFileSync("assets/styles.min.css", { encoding: "utf8" });
@@ -33,6 +34,7 @@ async function Build() {
       minify: true,
       format: "esm",
       bundle: true,
+      treeShaking: true,
     });
   } catch (e) {
     console.error(e);
