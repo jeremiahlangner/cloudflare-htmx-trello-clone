@@ -11,6 +11,10 @@ function Index(args: { lists: List[] }): Promise<Response> {
         <div class="app">
           <div class="header">
             htmx Trello Clone
+            <span class="disclaimer">
+              Anyone can modify, change, add, or edit cards. All data resets
+              every 15 minutes.
+            </span>
             <div class="header-buttons">
               <button
                 class="edit-button"
