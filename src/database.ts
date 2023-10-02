@@ -3,7 +3,6 @@ class Database {
   private store: Promise<any> = Promise.resolve();
 
   constructor(name: string, DB?: Database) {
-    console.log("setting up");
     if (DB) return DB;
 
     this.name = name;
