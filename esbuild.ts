@@ -1,13 +1,16 @@
 import { build } from "esbuild";
 import { readFileSync, writeFileSync } from "fs";
+import { sassPlugin } from "esbuild-sass-plugin";
+
 async function Build() {
   try {
     // build styles first to minify and implement into dist worker
     await build({
-      entryPoints: ["./assets/styles.css"], // TODO: convert to SCSS
+      entryPoints: ["./assets/styles.scss"],
       outfile: "./assets/styles.min.css",
       minify: true,
       bundle: true,
+      plugins: [sassPlugin()],
     });
 
     // build service worker file to integrate in bundle as servable text file

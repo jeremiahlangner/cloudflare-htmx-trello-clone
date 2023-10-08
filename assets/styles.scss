@@ -48,10 +48,15 @@ code {
 }
 
 .board {
-  height: 92%;
   display: -webkit-flex;
   display: flex;
   overflow-x: auto;
+  flex-wrap: nowrap;
+  place-content: flex-start;
+
+  @media all and (max-width: 860px) {
+    flex-wrap: wrap;
+  }
 }
 
 .add-list {
