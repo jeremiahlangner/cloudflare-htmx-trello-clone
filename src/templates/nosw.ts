@@ -21,6 +21,7 @@ const NoSW = html`
               location.reload();
             }
           };
+          if (!state) location.reload();
         }
 
         async function registerServiceWorker() {

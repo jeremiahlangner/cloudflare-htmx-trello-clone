@@ -31,13 +31,14 @@ self.addEventListener("activate", (event) => {});
 let DB: Database | undefined;
 
 self.addEventListener("fetch", (event) => {
-  const allowedSources = [
+  // add whitelist for caching purposes
+  const whiteList = [
     "https://unpkg.com/hyperscript.org",
     "https://unpkg.com/htmx.org",
     "https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js",
   ];
 
-  if (allowedSources.includes(event.request.url)) {
+  if (whiteList.includes(event.request.url)) {
     return fetch(event.request);
   }
 
@@ -57,6 +58,8 @@ self.addEventListener("fetch", (event) => {
         const lists = await fetch("/db/lists").then((res) => res.json());
         await env.TrelloLists!.put("lists", JSON.stringify(lists));
       }
+
+      console.log(event.request);
 
       const router = new Router([
         ["/", async (args) => Index(await getLists(args))],
