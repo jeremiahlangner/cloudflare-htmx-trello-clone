@@ -24,13 +24,16 @@ import {
 export type {};
 declare const self: ServiceWorkerGlobalScope;
 
-self.addEventListener("install", (event) => {});
+self.addEventListener("install", (event) => {
+  self.skipWaiting();
+});
 
 self.addEventListener("activate", (event) => {});
 
 let DB: Database | undefined;
 
 self.addEventListener("fetch", (event) => {
+  console.log("request to service worker");
   // add whitelist for caching purposes
   const whiteList = [
     "https://unpkg.com/hyperscript.org",
@@ -59,7 +62,9 @@ self.addEventListener("fetch", (event) => {
         await env.TrelloLists!.put("lists", JSON.stringify(lists));
       }
 
-      console.log(event.request);
+      if (event.request.url == self.registration.scope) {
+        return Index(await getLists({ request, env, ctx } as any));
+      }
 
       const router = new Router([
         ["/", async (args) => Index(await getLists(args))],
@@ -136,6 +141,14 @@ self.addEventListener("fetch", (event) => {
             return HTMLResponse("");
           },
           "POST",
+        ],
+        [
+          "/ping",
+          async () => {
+            return new Response("pong", {
+              headers: { "content-type": "text/plain; charset=utf-8" },
+            });
+          },
         ],
       ]);
       return router.handle({ request, env, ctx });

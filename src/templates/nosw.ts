@@ -17,11 +17,12 @@ const NoSW = html`
       <script>
         function reload(state) {
           state.onstatechange = () => {
-            if (state.state === "installed") {
-              location.reload();
+            if (
+              ["installed", "activating", "activated"].indexOf(state.state) > -1
+            ) {
+              window.location.reload();
             }
           };
-          if (!state) location.reload();
         }
 
         async function registerServiceWorker() {

@@ -28,6 +28,7 @@ const router = new Router([
 
 export default {
   async fetch(request: Request, env: Environment, ctx: ExecutionContext) {
+    console.log("request to worker");
     return router.handle({ request, env, ctx });
   },
   async scheduled(event: any, env: Environment, ctx: ExecutionContext) {

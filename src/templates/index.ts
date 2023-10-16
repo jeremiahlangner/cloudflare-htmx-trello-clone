@@ -72,6 +72,9 @@ function Index(args: { lists: List[] }): Promise<Response> {
             }
           });
         </script>
+        <script>
+          const interval = setInterval(() => fetch("./ping"), 20000);
+        </script>
       `,
     }),
   );
