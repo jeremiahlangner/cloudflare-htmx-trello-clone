@@ -83,6 +83,13 @@ self.addEventListener("fetch", (event) => {
           "DELETE",
         ],
         [
+          "/lists/:list_id",
+          async (args) => {
+            return HTMLResponse(Board(await deleteList(args)));
+          },
+          "POST",
+        ],
+        [
           "/cards/move",
           async (args) => HTMLResponse(Board(await move(args))),
           "POST",
