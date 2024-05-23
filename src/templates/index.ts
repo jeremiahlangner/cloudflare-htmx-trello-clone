@@ -11,10 +11,6 @@ function Index(args: { lists: List[] }): Promise<Response> {
         <div class="app">
           <div class="header">
             htmx Trello Clone
-            <span class="disclaimer">
-              Anyone can modify, change, add, or edit cards. All data resets
-              every 15 minutes.
-            </span>
             <div class="header-buttons">
               <button
                 class="edit-button"
@@ -53,6 +49,10 @@ function Index(args: { lists: List[] }): Promise<Response> {
             </div>
           </form>
         </div>
+        <span class="disclaimer">
+          Anyone can modify, change, add, or edit cards. All data resets every
+          15 minutes.
+        </span>
         <script src="https://unpkg.com/htmx.org"></script>
         <script src="https://unpkg.com/hyperscript.org"></script>
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>

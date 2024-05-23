@@ -2,6 +2,14 @@ function html(strings: TemplateStringsArray, ...values: any[]): string {
   return String.raw({ raw: strings }, ...values);
 }
 
+function tryJSON<T>(str: string): T | null {
+  try {
+    return JSON.parse(str);
+  } catch (e) {
+    return null;
+  }
+}
+
 // TODO: add hashes to kv data to prevent collisions
 function hash(_hashes: { [key: string]: string }): string {
   let h: string = "";

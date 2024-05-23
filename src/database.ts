@@ -16,31 +16,24 @@ class Database {
   }
 
   async get(key: string): Promise<string> {
-    const store = await this.store;
-    return new Promise((resolve, reject) => {
-      const transaction = store.transaction(this.name, "readonly");
-      const value = transaction.objectStore(this.name).get(key);
-      transaction.oncomplete = () => resolve(value.result);
-      transaction.onerror = () => reject(transaction.error);
-    });
+    return this.handleTransaction('get', key);
   }
 
   async put(key: string, value: string) {
-    const store = await this.store;
-    return new Promise((resolve, reject) => {
-      const transaction = store.transaction(this.name, "readwrite");
-      const result = transaction.objectStore(this.name).put(value, key);
-      transaction.oncomplete = () => resolve(result);
-      transaction.onerror = () => reject(transaction.error);
-    });
+    return this.handleTransaction('put', key, value);
   }
 
   async delete(key: string) {
+    return this.handleTransaction('delete', key);
+  }
+
+  private async handleTransaction(method: 'get' | 'put' | 'delete', key: string, value?: string): Promise<string> {
     const store = await this.store;
     return new Promise((resolve, reject) => {
-      const transaction = store.transaction(this.name, "readwrite");
-      const result = transaction.objectStore(this.name).delete(key);
-      transaction.oncomplete = () => resolve(result);
+      const transaction = store.transaction(this.name, method === 'get' ? 'readonly' : "readwrite");
+      const args = method === 'put' ? [value, key] : [key];
+      const result = transaction.objectStore(this.name)[method](...args);
+      transaction.oncomplete = () => resolve(result.result);
       transaction.onerror = () => reject(transaction.error);
     });
   }
