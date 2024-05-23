@@ -16,22 +16,29 @@ class Database {
   }
 
   async get(key: string): Promise<string> {
-    return this.handleTransaction('get', key);
+    return this.handleTransaction("get", key);
   }
 
   async put(key: string, value: string) {
-    return this.handleTransaction('put', key, value);
+    return this.handleTransaction("put", key, value);
   }
 
   async delete(key: string) {
-    return this.handleTransaction('delete', key);
+    return this.handleTransaction("delete", key);
   }
 
-  private async handleTransaction(method: 'get' | 'put' | 'delete', key: string, value?: string): Promise<string> {
+  private async handleTransaction(
+    method: "get" | "put" | "delete",
+    key: string,
+    value?: string,
+  ): Promise<string> {
     const store = await this.store;
     return new Promise((resolve, reject) => {
-      const transaction = store.transaction(this.name, method === 'get' ? 'readonly' : "readwrite");
-      const args = method === 'put' ? [value, key] : [key];
+      const transaction = store.transaction(
+        this.name,
+        method === "get" ? "readonly" : "readwrite",
+      );
+      const args = method === "put" ? [value, key] : [key];
       const result = transaction.objectStore(this.name)[method](...args);
       transaction.oncomplete = () => resolve(result.result);
       transaction.onerror = () => reject(transaction.error);
